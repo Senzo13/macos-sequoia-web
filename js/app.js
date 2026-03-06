@@ -146,9 +146,11 @@ document.addEventListener('components-loaded', () => {
                     icon.style.transform = `scale(${scale}) translateY(${-(scale - 1) * 20}px)`;
                     icon.style.transformOrigin = 'bottom center';
                     icon.style.transition = 'transform 0.1s ease';
+                    icon.style.zIndex = Math.round((1 - ratio) * 10);
                 } else {
                     icon.style.transform = 'scale(1)';
                     icon.style.transition = 'transform 0.2s ease';
+                    icon.style.zIndex = '0';
                 }
             });
         });
@@ -157,6 +159,7 @@ document.addEventListener('components-loaded', () => {
             dockItems.forEach(icon => {
                 icon.style.transform = 'scale(1)';
                 icon.style.transition = 'transform 0.3s ease';
+                icon.style.zIndex = '0';
             });
         });
     }

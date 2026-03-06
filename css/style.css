@@ -1134,11 +1134,11 @@ body {
 
 .terminal-content {
   flex: 1;
-  padding: 10px 14px;
+  padding: 6px 10px;
   color: #f0f0f0;
   font-size: 13px;
   font-family: 'SF Mono', 'Menlo', 'Monaco', 'Courier New', monospace;
-  line-height: 1.5;
+  line-height: 1.4;
   overflow-y: auto;
   white-space: pre-wrap;
   word-break: break-all;
@@ -1164,7 +1164,8 @@ body {
 }
 
 .terminal-prompt {
-  color: #33ff33;
+  color: #f0f0f0;
+  font-weight: bold;
   margin-right: 0;
   white-space: nowrap;
 }
@@ -1177,7 +1178,7 @@ body {
   font-size: 13px;
   outline: none;
   flex: 1;
-  caret-color: #33ff33;
+  caret-color: #f0f0f0;
   min-width: 0;
 }
 
