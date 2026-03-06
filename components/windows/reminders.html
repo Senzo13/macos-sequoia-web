@@ -1,0 +1,53 @@
+    <div class="window" id="window-reminders" data-app="reminders" style="display:none; width:700px; height:460px; top:70px; left:160px;">
+      <div class="window-titlebar" data-drag="true">
+        <div class="traffic-lights">
+          <button class="traffic-light btn-close" data-action="close" aria-label="Close"></button>
+          <button class="traffic-light btn-minimize" data-action="minimize" aria-label="Minimize"></button>
+          <button class="traffic-light btn-maximize" data-action="maximize" aria-label="Maximize"></button>
+        </div>
+        <div class="window-title">
+          <span>Reminders</span>
+        </div>
+        <div class="window-toolbar-actions"></div>
+      </div>
+      <div class="window-body reminders-body">
+        <aside class="reminders-sidebar">
+          <div class="reminders-sidebar-section">
+            <ul class="reminders-sidebar-list">
+              <li class="reminders-sidebar-item active">
+                <span>Today</span>
+              </li>
+              <li class="reminders-sidebar-item">
+                <span>Scheduled</span>
+              </li>
+              <li class="reminders-sidebar-item">
+                <span>All</span>
+              </li>
+              <li class="reminders-sidebar-item">
+                <span>Completed</span>
+              </li>
+            </ul>
+          </div>
+        </aside>
+        <main class="reminders-content">
+          <div class="reminders-list">
+            <div class="reminders-item">
+              <div class="reminders-checkbox"></div>
+              <span>Review pull requests</span>
+            </div>
+            <div class="reminders-item">
+              <div class="reminders-checkbox"></div>
+              <span>Update project documentation</span>
+            </div>
+            <div class="reminders-item">
+              <div class="reminders-checkbox"></div>
+              <span>Schedule team meeting</span>
+            </div>
+            <div class="reminders-item">
+              <div class="reminders-checkbox"></div>
+              <span>Pick up groceries</span>
+            </div>
+          </div>
+        </main>
+      </div>
+    </div>

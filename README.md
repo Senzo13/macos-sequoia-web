@@ -7,6 +7,10 @@ Pure HTML, CSS & JavaScript. No frameworks. No dependencies.
 
 **[Try the Live Demo](https://senzo13.github.io/macos-sequoia-web/)**
 
+<img src="assets/preview.png" alt="macOS Sequoia Web - Desktop Preview" width="100%"/>
+
+<br/>
+
 <img src="https://img.shields.io/badge/HTML5-E34F26?style=flat&logo=html5&logoColor=white" alt="HTML5"/>
 <img src="https://img.shields.io/badge/CSS3-1572B6?style=flat&logo=css3&logoColor=white" alt="CSS3"/>
 <img src="https://img.shields.io/badge/JavaScript-F7DF1E?style=flat&logo=javascript&logoColor=black" alt="JavaScript"/>
@@ -18,57 +22,74 @@ Pure HTML, CSS & JavaScript. No frameworks. No dependencies.
 
 ## Features
 
-| Feature | Description |
-|---------|-------------|
-| **Lock Screen** | Blurred wallpaper, clock, password input — just press Enter to unlock |
-| **Menu Bar** | Fully interactive dark translucent bar with Apple logo, Finder menus, clock, battery, Wi-Fi |
-| **Dock** | Glassmorphism dock with smooth magnification on hover and bounce animation on click |
-| **Window Management** | Drag, resize, minimize, maximize, close — with smooth animations |
+### Desktop
+- Lock screen with blurred wallpaper, clock and password input
+- Dark translucent menu bar with Apple logo, Finder menus, Wi-Fi, battery, clock
+- Glassmorphism dock with smooth magnification and bounce animation
+- Desktop rubber-band selection
+- Right-click context menu
+- Desktop widgets (weather, analog clock, calendar)
+
+### 16 Built-in Apps
+| App | Description |
+|-----|-------------|
 | **Finder** | Sidebar with favorites, folder grid view |
-| **Safari** | URL bar, GitHub profile page mockup |
-| **Terminal** | Working terminal with commands: `ls`, `whoami`, `pwd`, `neofetch`, `clear`, `echo`, `date` |
-| **Calculator** | Fully functional calculator with keyboard support |
-| **Notes** | Notes app with sidebar and lined paper editor |
+| **Safari** | URL bar with GitHub profile mockup |
 | **Messages** | iMessage-style conversation view |
-| **System Settings** | Settings panel with sidebar navigation and toggles |
-| **Spotlight Search** | Press `Ctrl+Space` or click the magnifier — search and launch apps |
-| **Desktop Selection** | Rubber-band selection on desktop, just like real macOS |
-| **Context Menu** | Right-click on desktop for macOS-style context menu |
-| **Widgets** | Weather widget, analog clock, and calendar on the desktop |
-| **Notification Center** | Click the date/time to open the notification panel |
+| **Mail** | Inbox with email previews |
+| **Maps** | Map view with search and navigation modes |
+| **Photos** | Photo library with grid thumbnails |
+| **FaceTime** | Dark UI with recent contacts |
+| **Calendar** | Monthly calendar grid with today highlighted |
+| **Notes** | Sidebar and lined paper editor |
+| **Reminders** | Task list with checkboxes |
+| **Music** | Album art grid with sidebar navigation |
+| **News** | Article cards with top stories |
+| **App Store** | Featured apps with Get buttons |
+| **Calculator** | Fully functional with keyboard support |
+| **Terminal** | Working shell: `ls`, `whoami`, `pwd`, `neofetch`, `clear`, `echo`, `date` |
+| **System Settings** | Settings panel with sidebar and toggles |
+
+### System Features
+- **Spotlight Search** — `Ctrl+Space` to search and launch any app
+- **Window Management** — Drag, resize, minimize, maximize, close with smooth animations
+- **Notification Center** — Click date/time to open
+- **Dock** — All 16 apps open their own window on click
 
 ## Tech Stack
 
 - **Zero dependencies** — no React, no Vue, no Tailwind, no build step
 - **Component architecture** — HTML fragments loaded asynchronously via `fetch()`
-- **CSS glassmorphism** — `backdrop-filter: blur()` + `saturate()` for that macOS translucent look
-- **SVG icons** — All dock icons are hand-crafted SVGs with gradients
+- **CSS glassmorphism** — `backdrop-filter: blur()` + `saturate()` for the macOS translucent look
+- **Hand-crafted SVG icons** — All dock icons with gradients matching macOS style
 - **Responsive** — Adapts to smaller screens
 
 ## Project Structure
 
 ```
 macos-sequoia-web/
-  index.html              # Entry point
-  css/style.css           # All styles (~2100 lines)
+  index.html                 # Entry point
+  css/style.css              # All styles
   js/
-    loader.js             # Async component loader
-    app.js                # All application logic
+    loader.js                # Async component loader
+    app.js                   # All application logic
   components/
-    lockscreen.html       # Lock screen
-    menubar.html          # Top menu bar
-    dock.html             # Dock with app icons
-    desktop-icons.html    # Desktop widgets
+    lockscreen.html          # Lock screen
+    menubar.html             # Top menu bar
+    dock.html                # Dock with 16 app icons
+    desktop-icons.html       # Desktop widgets
     windows/
-      finder.html         # Finder window
-      safari.html         # Safari window
-      terminal.html       # Terminal window
-      calculator.html     # Calculator window
-      notes.html          # Notes window
-      settings.html       # System Settings window
-      messages.html       # Messages window
+      finder.html            safari.html
+      terminal.html          calculator.html
+      notes.html             settings.html
+      messages.html          mail.html
+      maps.html              photos.html
+      facetime.html          calendar.html
+      reminders.html         music.html
+      news.html              appstore.html
   assets/
-    wallpaper.jpg         # macOS Sequoia wallpaper
+    wallpaper.jpg            # macOS Sequoia wallpaper
+    preview.png              # README screenshot
 ```
 
 ## Getting Started
@@ -90,7 +111,7 @@ npx serve .
 |----------|--------|
 | `Ctrl + Space` | Toggle Spotlight Search |
 | `Enter` (lock screen) | Unlock desktop |
-| Calculator focused | Use number keys, +, -, *, /, Enter, Escape |
+| Calculator focused | Number keys, +, -, *, /, Enter, Escape |
 
 ## Contributing
 
@@ -98,12 +119,12 @@ Contributions are welcome! Feel free to open issues or submit pull requests.
 
 ## License
 
-MIT License - feel free to use this project however you want.
+MIT
 
 ---
 
 <div align="center">
 
-**If you like this project, consider giving it a star!**
+**If you like this project, give it a star!**
 
 </div>

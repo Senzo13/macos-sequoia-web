@@ -1142,13 +1142,22 @@ document.addEventListener('components-loaded', () => {
 
         // App registry for search
         const apps = [
-            { name: 'Finder', app: 'finder', icon: '📁' },
-            { name: 'Safari', app: 'safari', icon: '🧭' },
-            { name: 'Messages', app: 'messages', icon: '💬' },
-            { name: 'Notes', app: 'notes', icon: '📝' },
-            { name: 'Calculator', app: 'calculator', icon: '🔢' },
-            { name: 'Terminal', app: 'terminal', icon: '⬛' },
-            { name: 'System Settings', app: 'settings', icon: '⚙️' },
+            { name: 'Finder', app: 'finder', color: '#1565C0' },
+            { name: 'Safari', app: 'safari', color: '#1E6AE1' },
+            { name: 'Messages', app: 'messages', color: '#2DB540' },
+            { name: 'Mail', app: 'mail', color: '#1470E1' },
+            { name: 'Maps', app: 'maps', color: '#5AC764' },
+            { name: 'Photos', app: 'photos', color: '#FF3B30' },
+            { name: 'FaceTime', app: 'facetime', color: '#2DB540' },
+            { name: 'Calendar', app: 'calendar', color: '#FF3B30' },
+            { name: 'Notes', app: 'notes', color: '#FDD835' },
+            { name: 'Reminders', app: 'reminders', color: '#007AFF' },
+            { name: 'Music', app: 'music', color: '#E8334A' },
+            { name: 'News', app: 'news', color: '#FF3B30' },
+            { name: 'App Store', app: 'appstore', color: '#1A72E8' },
+            { name: 'Calculator', app: 'calculator', color: '#505050' },
+            { name: 'Terminal', app: 'terminal', color: '#1E1E1E' },
+            { name: 'System Settings', app: 'settings', color: '#636366' },
         ];
 
         function showSpotlight() {
@@ -1206,7 +1215,9 @@ document.addEventListener('components-loaded', () => {
                 item.classList.add('spotlight-result-item');
                 if (i === 0) item.classList.add('selected');
                 item.innerHTML = `
-                    <span class="spotlight-result-icon">${app.icon}</span>
+                    <span class="spotlight-result-icon" style="width:32px;height:32px;border-radius:8px;background:${app.color};display:flex;align-items:center;justify-content:center;">
+                        <span style="color:white;font-size:14px;font-weight:700;">${app.name[0]}</span>
+                    </span>
                     <span class="spotlight-result-name">${app.name}</span>
                     <span class="spotlight-result-type">Application</span>
                 `;

@@ -17,6 +17,15 @@
         'components/windows/notes.html',
         'components/windows/settings.html',
         'components/windows/messages.html',
+        'components/windows/mail.html',
+        'components/windows/maps.html',
+        'components/windows/photos.html',
+        'components/windows/facetime.html',
+        'components/windows/calendar.html',
+        'components/windows/reminders.html',
+        'components/windows/music.html',
+        'components/windows/news.html',
+        'components/windows/appstore.html',
     ];
 
     // Load main components
