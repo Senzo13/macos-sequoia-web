@@ -542,7 +542,7 @@ body {
 .dock-container {
   display: flex;
   align-items: flex-end;
-  gap: 3px;
+  gap: 6px;
   background: rgba(200, 200, 200, 0.22);
   backdrop-filter: blur(40px) saturate(170%);
   -webkit-backdrop-filter: blur(40px) saturate(170%);
@@ -596,27 +596,7 @@ body {
   -webkit-user-drag: none;
 }
 
-/* Dock Magnification on hover */
-.dock-item:hover {
-  transform: scale(1.45) translateY(-12px);
-  z-index: 10;
-}
-
-.dock-item:hover + .dock-item {
-  transform: scale(1.18) translateY(-5px);
-}
-
-.dock-item:hover + .dock-item + .dock-item {
-  transform: scale(1.05) translateY(-2px);
-}
-
-.dock-item:has(+ .dock-item:hover) {
-  transform: scale(1.18) translateY(-5px);
-}
-
-.dock-item:has(+ .dock-item + .dock-item:hover) {
-  transform: scale(1.05) translateY(-2px);
-}
+/* Dock Magnification — handled entirely by JS mousemove for smooth effect */
 
 /* Dock Tooltip */
 .dock-item::before {
