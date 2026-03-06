@@ -1,88 +1,139 @@
-    <div class="window" id="window-finder" data-app="finder" style="display:none; width:780px; height:480px; top:60px; left:80px;">
-      <div class="window-titlebar" data-drag="true">
-        <div class="traffic-lights">
-          <button class="traffic-light btn-close" data-action="close" aria-label="Close"></button>
-          <button class="traffic-light btn-minimize" data-action="minimize" aria-label="Minimize"></button>
-          <button class="traffic-light btn-maximize" data-action="maximize" aria-label="Maximize"></button>
-        </div>
-        <div class="window-title">
-          <span>Finder</span>
-        </div>
-        <div class="window-toolbar-actions">
-          <svg viewBox="0 0 20 20" width="16" height="16" fill="currentColor" opacity="0.5">
-            <rect x="2" y="3" width="16" height="2" rx="1"/>
-            <rect x="2" y="9" width="16" height="2" rx="1"/>
-            <rect x="2" y="15" width="16" height="2" rx="1"/>
-          </svg>
-        </div>
+<div class="window" id="window-finder" data-app="finder" style="display:none; width:820px; height:520px; top:60px; left:80px;">
+  <div class="window-titlebar" data-drag="true">
+    <div class="traffic-lights">
+      <button class="traffic-light btn-close" data-action="close" aria-label="Close"></button>
+      <button class="traffic-light btn-minimize" data-action="minimize" aria-label="Minimize"></button>
+      <button class="traffic-light btn-maximize" data-action="maximize" aria-label="Maximize"></button>
+    </div>
+    <div class="window-title"><span>Home</span></div>
+  </div>
+  <div class="window-body finder-body">
+    <!-- Toolbar -->
+    <div class="finder-toolbar">
+      <div class="finder-toolbar-left">
+        <button class="finder-toolbar-btn" aria-label="Back">
+          <svg viewBox="0 0 20 20" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" opacity="0.35"><polyline points="12,4 6,10 12,16"/></svg>
+        </button>
+        <button class="finder-toolbar-btn" aria-label="Forward">
+          <svg viewBox="0 0 20 20" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" opacity="0.35"><polyline points="8,4 14,10 8,16"/></svg>
+        </button>
       </div>
-      <div class="window-body finder-body">
-        <aside class="finder-sidebar">
-          <div class="finder-sidebar-section">
-            <h3 class="finder-sidebar-heading">Favorites</h3>
-            <ul class="finder-sidebar-list">
-              <li class="finder-sidebar-item">
-                <svg viewBox="0 0 16 16" width="14" height="14" fill="#007AFF"><path d="M8 1a7 7 0 1 0 0 14A7 7 0 0 0 8 1zM5 6.5a1 1 0 1 1 2 0 1 1 0 0 1-2 0zm4 0a1 1 0 1 1 2 0 1 1 0 0 1-2 0zM4.5 9.5h7s-.5 3-3.5 3-3.5-3-3.5-3z"/></svg>
-                <span>AirDrop</span>
-              </li>
-              <li class="finder-sidebar-item">
-                <svg viewBox="0 0 16 16" width="14" height="14" fill="#007AFF"><circle cx="8" cy="8" r="6" fill="none" stroke="#007AFF" stroke-width="1.5"/><path d="M8 4v4l3 2" stroke="#007AFF" stroke-width="1.5" fill="none" stroke-linecap="round"/></svg>
-                <span>Recents</span>
-              </li>
-              <li class="finder-sidebar-item active">
-                <svg viewBox="0 0 16 16" width="14" height="14" fill="#007AFF"><rect x="2" y="3" width="12" height="11" rx="2" fill="none" stroke="#007AFF" stroke-width="1.5"/><path d="M2 6h12" stroke="#007AFF" stroke-width="1.5"/></svg>
-                <span>Applications</span>
-              </li>
-              <li class="finder-sidebar-item">
-                <svg viewBox="0 0 16 16" width="14" height="14" fill="#007AFF"><rect x="1" y="8" width="14" height="7" rx="1" fill="none" stroke="#007AFF" stroke-width="1.2"/><path d="M3 8V5a5 5 0 0 1 10 0v3" fill="none" stroke="#007AFF" stroke-width="1.2"/></svg>
-                <span>Desktop</span>
-              </li>
-              <li class="finder-sidebar-item">
-                <svg viewBox="0 0 16 16" width="14" height="14"><path d="M2 5h5l2-2h5a1 1 0 0 1 1 1v9a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1z" fill="#5ab4f5"/></svg>
-                <span>Documents</span>
-              </li>
-              <li class="finder-sidebar-item">
-                <svg viewBox="0 0 16 16" width="14" height="14"><path d="M2 5h5l2-2h5a1 1 0 0 1 1 1v9a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1z" fill="#5ab4f5"/></svg>
-                <span>Downloads</span>
-              </li>
-            </ul>
-          </div>
-        </aside>
-        <main class="finder-content">
-          <div class="finder-grid">
-            <div class="finder-item">
-              <svg viewBox="0 0 48 48" width="48" height="48"><path d="M6 14h14l4-4h18a2 2 0 0 1 2 2v26a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V16a2 2 0 0 1 2-2z" fill="#5ab4f5"/><path d="M4 18h40v20a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V18z" fill="#4aa3e8"/></svg>
-              <span>Applications</span>
-            </div>
-            <div class="finder-item">
-              <svg viewBox="0 0 48 48" width="48" height="48"><path d="M6 14h14l4-4h18a2 2 0 0 1 2 2v26a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V16a2 2 0 0 1 2-2z" fill="#5ab4f5"/><path d="M4 18h40v20a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V18z" fill="#4aa3e8"/></svg>
-              <span>Documents</span>
-            </div>
-            <div class="finder-item">
-              <svg viewBox="0 0 48 48" width="48" height="48"><path d="M6 14h14l4-4h18a2 2 0 0 1 2 2v26a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V16a2 2 0 0 1 2-2z" fill="#5ab4f5"/><path d="M4 18h40v20a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V18z" fill="#4aa3e8"/></svg>
-              <span>Downloads</span>
-            </div>
-            <div class="finder-item">
-              <svg viewBox="0 0 48 48" width="48" height="48"><path d="M6 14h14l4-4h18a2 2 0 0 1 2 2v26a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V16a2 2 0 0 1 2-2z" fill="#5ab4f5"/><path d="M4 18h40v20a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V18z" fill="#4aa3e8"/></svg>
-              <span>Desktop</span>
-            </div>
-            <div class="finder-item">
-              <svg viewBox="0 0 48 48" width="48" height="48"><path d="M6 14h14l4-4h18a2 2 0 0 1 2 2v26a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V16a2 2 0 0 1 2-2z" fill="#5ab4f5"/><path d="M4 18h40v20a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V18z" fill="#4aa3e8"/></svg>
-              <span>Music</span>
-            </div>
-            <div class="finder-item">
-              <svg viewBox="0 0 48 48" width="48" height="48"><path d="M6 14h14l4-4h18a2 2 0 0 1 2 2v26a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V16a2 2 0 0 1 2-2z" fill="#5ab4f5"/><path d="M4 18h40v20a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V18z" fill="#4aa3e8"/></svg>
-              <span>Pictures</span>
-            </div>
-            <div class="finder-item">
-              <svg viewBox="0 0 48 48" width="48" height="48"><path d="M6 14h14l4-4h18a2 2 0 0 1 2 2v26a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V16a2 2 0 0 1 2-2z" fill="#5ab4f5"/><path d="M4 18h40v20a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V18z" fill="#4aa3e8"/></svg>
-              <span>Movies</span>
-            </div>
-            <div class="finder-item">
-              <svg viewBox="0 0 48 48" width="48" height="48"><path d="M6 14h14l4-4h18a2 2 0 0 1 2 2v26a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V16a2 2 0 0 1 2-2z" fill="#5ab4f5"/><path d="M4 18h40v20a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V18z" fill="#4aa3e8"/></svg>
-              <span>Library</span>
-            </div>
-          </div>
-        </main>
+      <div class="finder-toolbar-center">
+        <button class="finder-toolbar-btn finder-view-btn active" aria-label="Icon view">
+          <svg viewBox="0 0 20 20" width="16" height="16" fill="currentColor" opacity="0.6"><rect x="2" y="2" width="7" height="7" rx="1.5"/><rect x="11" y="2" width="7" height="7" rx="1.5"/><rect x="2" y="11" width="7" height="7" rx="1.5"/><rect x="11" y="11" width="7" height="7" rx="1.5"/></svg>
+        </button>
+        <button class="finder-toolbar-btn finder-view-btn" aria-label="List view">
+          <svg viewBox="0 0 20 20" width="16" height="16" fill="currentColor" opacity="0.6"><rect x="2" y="3" width="16" height="2" rx="1"/><rect x="2" y="9" width="16" height="2" rx="1"/><rect x="2" y="15" width="16" height="2" rx="1"/></svg>
+        </button>
+        <button class="finder-toolbar-btn finder-view-btn" aria-label="Column view">
+          <svg viewBox="0 0 20 20" width="16" height="16" fill="currentColor" opacity="0.6"><rect x="1" y="2" width="5" height="16" rx="1"/><rect x="7.5" y="2" width="5" height="16" rx="1"/><rect x="14" y="2" width="5" height="16" rx="1"/></svg>
+        </button>
+        <button class="finder-toolbar-btn finder-view-btn" aria-label="Gallery view">
+          <svg viewBox="0 0 20 20" width="16" height="16" fill="currentColor" opacity="0.6"><rect x="2" y="3" width="16" height="10" rx="1.5"/><rect x="2" y="15" width="4" height="3" rx="0.8"/><rect x="8" y="15" width="4" height="3" rx="0.8"/><rect x="14" y="15" width="4" height="3" rx="0.8"/></svg>
+        </button>
+      </div>
+      <div class="finder-toolbar-right">
+        <div class="finder-search-field">
+          <svg viewBox="0 0 20 20" width="12" height="12" fill="none" stroke="#999" stroke-width="2" stroke-linecap="round"><circle cx="8.5" cy="8.5" r="5.5"/><line x1="12.5" y1="12.5" x2="17" y2="17"/></svg>
+          <input type="text" class="finder-search-input" placeholder="Search" readonly>
+        </div>
       </div>
     </div>
+
+    <!-- Sidebar -->
+    <div class="finder-main-area">
+      <aside class="finder-sidebar">
+        <div class="finder-sidebar-section">
+          <h3 class="finder-sidebar-heading">Favorites</h3>
+          <ul class="finder-sidebar-list">
+            <li class="finder-sidebar-item">
+              <svg viewBox="0 0 16 16" width="14" height="14" fill="none"><circle cx="8" cy="5" r="3" stroke="#007AFF" stroke-width="1.3"/><path d="M3 13c0-2.8 2.2-5 5-5s5 2.2 5 5" stroke="#007AFF" stroke-width="1.3" stroke-linecap="round"/><path d="M8 5v4M6 7l2 2 2-2" stroke="#007AFF" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg>
+              <span>AirDrop</span>
+            </li>
+            <li class="finder-sidebar-item">
+              <svg viewBox="0 0 16 16" width="14" height="14" fill="none"><circle cx="8" cy="8" r="6" stroke="#007AFF" stroke-width="1.3"/><path d="M8 4v4l3 2" stroke="#007AFF" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              <span>Recents</span>
+            </li>
+            <li class="finder-sidebar-item">
+              <svg viewBox="0 0 16 16" width="14" height="14" fill="none"><rect x="2" y="3" width="12" height="11" rx="2" stroke="#007AFF" stroke-width="1.3"/><path d="M2 6h12" stroke="#007AFF" stroke-width="1.3"/><circle cx="5" cy="9.5" r="1" fill="#007AFF"/><circle cx="8" cy="9.5" r="1" fill="#007AFF"/><circle cx="11" cy="9.5" r="1" fill="#007AFF"/></svg>
+              <span>Applications</span>
+            </li>
+            <li class="finder-sidebar-item">
+              <svg viewBox="0 0 16 16" width="14" height="14" fill="none"><rect x="2" y="8" width="12" height="6" rx="1" stroke="#007AFF" stroke-width="1.3"/><path d="M4 8V6a4 4 0 0 1 8 0v2" stroke="#007AFF" stroke-width="1.3"/></svg>
+              <span>Desktop</span>
+            </li>
+            <li class="finder-sidebar-item">
+              <svg viewBox="0 0 16 16" width="14" height="14"><path d="M2 5h4l2-2h6a1 1 0 0 1 1 1v9a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1z" fill="#5ac4f7"/></svg>
+              <span>Documents</span>
+            </li>
+            <li class="finder-sidebar-item active">
+              <svg viewBox="0 0 16 16" width="14" height="14"><path d="M2 5h4l2-2h6a1 1 0 0 1 1 1v9a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1z" fill="#5ac4f7"/><path d="M5 9l2 2 4-4" stroke="#fff" stroke-width="1.3" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              <span>Downloads</span>
+            </li>
+          </ul>
+        </div>
+        <div class="finder-sidebar-section">
+          <h3 class="finder-sidebar-heading">Locations</h3>
+          <ul class="finder-sidebar-list">
+            <li class="finder-sidebar-item">
+              <svg viewBox="0 0 16 16" width="14" height="14" fill="none"><rect x="2" y="4" width="12" height="8" rx="1.5" stroke="#8e8e93" stroke-width="1.2"/><path d="M5 12v1.5M11 12v1.5M4 13.5h8" stroke="#8e8e93" stroke-width="1.2" stroke-linecap="round"/></svg>
+              <span>MacBook Pro</span>
+            </li>
+            <li class="finder-sidebar-item">
+              <svg viewBox="0 0 16 16" width="14" height="14" fill="none"><circle cx="8" cy="8" r="6" stroke="#8e8e93" stroke-width="1.2"/><circle cx="8" cy="8" r="2" fill="#8e8e93"/><path d="M8 2v2M8 12v2M2 8h2M12 8h2" stroke="#8e8e93" stroke-width="1.2" stroke-linecap="round"/></svg>
+              <span>Network</span>
+            </li>
+          </ul>
+        </div>
+      </aside>
+
+      <!-- Main Content -->
+      <main class="finder-content">
+        <div class="finder-grid">
+          <div class="finder-item">
+            <svg viewBox="0 0 64 56" width="64" height="56"><defs><linearGradient id="fg1" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#6ac4f7"/><stop offset="100%" stop-color="#3a9ff0"/></linearGradient></defs><path d="M4 16h20l6-6h26a4 4 0 0 1 4 4v32a4 4 0 0 1-4 4H4a4 4 0 0 1-4-4V20a4 4 0 0 1 4-4z" fill="url(#fg1)"/><path d="M0 22h64v24a4 4 0 0 1-4 4H4a4 4 0 0 1-4-4V22z" fill="#4aabf0" opacity="0.9"/></svg>
+            <span>Desktop</span>
+          </div>
+          <div class="finder-item">
+            <svg viewBox="0 0 64 56" width="64" height="56"><path d="M4 16h20l6-6h26a4 4 0 0 1 4 4v32a4 4 0 0 1-4 4H4a4 4 0 0 1-4-4V20a4 4 0 0 1 4-4z" fill="#6ac4f7"/><path d="M0 22h64v24a4 4 0 0 1-4 4H4a4 4 0 0 1-4-4V22z" fill="#4aabf0" opacity="0.9"/></svg>
+            <span>Documents</span>
+          </div>
+          <div class="finder-item">
+            <svg viewBox="0 0 64 56" width="64" height="56"><path d="M4 16h20l6-6h26a4 4 0 0 1 4 4v32a4 4 0 0 1-4 4H4a4 4 0 0 1-4-4V20a4 4 0 0 1 4-4z" fill="#6ac4f7"/><path d="M0 22h64v24a4 4 0 0 1-4 4H4a4 4 0 0 1-4-4V22z" fill="#4aabf0" opacity="0.9"/></svg>
+            <span>Downloads</span>
+          </div>
+          <div class="finder-item">
+            <svg viewBox="0 0 64 56" width="64" height="56"><path d="M4 16h20l6-6h26a4 4 0 0 1 4 4v32a4 4 0 0 1-4 4H4a4 4 0 0 1-4-4V20a4 4 0 0 1 4-4z" fill="#6ac4f7"/><path d="M0 22h64v24a4 4 0 0 1-4 4H4a4 4 0 0 1-4-4V22z" fill="#4aabf0" opacity="0.9"/><path d="M24 30h16M24 36h10" stroke="#fff" stroke-width="2" stroke-linecap="round" opacity="0.5"/></svg>
+            <span>Applications</span>
+          </div>
+          <div class="finder-item">
+            <svg viewBox="0 0 64 56" width="64" height="56"><path d="M4 16h20l6-6h26a4 4 0 0 1 4 4v32a4 4 0 0 1-4 4H4a4 4 0 0 1-4-4V20a4 4 0 0 1 4-4z" fill="#6ac4f7"/><path d="M0 22h64v24a4 4 0 0 1-4 4H4a4 4 0 0 1-4-4V22z" fill="#4aabf0" opacity="0.9"/><circle cx="32" cy="34" r="6" stroke="#fff" stroke-width="1.5" fill="none" opacity="0.5"/><path d="M28 34a4 4 0 0 1 8 0" stroke="#fff" stroke-width="1.3" fill="none" opacity="0.5"/></svg>
+            <span>Music</span>
+          </div>
+          <div class="finder-item">
+            <svg viewBox="0 0 64 56" width="64" height="56"><path d="M4 16h20l6-6h26a4 4 0 0 1 4 4v32a4 4 0 0 1-4 4H4a4 4 0 0 1-4-4V20a4 4 0 0 1 4-4z" fill="#6ac4f7"/><path d="M0 22h64v24a4 4 0 0 1-4 4H4a4 4 0 0 1-4-4V22z" fill="#4aabf0" opacity="0.9"/><rect x="22" y="26" width="20" height="14" rx="2" stroke="#fff" stroke-width="1.5" fill="none" opacity="0.5"/><circle cx="29" cy="31" r="2" fill="#fff" opacity="0.5"/><path d="M22 37l6-5 4 3 6-7 6 5" stroke="#fff" stroke-width="1.3" fill="none" opacity="0.5"/></svg>
+            <span>Pictures</span>
+          </div>
+          <div class="finder-item">
+            <svg viewBox="0 0 64 56" width="64" height="56"><path d="M4 16h20l6-6h26a4 4 0 0 1 4 4v32a4 4 0 0 1-4 4H4a4 4 0 0 1-4-4V20a4 4 0 0 1 4-4z" fill="#6ac4f7"/><path d="M0 22h64v24a4 4 0 0 1-4 4H4a4 4 0 0 1-4-4V22z" fill="#4aabf0" opacity="0.9"/><rect x="24" y="27" width="16" height="12" rx="2" stroke="#fff" stroke-width="1.5" fill="none" opacity="0.5"/><polygon points="30,30 30,36 36,33" fill="#fff" opacity="0.5"/></svg>
+            <span>Movies</span>
+          </div>
+          <div class="finder-item">
+            <svg viewBox="0 0 64 56" width="64" height="56"><path d="M4 16h20l6-6h26a4 4 0 0 1 4 4v32a4 4 0 0 1-4 4H4a4 4 0 0 1-4-4V20a4 4 0 0 1 4-4z" fill="#6ac4f7"/><path d="M0 22h64v24a4 4 0 0 1-4 4H4a4 4 0 0 1-4-4V22z" fill="#4aabf0" opacity="0.9"/></svg>
+            <span>Library</span>
+          </div>
+          <div class="finder-item">
+            <svg viewBox="0 0 64 56" width="64" height="56"><path d="M4 16h20l6-6h26a4 4 0 0 1 4 4v32a4 4 0 0 1-4 4H4a4 4 0 0 1-4-4V20a4 4 0 0 1 4-4z" fill="#6ac4f7"/><path d="M0 22h64v24a4 4 0 0 1-4 4H4a4 4 0 0 1-4-4V22z" fill="#4aabf0" opacity="0.9"/></svg>
+            <span>Public</span>
+          </div>
+        </div>
+      </main>
+    </div>
+
+    <!-- Status Bar -->
+    <div class="finder-statusbar">
+      <span>9 items</span>
+      <span>48.2 GB available</span>
+    </div>
+  </div>
+</div>

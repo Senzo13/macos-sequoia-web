@@ -1,82 +1,33 @@
-    <div class="window" id="window-safari" data-app="safari" style="display:none; width:820px; height:540px; top:50px; left:150px;">
-      <div class="window-titlebar" data-drag="true">
-        <div class="traffic-lights">
-          <button class="traffic-light btn-close" data-action="close" aria-label="Close"></button>
-          <button class="traffic-light btn-minimize" data-action="minimize" aria-label="Minimize"></button>
-          <button class="traffic-light btn-maximize" data-action="maximize" aria-label="Maximize"></button>
-        </div>
-        <div class="safari-url-bar">
-          <div class="safari-url-inner">
-            <svg viewBox="0 0 16 16" width="12" height="12" fill="#999"><path d="M8 1a5 5 0 0 0-5 5v1h-.5A1.5 1.5 0 0 0 1 8.5v5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-5A1.5 1.5 0 0 0 13.5 7H13V6a5 5 0 0 0-5-5zm0 1a4 4 0 0 1 4 4v1H4V6a4 4 0 0 1 4-4z"/></svg>
-            <span class="safari-url-text">https://github.com/Senzo13</span>
-          </div>
-        </div>
-        <div class="window-toolbar-actions">
-          <svg viewBox="0 0 20 20" width="16" height="16" fill="currentColor" opacity="0.5">
-            <rect x="3" y="3" width="6" height="6" rx="1"/>
-            <rect x="11" y="3" width="6" height="6" rx="1"/>
-            <rect x="3" y="11" width="6" height="6" rx="1"/>
-            <rect x="11" y="11" width="6" height="6" rx="1"/>
-          </svg>
-        </div>
-      </div>
-      <div class="window-body safari-body">
-        <div class="safari-page">
-          <div class="safari-github-header">
-            <div class="safari-github-avatar">
-              <svg viewBox="0 0 60 60" width="60" height="60">
-                <circle cx="30" cy="30" r="30" fill="#2b3137"/>
-                <circle cx="30" cy="24" r="10" fill="#586069"/>
-                <ellipse cx="30" cy="50" rx="18" ry="12" fill="#586069"/>
-              </svg>
-            </div>
-            <div class="safari-github-info">
-              <h2>Senzo13</h2>
-              <p class="safari-github-bio">Full-Stack Developer | Building cool things with code</p>
-              <div class="safari-github-stats">
-                <span>12 repositories</span>
-                <span>24 followers</span>
-                <span>18 following</span>
-              </div>
-            </div>
-          </div>
-          <div class="safari-github-repos">
-            <h3>Popular repositories</h3>
-            <div class="safari-repo-grid">
-              <div class="safari-repo-card">
-                <h4>macos-sequoia-web</h4>
-                <p>A macOS Sequoia desktop clone for the web</p>
-                <div class="safari-repo-meta">
-                  <span class="safari-repo-lang" style="--lang-color: #f1e05a;">JavaScript</span>
-                  <span>&#9733; 42</span>
-                </div>
-              </div>
-              <div class="safari-repo-card">
-                <h4>portfolio-site</h4>
-                <p>Personal portfolio website</p>
-                <div class="safari-repo-meta">
-                  <span class="safari-repo-lang" style="--lang-color: #e34c26;">HTML</span>
-                  <span>&#9733; 18</span>
-                </div>
-              </div>
-              <div class="safari-repo-card">
-                <h4>react-dashboard</h4>
-                <p>Modern analytics dashboard built with React</p>
-                <div class="safari-repo-meta">
-                  <span class="safari-repo-lang" style="--lang-color: #3178c6;">TypeScript</span>
-                  <span>&#9733; 31</span>
-                </div>
-              </div>
-              <div class="safari-repo-card">
-                <h4>api-toolkit</h4>
-                <p>RESTful API toolkit and utilities</p>
-                <div class="safari-repo-meta">
-                  <span class="safari-repo-lang" style="--lang-color: #3572A5;">Python</span>
-                  <span>&#9733; 27</span>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
+<div class="window" id="window-safari" data-app="safari" style="display:none; width:1024px; height:680px; top:50px; left:150px;">
+  <div class="window-titlebar" data-drag="true">
+    <div class="traffic-lights">
+      <button class="traffic-light btn-close" data-action="close" aria-label="Close"></button>
+      <button class="traffic-light btn-minimize" data-action="minimize" aria-label="Minimize"></button>
+      <button class="traffic-light btn-maximize" data-action="maximize" aria-label="Maximize"></button>
     </div>
+    <div class="window-title"><span>Safari</span></div>
+  </div>
+  <div class="window-body safari-body" style="padding:0;overflow:hidden;display:flex;flex-direction:column;">
+    <!-- Safari Toolbar -->
+    <div class="safari-toolbar" style="display:flex;align-items:center;gap:8px;padding:6px 12px;background:linear-gradient(to bottom,#f6f6f6,#e8e8e8);border-bottom:1px solid #c8c8c8;flex-shrink:0;">
+      <button class="safari-nav-btn" aria-label="Back" style="background:none;border:none;cursor:pointer;padding:4px;display:flex;align-items:center;">
+        <svg viewBox="0 0 20 20" width="16" height="16" fill="none" stroke="#333" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="13,4 7,10 13,16"/></svg>
+      </button>
+      <button class="safari-nav-btn" aria-label="Forward" style="background:none;border:none;cursor:pointer;padding:4px;display:flex;align-items:center;">
+        <svg viewBox="0 0 20 20" width="16" height="16" fill="none" stroke="#333" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" opacity="0.3"><polyline points="7,4 13,10 7,16"/></svg>
+      </button>
+      <div class="safari-url-bar" style="flex:1;max-width:560px;margin:0 auto;display:flex;align-items:center;gap:6px;background:#fff;border:1px solid #c8c8c8;border-radius:8px;padding:5px 12px;font-size:13px;">
+        <svg viewBox="0 0 16 16" width="12" height="12" fill="#34c759" style="flex-shrink:0;"><path d="M8 1a5 5 0 0 0-5 5v1H2.5A1.5 1.5 0 0 0 1 8.5v5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-5A1.5 1.5 0 0 0 13.5 7H13V6a5 5 0 0 0-5-5zm0 1.5A3.5 3.5 0 0 1 11.5 6v1h-7V6A3.5 3.5 0 0 1 8 2.5z"/></svg>
+        <span class="safari-url-text" style="color:#333;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">github.com/Senzo13</span>
+      </div>
+      <button class="safari-share-btn" aria-label="Share" style="background:none;border:none;cursor:pointer;padding:4px;display:flex;align-items:center;">
+        <svg viewBox="0 0 20 20" width="16" height="16" fill="none" stroke="#333" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M10 2v10"/><polyline points="6,6 10,2 14,6"/><path d="M4 10v7a1 1 0 0 0 1 1h10a1 1 0 0 0 1-1v-7"/></svg>
+      </button>
+      <button class="safari-tabs-btn" aria-label="Tabs" style="background:none;border:none;cursor:pointer;padding:4px;display:flex;align-items:center;">
+        <svg viewBox="0 0 20 20" width="16" height="16" fill="none" stroke="#333" stroke-width="1.8" stroke-linecap="round"><rect x="2" y="4" width="10" height="8" rx="1.5"/><rect x="8" y="8" width="10" height="8" rx="1.5"/></svg>
+      </button>
+    </div>
+    <!-- Safari Content -->
+    <iframe src="https://github.com/Senzo13" class="safari-iframe" style="width:100%;height:100%;border:none;flex:1;" sandbox="allow-scripts allow-same-origin allow-popups allow-forms" loading="lazy"></iframe>
+  </div>
+</div>

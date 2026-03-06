@@ -1,39 +1,119 @@
-    <div class="window" id="window-messages" data-app="messages" style="display:none; width:700px; height:460px; top:80px; left:220px;">
-      <div class="window-titlebar" data-drag="true">
-        <div class="traffic-lights">
-          <button class="traffic-light btn-close" data-action="close" aria-label="Close"></button>
-          <button class="traffic-light btn-minimize" data-action="minimize" aria-label="Minimize"></button>
-          <button class="traffic-light btn-maximize" data-action="maximize" aria-label="Maximize"></button>
-        </div>
-        <div class="window-title"><span>Messages</span></div>
-      </div>
-      <div class="window-body messages-body">
-        <aside class="messages-sidebar">
-          <div class="messages-conversation active">
-            <div class="messages-conv-avatar" style="background:#34C759;">A</div>
-            <div class="messages-conv-info">
-              <div class="messages-conv-name">Alice</div>
-              <div class="messages-conv-preview">Hey! How's the project going?</div>
-            </div>
-          </div>
-          <div class="messages-conversation">
-            <div class="messages-conv-avatar" style="background:#007AFF;">B</div>
-            <div class="messages-conv-info">
-              <div class="messages-conv-name">Bob</div>
-              <div class="messages-conv-preview">See you tomorrow!</div>
-            </div>
-          </div>
-        </aside>
-        <main class="messages-content">
-          <div class="messages-chat">
-            <div class="message-bubble message-received">Hey! How's the project going?</div>
-            <div class="message-bubble message-sent">Going great! Almost finished the UI.</div>
-            <div class="message-bubble message-received">That's awesome! Can't wait to see it.</div>
-            <div class="message-bubble message-sent">I'll share the link soon!</div>
-          </div>
-          <div class="messages-input-bar">
-            <input type="text" class="messages-input" placeholder="iMessage" readonly>
-          </div>
-        </main>
-      </div>
+<div class="window" id="window-messages" data-app="messages" style="display:none; width:740px; height:500px; top:80px; left:220px;">
+  <div class="window-titlebar" data-drag="true">
+    <div class="traffic-lights">
+      <button class="traffic-light btn-close" data-action="close" aria-label="Close"></button>
+      <button class="traffic-light btn-minimize" data-action="minimize" aria-label="Minimize"></button>
+      <button class="traffic-light btn-maximize" data-action="maximize" aria-label="Maximize"></button>
     </div>
+    <div class="window-title"><span>Messages</span></div>
+  </div>
+  <div class="window-body messages-body">
+    <!-- Sidebar -->
+    <aside class="messages-sidebar">
+      <div class="messages-sidebar-header" style="padding:10px 12px;border-bottom:1px solid rgba(0,0,0,0.08);">
+        <input type="text" class="messages-search" placeholder="Search" readonly style="width:100%;padding:6px 10px;border:1px solid #d1d1d6;border-radius:8px;background:#f2f2f7;font-size:12px;outline:none;box-sizing:border-box;">
+      </div>
+      <div class="messages-conversation-list">
+        <div class="messages-conversation active">
+          <div class="messages-conv-avatar" style="background:#34C759;width:40px;height:40px;border-radius:50%;display:flex;align-items:center;justify-content:center;color:#fff;font-weight:600;font-size:15px;flex-shrink:0;">
+            <svg viewBox="0 0 24 24" width="20" height="20" fill="#fff"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4.4 3.6-8 8-8s8 3.6 8 8"/></svg>
+          </div>
+          <div class="messages-conv-info">
+            <div class="messages-conv-top" style="display:flex;justify-content:space-between;align-items:center;">
+              <div class="messages-conv-name">Alice Johnson</div>
+              <div class="messages-conv-time" style="font-size:11px;color:#8e8e93;">2:41 PM</div>
+            </div>
+            <div class="messages-conv-preview">Hey! How's the project going?</div>
+          </div>
+        </div>
+        <div class="messages-conversation">
+          <div class="messages-conv-avatar" style="background:#007AFF;width:40px;height:40px;border-radius:50%;display:flex;align-items:center;justify-content:center;color:#fff;font-weight:600;font-size:15px;flex-shrink:0;">
+            <svg viewBox="0 0 24 24" width="20" height="20" fill="#fff"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4.4 3.6-8 8-8s8 3.6 8 8"/></svg>
+          </div>
+          <div class="messages-conv-info">
+            <div class="messages-conv-top" style="display:flex;justify-content:space-between;align-items:center;">
+              <div class="messages-conv-name">Bob Chen</div>
+              <div class="messages-conv-time" style="font-size:11px;color:#8e8e93;">Yesterday</div>
+            </div>
+            <div class="messages-conv-preview">See you tomorrow at the office!</div>
+          </div>
+        </div>
+        <div class="messages-conversation">
+          <div class="messages-conv-avatar" style="background:#FF9500;width:40px;height:40px;border-radius:50%;display:flex;align-items:center;justify-content:center;color:#fff;font-weight:600;font-size:15px;flex-shrink:0;">
+            <svg viewBox="0 0 24 24" width="20" height="20" fill="#fff"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4.4 3.6-8 8-8s8 3.6 8 8"/></svg>
+          </div>
+          <div class="messages-conv-info">
+            <div class="messages-conv-top" style="display:flex;justify-content:space-between;align-items:center;">
+              <div class="messages-conv-name">Carol Davis</div>
+              <div class="messages-conv-time" style="font-size:11px;color:#8e8e93;">Monday</div>
+            </div>
+            <div class="messages-conv-preview">Thanks for sending that over!</div>
+          </div>
+        </div>
+        <div class="messages-conversation">
+          <div class="messages-conv-avatar" style="background:#AF52DE;width:40px;height:40px;border-radius:50%;display:flex;align-items:center;justify-content:center;color:#fff;font-weight:600;font-size:15px;flex-shrink:0;">
+            <svg viewBox="0 0 24 24" width="20" height="20" fill="#fff"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4.4 3.6-8 8-8s8 3.6 8 8"/></svg>
+          </div>
+          <div class="messages-conv-info">
+            <div class="messages-conv-top" style="display:flex;justify-content:space-between;align-items:center;">
+              <div class="messages-conv-name">Dev Team</div>
+              <div class="messages-conv-time" style="font-size:11px;color:#8e8e93;">Mar 2</div>
+            </div>
+            <div class="messages-conv-preview">Sprint review starts at 3pm</div>
+          </div>
+        </div>
+      </div>
+    </aside>
+
+    <!-- Chat Area -->
+    <main class="messages-content">
+      <div class="messages-chat-header" style="padding:10px 16px;border-bottom:1px solid rgba(0,0,0,0.08);display:flex;align-items:center;gap:10px;">
+        <div style="width:32px;height:32px;border-radius:50%;background:#34C759;display:flex;align-items:center;justify-content:center;">
+          <svg viewBox="0 0 24 24" width="16" height="16" fill="#fff"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4.4 3.6-8 8-8s8 3.6 8 8"/></svg>
+        </div>
+        <div>
+          <div style="font-weight:600;font-size:13px;">Alice Johnson</div>
+          <div style="font-size:11px;color:#8e8e93;">iMessage</div>
+        </div>
+      </div>
+      <div class="messages-chat">
+        <div class="messages-date-divider" style="text-align:center;font-size:11px;color:#8e8e93;padding:12px 0 4px;">Today 2:30 PM</div>
+        <div class="message-bubble message-received">
+          <div class="message-text">Hey! How's the project going?</div>
+          <div class="message-time" style="font-size:10px;color:#8e8e93;margin-top:2px;">2:30 PM</div>
+        </div>
+        <div class="message-bubble message-sent">
+          <div class="message-text">Going great! Almost finished the UI.</div>
+          <div class="message-time" style="font-size:10px;color:rgba(255,255,255,0.7);margin-top:2px;">2:32 PM</div>
+        </div>
+        <div class="message-bubble message-received">
+          <div class="message-text">That's awesome! Can't wait to see it.</div>
+          <div class="message-time" style="font-size:10px;color:#8e8e93;margin-top:2px;">2:35 PM</div>
+        </div>
+        <div class="message-bubble message-sent">
+          <div class="message-text">I'll share the link soon! Just fixing a few things.</div>
+          <div class="message-time" style="font-size:10px;color:rgba(255,255,255,0.7);margin-top:2px;">2:38 PM</div>
+        </div>
+        <div class="message-bubble message-received">
+          <div class="message-text">Sounds great, take your time. The demo isn't until Friday.</div>
+          <div class="message-time" style="font-size:10px;color:#8e8e93;margin-top:2px;">2:40 PM</div>
+        </div>
+        <div class="message-bubble message-sent">
+          <div class="message-text">Perfect, thanks for the heads up!</div>
+          <div class="message-time" style="font-size:10px;color:rgba(255,255,255,0.7);margin-top:2px;">2:41 PM</div>
+        </div>
+      </div>
+      <div class="messages-input-bar">
+        <div class="messages-input-actions" style="display:flex;align-items:center;gap:6px;">
+          <button style="background:none;border:none;cursor:pointer;padding:4px;display:flex;align-items:center;" aria-label="Apps">
+            <svg viewBox="0 0 20 20" width="18" height="18" fill="none" stroke="#007AFF" stroke-width="1.8"><circle cx="10" cy="10" r="8"/><path d="M10 6v8M6 10h8" stroke-linecap="round"/></svg>
+          </button>
+        </div>
+        <input type="text" class="messages-input" placeholder="iMessage" readonly>
+        <button class="messages-send-btn" aria-label="Send" style="background:none;border:none;cursor:pointer;padding:4px;display:flex;align-items:center;">
+          <svg viewBox="0 0 20 20" width="20" height="20"><circle cx="10" cy="10" r="10" fill="#007AFF"/><path d="M10 5v7M7 8l3-3 3 3" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg>
+        </button>
+      </div>
+    </main>
+  </div>
+</div>

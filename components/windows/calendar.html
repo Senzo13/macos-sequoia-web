@@ -1,61 +1,161 @@
-    <div class="window" id="window-calendar" data-app="calendar" style="display:none; width:750px; height:500px; top:55px; left:130px;">
-      <div class="window-titlebar" data-drag="true">
-        <div class="traffic-lights">
-          <button class="traffic-light btn-close" data-action="close" aria-label="Close"></button>
-          <button class="traffic-light btn-minimize" data-action="minimize" aria-label="Minimize"></button>
-          <button class="traffic-light btn-maximize" data-action="maximize" aria-label="Maximize"></button>
-        </div>
-        <div class="window-title">
-          <span>Calendar</span>
-        </div>
-        <div class="window-toolbar-actions"></div>
+<div class="window" id="window-calendar" data-app="calendar" style="display:none; width:780px; height:540px; top:55px; left:130px;">
+  <div class="window-titlebar" data-drag="true">
+    <div class="traffic-lights">
+      <button class="traffic-light btn-close" data-action="close" aria-label="Close"></button>
+      <button class="traffic-light btn-minimize" data-action="minimize" aria-label="Minimize"></button>
+      <button class="traffic-light btn-maximize" data-action="maximize" aria-label="Maximize"></button>
+    </div>
+    <div class="window-title"><span>Calendar</span></div>
+  </div>
+  <div class="window-body calendar-body" style="display:flex;flex-direction:column;padding:0;">
+    <!-- Toolbar -->
+    <div class="calendar-toolbar" style="display:flex;align-items:center;gap:8px;padding:8px 16px;background:linear-gradient(to bottom,#fafafa,#f0f0f0);border-bottom:1px solid #d1d1d6;flex-shrink:0;">
+      <button class="calendar-btn" style="padding:5px 14px;border:1px solid #d1d1d6;border-radius:6px;background:#fff;font-size:12px;font-weight:500;cursor:pointer;color:#007AFF;">Today</button>
+      <div style="display:flex;gap:2px;">
+        <button class="calendar-btn calendar-nav-btn" aria-label="Previous month" style="padding:5px 10px;border:1px solid #d1d1d6;border-radius:6px 0 0 6px;background:#fff;cursor:pointer;display:flex;align-items:center;">
+          <svg viewBox="0 0 16 16" width="12" height="12" fill="none" stroke="#333" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="10,2 4,8 10,14"/></svg>
+        </button>
+        <button class="calendar-btn calendar-nav-btn" aria-label="Next month" style="padding:5px 10px;border:1px solid #d1d1d6;border-radius:0 6px 6px 0;background:#fff;cursor:pointer;display:flex;align-items:center;">
+          <svg viewBox="0 0 16 16" width="12" height="12" fill="none" stroke="#333" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6,2 12,8 6,14"/></svg>
+        </button>
       </div>
-      <div class="window-body calendar-body">
-        <div class="calendar-toolbar">
-          <button class="calendar-btn">Today</button>
-          <button class="calendar-btn calendar-nav-btn">&lt;</button>
-          <button class="calendar-btn calendar-nav-btn">&gt;</button>
-          <span class="calendar-month-title">March 2026</span>
-        </div>
-        <div class="calendar-grid">
-          <div class="calendar-day-header">Sun</div>
-          <div class="calendar-day-header">Mon</div>
-          <div class="calendar-day-header">Tue</div>
-          <div class="calendar-day-header">Wed</div>
-          <div class="calendar-day-header">Thu</div>
-          <div class="calendar-day-header">Fri</div>
-          <div class="calendar-day-header">Sat</div>
-          <div class="calendar-day">1</div>
-          <div class="calendar-day">2</div>
-          <div class="calendar-day">3</div>
-          <div class="calendar-day">4</div>
-          <div class="calendar-day">5</div>
-          <div class="calendar-day today">6</div>
-          <div class="calendar-day">7</div>
-          <div class="calendar-day">8</div>
-          <div class="calendar-day">9</div>
-          <div class="calendar-day">10</div>
-          <div class="calendar-day">11</div>
-          <div class="calendar-day">12</div>
-          <div class="calendar-day">13</div>
-          <div class="calendar-day">14</div>
-          <div class="calendar-day">15</div>
-          <div class="calendar-day">16</div>
-          <div class="calendar-day">17</div>
-          <div class="calendar-day">18</div>
-          <div class="calendar-day">19</div>
-          <div class="calendar-day">20</div>
-          <div class="calendar-day">21</div>
-          <div class="calendar-day">22</div>
-          <div class="calendar-day">23</div>
-          <div class="calendar-day">24</div>
-          <div class="calendar-day">25</div>
-          <div class="calendar-day">26</div>
-          <div class="calendar-day">27</div>
-          <div class="calendar-day">28</div>
-          <div class="calendar-day">29</div>
-          <div class="calendar-day">30</div>
-          <div class="calendar-day">31</div>
-        </div>
+      <span class="calendar-month-title" style="font-size:18px;font-weight:600;color:#333;margin-left:4px;">March 2026</span>
+      <div style="flex:1;"></div>
+      <div style="display:flex;gap:2px;border:1px solid #d1d1d6;border-radius:6px;overflow:hidden;">
+        <button style="padding:5px 12px;border:none;background:#fff;font-size:11px;cursor:pointer;border-right:1px solid #d1d1d6;">Day</button>
+        <button style="padding:5px 12px;border:none;background:#fff;font-size:11px;cursor:pointer;border-right:1px solid #d1d1d6;">Week</button>
+        <button style="padding:5px 12px;border:none;background:#007AFF;color:#fff;font-size:11px;cursor:pointer;border-right:1px solid #d1d1d6;">Month</button>
+        <button style="padding:5px 12px;border:none;background:#fff;font-size:11px;cursor:pointer;">Year</button>
       </div>
     </div>
+
+    <!-- Calendar Grid -->
+    <div class="calendar-grid" style="flex:1;display:grid;grid-template-columns:repeat(7,1fr);grid-template-rows:auto repeat(5,1fr);padding:0;overflow:hidden;">
+      <!-- Day headers -->
+      <div class="calendar-day-header" style="padding:8px;text-align:center;font-size:11px;font-weight:600;color:#8e8e93;border-bottom:1px solid #e5e5ea;">Sun</div>
+      <div class="calendar-day-header" style="padding:8px;text-align:center;font-size:11px;font-weight:600;color:#8e8e93;border-bottom:1px solid #e5e5ea;">Mon</div>
+      <div class="calendar-day-header" style="padding:8px;text-align:center;font-size:11px;font-weight:600;color:#8e8e93;border-bottom:1px solid #e5e5ea;">Tue</div>
+      <div class="calendar-day-header" style="padding:8px;text-align:center;font-size:11px;font-weight:600;color:#8e8e93;border-bottom:1px solid #e5e5ea;">Wed</div>
+      <div class="calendar-day-header" style="padding:8px;text-align:center;font-size:11px;font-weight:600;color:#8e8e93;border-bottom:1px solid #e5e5ea;">Thu</div>
+      <div class="calendar-day-header" style="padding:8px;text-align:center;font-size:11px;font-weight:600;color:#8e8e93;border-bottom:1px solid #e5e5ea;">Fri</div>
+      <div class="calendar-day-header" style="padding:8px;text-align:center;font-size:11px;font-weight:600;color:#8e8e93;border-bottom:1px solid #e5e5ea;">Sat</div>
+
+      <!-- March 2026 starts on Sunday -->
+      <div class="calendar-day" style="padding:6px;border-right:1px solid #f0f0f0;border-bottom:1px solid #f0f0f0;">
+        <span class="calendar-day-number" style="display:inline-flex;align-items:center;justify-content:center;width:24px;height:24px;border-radius:50%;font-size:13px;color:#333;">1</span>
+      </div>
+      <div class="calendar-day" style="padding:6px;border-right:1px solid #f0f0f0;border-bottom:1px solid #f0f0f0;">
+        <span class="calendar-day-number" style="display:inline-flex;align-items:center;justify-content:center;width:24px;height:24px;border-radius:50%;font-size:13px;color:#333;">2</span>
+      </div>
+      <div class="calendar-day" style="padding:6px;border-right:1px solid #f0f0f0;border-bottom:1px solid #f0f0f0;">
+        <span class="calendar-day-number" style="display:inline-flex;align-items:center;justify-content:center;width:24px;height:24px;border-radius:50%;font-size:13px;color:#333;">3</span>
+      </div>
+      <div class="calendar-day" style="padding:6px;border-right:1px solid #f0f0f0;border-bottom:1px solid #f0f0f0;">
+        <span class="calendar-day-number" style="display:inline-flex;align-items:center;justify-content:center;width:24px;height:24px;border-radius:50%;font-size:13px;color:#333;">4</span>
+        <div style="margin-top:2px;padding:2px 4px;background:#007AFF;border-radius:3px;font-size:9px;color:#fff;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">Team Standup</div>
+      </div>
+      <div class="calendar-day" style="padding:6px;border-right:1px solid #f0f0f0;border-bottom:1px solid #f0f0f0;">
+        <span class="calendar-day-number" style="display:inline-flex;align-items:center;justify-content:center;width:24px;height:24px;border-radius:50%;font-size:13px;color:#333;">5</span>
+      </div>
+      <div class="calendar-day today" style="padding:6px;border-right:1px solid #f0f0f0;border-bottom:1px solid #f0f0f0;">
+        <span class="calendar-day-number" style="display:inline-flex;align-items:center;justify-content:center;width:24px;height:24px;border-radius:50%;font-size:13px;background:#007AFF;color:#fff;font-weight:600;">6</span>
+        <div style="margin-top:2px;padding:2px 4px;background:#FF9500;border-radius:3px;font-size:9px;color:#fff;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">Sprint Review</div>
+      </div>
+      <div class="calendar-day" style="padding:6px;border-bottom:1px solid #f0f0f0;">
+        <span class="calendar-day-number" style="display:inline-flex;align-items:center;justify-content:center;width:24px;height:24px;border-radius:50%;font-size:13px;color:#333;">7</span>
+      </div>
+      <!-- Week 2 -->
+      <div class="calendar-day" style="padding:6px;border-right:1px solid #f0f0f0;border-bottom:1px solid #f0f0f0;">
+        <span class="calendar-day-number" style="display:inline-flex;align-items:center;justify-content:center;width:24px;height:24px;border-radius:50%;font-size:13px;color:#333;">8</span>
+      </div>
+      <div class="calendar-day" style="padding:6px;border-right:1px solid #f0f0f0;border-bottom:1px solid #f0f0f0;">
+        <span class="calendar-day-number" style="display:inline-flex;align-items:center;justify-content:center;width:24px;height:24px;border-radius:50%;font-size:13px;color:#333;">9</span>
+      </div>
+      <div class="calendar-day" style="padding:6px;border-right:1px solid #f0f0f0;border-bottom:1px solid #f0f0f0;">
+        <span class="calendar-day-number" style="display:inline-flex;align-items:center;justify-content:center;width:24px;height:24px;border-radius:50%;font-size:13px;color:#333;">10</span>
+        <div style="margin-top:2px;padding:2px 4px;background:#34C759;border-radius:3px;font-size:9px;color:#fff;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">Lunch w/ Sarah</div>
+      </div>
+      <div class="calendar-day" style="padding:6px;border-right:1px solid #f0f0f0;border-bottom:1px solid #f0f0f0;">
+        <span class="calendar-day-number" style="display:inline-flex;align-items:center;justify-content:center;width:24px;height:24px;border-radius:50%;font-size:13px;color:#333;">11</span>
+      </div>
+      <div class="calendar-day" style="padding:6px;border-right:1px solid #f0f0f0;border-bottom:1px solid #f0f0f0;">
+        <span class="calendar-day-number" style="display:inline-flex;align-items:center;justify-content:center;width:24px;height:24px;border-radius:50%;font-size:13px;color:#333;">12</span>
+      </div>
+      <div class="calendar-day" style="padding:6px;border-right:1px solid #f0f0f0;border-bottom:1px solid #f0f0f0;">
+        <span class="calendar-day-number" style="display:inline-flex;align-items:center;justify-content:center;width:24px;height:24px;border-radius:50%;font-size:13px;color:#333;">13</span>
+        <div style="margin-top:2px;padding:2px 4px;background:#AF52DE;border-radius:3px;font-size:9px;color:#fff;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">Design Review</div>
+      </div>
+      <div class="calendar-day" style="padding:6px;border-bottom:1px solid #f0f0f0;">
+        <span class="calendar-day-number" style="display:inline-flex;align-items:center;justify-content:center;width:24px;height:24px;border-radius:50%;font-size:13px;color:#333;">14</span>
+      </div>
+      <!-- Week 3 -->
+      <div class="calendar-day" style="padding:6px;border-right:1px solid #f0f0f0;border-bottom:1px solid #f0f0f0;">
+        <span class="calendar-day-number" style="display:inline-flex;align-items:center;justify-content:center;width:24px;height:24px;border-radius:50%;font-size:13px;color:#333;">15</span>
+      </div>
+      <div class="calendar-day" style="padding:6px;border-right:1px solid #f0f0f0;border-bottom:1px solid #f0f0f0;">
+        <span class="calendar-day-number" style="display:inline-flex;align-items:center;justify-content:center;width:24px;height:24px;border-radius:50%;font-size:13px;color:#333;">16</span>
+      </div>
+      <div class="calendar-day" style="padding:6px;border-right:1px solid #f0f0f0;border-bottom:1px solid #f0f0f0;">
+        <span class="calendar-day-number" style="display:inline-flex;align-items:center;justify-content:center;width:24px;height:24px;border-radius:50%;font-size:13px;color:#333;">17</span>
+      </div>
+      <div class="calendar-day" style="padding:6px;border-right:1px solid #f0f0f0;border-bottom:1px solid #f0f0f0;">
+        <span class="calendar-day-number" style="display:inline-flex;align-items:center;justify-content:center;width:24px;height:24px;border-radius:50%;font-size:13px;color:#333;">18</span>
+        <div style="margin-top:2px;padding:2px 4px;background:#007AFF;border-radius:3px;font-size:9px;color:#fff;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">Team Standup</div>
+      </div>
+      <div class="calendar-day" style="padding:6px;border-right:1px solid #f0f0f0;border-bottom:1px solid #f0f0f0;">
+        <span class="calendar-day-number" style="display:inline-flex;align-items:center;justify-content:center;width:24px;height:24px;border-radius:50%;font-size:13px;color:#333;">19</span>
+      </div>
+      <div class="calendar-day" style="padding:6px;border-right:1px solid #f0f0f0;border-bottom:1px solid #f0f0f0;">
+        <span class="calendar-day-number" style="display:inline-flex;align-items:center;justify-content:center;width:24px;height:24px;border-radius:50%;font-size:13px;color:#333;">20</span>
+      </div>
+      <div class="calendar-day" style="padding:6px;border-bottom:1px solid #f0f0f0;">
+        <span class="calendar-day-number" style="display:inline-flex;align-items:center;justify-content:center;width:24px;height:24px;border-radius:50%;font-size:13px;color:#333;">21</span>
+      </div>
+      <!-- Week 4 -->
+      <div class="calendar-day" style="padding:6px;border-right:1px solid #f0f0f0;border-bottom:1px solid #f0f0f0;">
+        <span class="calendar-day-number" style="display:inline-flex;align-items:center;justify-content:center;width:24px;height:24px;border-radius:50%;font-size:13px;color:#333;">22</span>
+      </div>
+      <div class="calendar-day" style="padding:6px;border-right:1px solid #f0f0f0;border-bottom:1px solid #f0f0f0;">
+        <span class="calendar-day-number" style="display:inline-flex;align-items:center;justify-content:center;width:24px;height:24px;border-radius:50%;font-size:13px;color:#333;">23</span>
+      </div>
+      <div class="calendar-day" style="padding:6px;border-right:1px solid #f0f0f0;border-bottom:1px solid #f0f0f0;">
+        <span class="calendar-day-number" style="display:inline-flex;align-items:center;justify-content:center;width:24px;height:24px;border-radius:50%;font-size:13px;color:#333;">24</span>
+      </div>
+      <div class="calendar-day" style="padding:6px;border-right:1px solid #f0f0f0;border-bottom:1px solid #f0f0f0;">
+        <span class="calendar-day-number" style="display:inline-flex;align-items:center;justify-content:center;width:24px;height:24px;border-radius:50%;font-size:13px;color:#333;">25</span>
+      </div>
+      <div class="calendar-day" style="padding:6px;border-right:1px solid #f0f0f0;border-bottom:1px solid #f0f0f0;">
+        <span class="calendar-day-number" style="display:inline-flex;align-items:center;justify-content:center;width:24px;height:24px;border-radius:50%;font-size:13px;color:#333;">26</span>
+      </div>
+      <div class="calendar-day" style="padding:6px;border-right:1px solid #f0f0f0;border-bottom:1px solid #f0f0f0;">
+        <span class="calendar-day-number" style="display:inline-flex;align-items:center;justify-content:center;width:24px;height:24px;border-radius:50%;font-size:13px;color:#333;">27</span>
+        <div style="margin-top:2px;padding:2px 4px;background:#FF3B30;border-radius:3px;font-size:9px;color:#fff;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">Deadline</div>
+      </div>
+      <div class="calendar-day" style="padding:6px;border-bottom:1px solid #f0f0f0;">
+        <span class="calendar-day-number" style="display:inline-flex;align-items:center;justify-content:center;width:24px;height:24px;border-radius:50%;font-size:13px;color:#333;">28</span>
+      </div>
+      <!-- Week 5 -->
+      <div class="calendar-day" style="padding:6px;border-right:1px solid #f0f0f0;">
+        <span class="calendar-day-number" style="display:inline-flex;align-items:center;justify-content:center;width:24px;height:24px;border-radius:50%;font-size:13px;color:#333;">29</span>
+      </div>
+      <div class="calendar-day" style="padding:6px;border-right:1px solid #f0f0f0;">
+        <span class="calendar-day-number" style="display:inline-flex;align-items:center;justify-content:center;width:24px;height:24px;border-radius:50%;font-size:13px;color:#333;">30</span>
+      </div>
+      <div class="calendar-day" style="padding:6px;border-right:1px solid #f0f0f0;">
+        <span class="calendar-day-number" style="display:inline-flex;align-items:center;justify-content:center;width:24px;height:24px;border-radius:50%;font-size:13px;color:#333;">31</span>
+      </div>
+      <div class="calendar-day" style="padding:6px;border-right:1px solid #f0f0f0;">
+        <span class="calendar-day-number" style="display:inline-flex;align-items:center;justify-content:center;width:24px;height:24px;border-radius:50%;font-size:13px;color:#c7c7cc;">1</span>
+      </div>
+      <div class="calendar-day" style="padding:6px;border-right:1px solid #f0f0f0;">
+        <span class="calendar-day-number" style="display:inline-flex;align-items:center;justify-content:center;width:24px;height:24px;border-radius:50%;font-size:13px;color:#c7c7cc;">2</span>
+      </div>
+      <div class="calendar-day" style="padding:6px;border-right:1px solid #f0f0f0;">
+        <span class="calendar-day-number" style="display:inline-flex;align-items:center;justify-content:center;width:24px;height:24px;border-radius:50%;font-size:13px;color:#c7c7cc;">3</span>
+      </div>
+      <div class="calendar-day" style="padding:6px;">
+        <span class="calendar-day-number" style="display:inline-flex;align-items:center;justify-content:center;width:24px;height:24px;border-radius:50%;font-size:13px;color:#c7c7cc;">4</span>
+      </div>
+    </div>
+  </div>
+</div>

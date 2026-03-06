@@ -1,32 +1,116 @@
-    <div class="window" id="window-facetime" data-app="facetime" style="display:none; width:380px; height:520px; top:80px; left:300px;">
-      <div class="window-titlebar" data-drag="true">
-        <div class="traffic-lights">
-          <button class="traffic-light btn-close" data-action="close" aria-label="Close"></button>
-          <button class="traffic-light btn-minimize" data-action="minimize" aria-label="Minimize"></button>
-          <button class="traffic-light btn-maximize" data-action="maximize" aria-label="Maximize"></button>
-        </div>
-        <div class="window-title">
-          <span>FaceTime</span>
-        </div>
-        <div class="window-toolbar-actions"></div>
+<div class="window" id="window-facetime" data-app="facetime" style="display:none; width:400px; height:560px; top:80px; left:300px;">
+  <div class="window-titlebar" data-drag="true">
+    <div class="traffic-lights">
+      <button class="traffic-light btn-close" data-action="close" aria-label="Close"></button>
+      <button class="traffic-light btn-minimize" data-action="minimize" aria-label="Minimize"></button>
+      <button class="traffic-light btn-maximize" data-action="maximize" aria-label="Maximize"></button>
+    </div>
+    <div class="window-title"><span>FaceTime</span></div>
+  </div>
+  <div class="window-body facetime-body" style="background:#1c1c1e;color:#fff;display:flex;flex-direction:column;padding:0;">
+    <!-- New FaceTime Button -->
+    <div style="padding:16px;">
+      <div class="facetime-search" style="display:flex;align-items:center;gap:8px;background:rgba(255,255,255,0.08);border-radius:10px;padding:10px 14px;">
+        <svg viewBox="0 0 20 20" width="14" height="14" fill="none" stroke="rgba(255,255,255,0.4)" stroke-width="2" stroke-linecap="round"><circle cx="8.5" cy="8.5" r="5.5"/><line x1="12.5" y1="12.5" x2="17" y2="17"/></svg>
+        <input type="text" placeholder="Enter a name or number" disabled style="background:transparent;border:none;outline:none;color:#fff;font-size:13px;width:100%;">
       </div>
-      <div class="window-body facetime-body">
-        <div class="facetime-new">
-          <button class="facetime-new-btn">New FaceTime</button>
+    </div>
+
+    <!-- Section Header -->
+    <div style="padding:0 16px 8px;font-size:13px;font-weight:600;color:rgba(255,255,255,0.5);">RECENTS</div>
+
+    <!-- Recent Contacts Grid -->
+    <div class="facetime-recents" style="flex:1;overflow-y:auto;padding:0 16px;">
+      <div class="facetime-contact" style="display:flex;align-items:center;gap:12px;padding:10px 0;border-bottom:1px solid rgba(255,255,255,0.06);">
+        <div class="facetime-avatar" style="width:44px;height:44px;border-radius:50%;background:linear-gradient(135deg,#5856D6,#AF52DE);display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+          <svg viewBox="0 0 24 24" width="22" height="22" fill="#fff"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4.4 3.6-8 8-8s8 3.6 8 8"/></svg>
         </div>
-        <div class="facetime-recents">
-          <div class="facetime-contact">
-            <div class="facetime-avatar">JA</div>
-            <div class="facetime-contact-name">John Appleseed</div>
+        <div style="flex:1;">
+          <div class="facetime-contact-name" style="font-size:14px;font-weight:500;">John Appleseed</div>
+          <div style="font-size:11px;color:rgba(255,255,255,0.4);display:flex;align-items:center;gap:4px;">
+            <svg viewBox="0 0 12 12" width="10" height="10" fill="none" stroke="#34C759" stroke-width="1.5"><polygon points="6,1 7.5,4 11,4.5 8.5,7 9,10.5 6,9 3,10.5 3.5,7 1,4.5 4.5,4"/></svg>
+            FaceTime Video &middot; Yesterday
           </div>
-          <div class="facetime-contact">
-            <div class="facetime-avatar">KS</div>
-            <div class="facetime-contact-name">Kate Sierra</div>
+        </div>
+        <div style="display:flex;gap:8px;">
+          <button aria-label="Video call" style="width:32px;height:32px;border-radius:50%;background:rgba(255,255,255,0.08);border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;">
+            <svg viewBox="0 0 20 20" width="16" height="16" fill="none" stroke="#34C759" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="5" width="11" height="10" rx="2"/><path d="M13 8l5-3v10l-5-3"/></svg>
+          </button>
+        </div>
+      </div>
+      <div class="facetime-contact" style="display:flex;align-items:center;gap:12px;padding:10px 0;border-bottom:1px solid rgba(255,255,255,0.06);">
+        <div class="facetime-avatar" style="width:44px;height:44px;border-radius:50%;background:linear-gradient(135deg,#FF9500,#FF3B30);display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+          <svg viewBox="0 0 24 24" width="22" height="22" fill="#fff"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4.4 3.6-8 8-8s8 3.6 8 8"/></svg>
+        </div>
+        <div style="flex:1;">
+          <div class="facetime-contact-name" style="font-size:14px;font-weight:500;">Kate Sierra</div>
+          <div style="font-size:11px;color:rgba(255,255,255,0.4);display:flex;align-items:center;gap:4px;">
+            <svg viewBox="0 0 12 12" width="10" height="10" fill="none" stroke="#FF3B30" stroke-width="1.5"><path d="M2 10L10 2M2 2l8 8"/></svg>
+            FaceTime Audio &middot; Missed
           </div>
-          <div class="facetime-contact">
-            <div class="facetime-avatar">DM</div>
-            <div class="facetime-contact-name">David Miller</div>
+        </div>
+        <div style="display:flex;gap:8px;">
+          <button aria-label="Video call" style="width:32px;height:32px;border-radius:50%;background:rgba(255,255,255,0.08);border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;">
+            <svg viewBox="0 0 20 20" width="16" height="16" fill="none" stroke="#34C759" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="5" width="11" height="10" rx="2"/><path d="M13 8l5-3v10l-5-3"/></svg>
+          </button>
+        </div>
+      </div>
+      <div class="facetime-contact" style="display:flex;align-items:center;gap:12px;padding:10px 0;border-bottom:1px solid rgba(255,255,255,0.06);">
+        <div class="facetime-avatar" style="width:44px;height:44px;border-radius:50%;background:linear-gradient(135deg,#30D158,#34C759);display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+          <svg viewBox="0 0 24 24" width="22" height="22" fill="#fff"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4.4 3.6-8 8-8s8 3.6 8 8"/></svg>
+        </div>
+        <div style="flex:1;">
+          <div class="facetime-contact-name" style="font-size:14px;font-weight:500;">David Miller</div>
+          <div style="font-size:11px;color:rgba(255,255,255,0.4);display:flex;align-items:center;gap:4px;">
+            <svg viewBox="0 0 12 12" width="10" height="10" fill="none"><path d="M2 6l3 3 5-5" stroke="#34C759" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            FaceTime Video &middot; Tuesday
           </div>
+        </div>
+        <div style="display:flex;gap:8px;">
+          <button aria-label="Video call" style="width:32px;height:32px;border-radius:50%;background:rgba(255,255,255,0.08);border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;">
+            <svg viewBox="0 0 20 20" width="16" height="16" fill="none" stroke="#34C759" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="5" width="11" height="10" rx="2"/><path d="M13 8l5-3v10l-5-3"/></svg>
+          </button>
+        </div>
+      </div>
+      <div class="facetime-contact" style="display:flex;align-items:center;gap:12px;padding:10px 0;border-bottom:1px solid rgba(255,255,255,0.06);">
+        <div class="facetime-avatar" style="width:44px;height:44px;border-radius:50%;background:linear-gradient(135deg,#007AFF,#5856D6);display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+          <svg viewBox="0 0 24 24" width="22" height="22" fill="#fff"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4.4 3.6-8 8-8s8 3.6 8 8"/></svg>
+        </div>
+        <div style="flex:1;">
+          <div class="facetime-contact-name" style="font-size:14px;font-weight:500;">Sarah Wilson</div>
+          <div style="font-size:11px;color:rgba(255,255,255,0.4);display:flex;align-items:center;gap:4px;">
+            <svg viewBox="0 0 12 12" width="10" height="10" fill="none"><path d="M2 6l3 3 5-5" stroke="#34C759" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            FaceTime Video &middot; Monday
+          </div>
+        </div>
+        <div style="display:flex;gap:8px;">
+          <button aria-label="Video call" style="width:32px;height:32px;border-radius:50%;background:rgba(255,255,255,0.08);border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;">
+            <svg viewBox="0 0 20 20" width="16" height="16" fill="none" stroke="#34C759" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="5" width="11" height="10" rx="2"/><path d="M13 8l5-3v10l-5-3"/></svg>
+          </button>
         </div>
       </div>
     </div>
+
+    <!-- Bottom Bar -->
+    <div class="facetime-bottom-bar" style="padding:16px;display:flex;justify-content:center;gap:24px;border-top:1px solid rgba(255,255,255,0.06);">
+      <button style="display:flex;flex-direction:column;align-items:center;gap:6px;background:none;border:none;cursor:pointer;">
+        <div style="width:48px;height:48px;border-radius:50%;background:#30D158;display:flex;align-items:center;justify-content:center;">
+          <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="5" width="14" height="14" rx="3"/><path d="M16 9l6-4v14l-6-4"/></svg>
+        </div>
+        <span style="font-size:11px;color:rgba(255,255,255,0.6);">Video</span>
+      </button>
+      <button style="display:flex;flex-direction:column;align-items:center;gap:6px;background:none;border:none;cursor:pointer;">
+        <div style="width:48px;height:48px;border-radius:50%;background:#30D158;display:flex;align-items:center;justify-content:center;">
+          <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2z"/></svg>
+        </div>
+        <span style="font-size:11px;color:rgba(255,255,255,0.6);">Audio</span>
+      </button>
+      <button style="display:flex;flex-direction:column;align-items:center;gap:6px;background:none;border:none;cursor:pointer;">
+        <div style="width:48px;height:48px;border-radius:50%;background:rgba(255,255,255,0.1);display:flex;align-items:center;justify-content:center;">
+          <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round"><path d="M12 2v20M2 12h20"/></svg>
+        </div>
+        <span style="font-size:11px;color:rgba(255,255,255,0.6);">Create Link</span>
+      </button>
+    </div>
+  </div>
+</div>

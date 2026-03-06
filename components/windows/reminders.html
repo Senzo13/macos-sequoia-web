@@ -1,53 +1,133 @@
-    <div class="window" id="window-reminders" data-app="reminders" style="display:none; width:700px; height:460px; top:70px; left:160px;">
-      <div class="window-titlebar" data-drag="true">
-        <div class="traffic-lights">
-          <button class="traffic-light btn-close" data-action="close" aria-label="Close"></button>
-          <button class="traffic-light btn-minimize" data-action="minimize" aria-label="Minimize"></button>
-          <button class="traffic-light btn-maximize" data-action="maximize" aria-label="Maximize"></button>
-        </div>
-        <div class="window-title">
-          <span>Reminders</span>
-        </div>
-        <div class="window-toolbar-actions"></div>
-      </div>
-      <div class="window-body reminders-body">
-        <aside class="reminders-sidebar">
-          <div class="reminders-sidebar-section">
-            <ul class="reminders-sidebar-list">
-              <li class="reminders-sidebar-item active">
-                <span>Today</span>
-              </li>
-              <li class="reminders-sidebar-item">
-                <span>Scheduled</span>
-              </li>
-              <li class="reminders-sidebar-item">
-                <span>All</span>
-              </li>
-              <li class="reminders-sidebar-item">
-                <span>Completed</span>
-              </li>
-            </ul>
-          </div>
-        </aside>
-        <main class="reminders-content">
-          <div class="reminders-list">
-            <div class="reminders-item">
-              <div class="reminders-checkbox"></div>
-              <span>Review pull requests</span>
-            </div>
-            <div class="reminders-item">
-              <div class="reminders-checkbox"></div>
-              <span>Update project documentation</span>
-            </div>
-            <div class="reminders-item">
-              <div class="reminders-checkbox"></div>
-              <span>Schedule team meeting</span>
-            </div>
-            <div class="reminders-item">
-              <div class="reminders-checkbox"></div>
-              <span>Pick up groceries</span>
-            </div>
-          </div>
-        </main>
-      </div>
+<div class="window" id="window-reminders" data-app="reminders" style="display:none; width:720px; height:480px; top:70px; left:160px;">
+  <div class="window-titlebar" data-drag="true">
+    <div class="traffic-lights">
+      <button class="traffic-light btn-close" data-action="close" aria-label="Close"></button>
+      <button class="traffic-light btn-minimize" data-action="minimize" aria-label="Minimize"></button>
+      <button class="traffic-light btn-maximize" data-action="maximize" aria-label="Maximize"></button>
     </div>
+    <div class="window-title"><span>Reminders</span></div>
+  </div>
+  <div class="window-body reminders-body">
+    <aside class="reminders-sidebar">
+      <div class="reminders-sidebar-search" style="padding:10px 12px;">
+        <input type="text" placeholder="Search" readonly style="width:100%;padding:6px 10px;border:1px solid #d1d1d6;border-radius:8px;background:#f2f2f7;font-size:12px;outline:none;box-sizing:border-box;">
+      </div>
+      <!-- Smart Lists -->
+      <div class="reminders-smart-lists" style="display:grid;grid-template-columns:1fr 1fr;gap:8px;padding:0 12px 12px;">
+        <div style="background:#f2f2f7;border-radius:10px;padding:10px;cursor:pointer;">
+          <div style="display:flex;align-items:center;justify-content:space-between;">
+            <div style="width:28px;height:28px;border-radius:50%;background:#007AFF;display:flex;align-items:center;justify-content:center;">
+              <svg viewBox="0 0 16 16" width="14" height="14" fill="#fff"><rect x="2" y="2" width="12" height="12" rx="2"/><path d="M5 8h6M8 5v6" stroke="#007AFF" stroke-width="1.5" stroke-linecap="round"/></svg>
+            </div>
+            <span style="font-size:18px;font-weight:700;color:#007AFF;">2</span>
+          </div>
+          <div style="font-size:11px;font-weight:600;color:#8e8e93;margin-top:4px;">Today</div>
+        </div>
+        <div style="background:#f2f2f7;border-radius:10px;padding:10px;cursor:pointer;">
+          <div style="display:flex;align-items:center;justify-content:space-between;">
+            <div style="width:28px;height:28px;border-radius:50%;background:#FF3B30;display:flex;align-items:center;justify-content:center;">
+              <svg viewBox="0 0 16 16" width="14" height="14" fill="#fff"><rect x="2" y="3" width="12" height="11" rx="2"/><path d="M2 6h12" stroke="#FF3B30" stroke-width="1.5"/><rect x="5" y="8" width="2" height="2" rx="0.5"/><rect x="9" y="8" width="2" height="2" rx="0.5"/></svg>
+            </div>
+            <span style="font-size:18px;font-weight:700;color:#FF3B30;">5</span>
+          </div>
+          <div style="font-size:11px;font-weight:600;color:#8e8e93;margin-top:4px;">Scheduled</div>
+        </div>
+        <div style="background:#f2f2f7;border-radius:10px;padding:10px;cursor:pointer;">
+          <div style="display:flex;align-items:center;justify-content:space-between;">
+            <div style="width:28px;height:28px;border-radius:50%;background:#333;display:flex;align-items:center;justify-content:center;">
+              <svg viewBox="0 0 16 16" width="14" height="14" fill="#fff"><rect x="1" y="4" width="14" height="10" rx="2"/><path d="M1 6l7 4 7-4" stroke="#333" stroke-width="1.5" fill="none"/></svg>
+            </div>
+            <span style="font-size:18px;font-weight:700;color:#333;">8</span>
+          </div>
+          <div style="font-size:11px;font-weight:600;color:#8e8e93;margin-top:4px;">All</div>
+        </div>
+        <div style="background:#f2f2f7;border-radius:10px;padding:10px;cursor:pointer;">
+          <div style="display:flex;align-items:center;justify-content:space-between;">
+            <div style="width:28px;height:28px;border-radius:50%;background:#FF9500;display:flex;align-items:center;justify-content:center;">
+              <svg viewBox="0 0 16 16" width="14" height="14" fill="#fff"><path d="M8 2l1.5 3 3.5.5-2.5 2.5.5 3.5L8 10l-3 1.5.5-3.5L3 5.5l3.5-.5z"/></svg>
+            </div>
+            <span style="font-size:18px;font-weight:700;color:#FF9500;">1</span>
+          </div>
+          <div style="font-size:11px;font-weight:600;color:#8e8e93;margin-top:4px;">Flagged</div>
+        </div>
+      </div>
+      <!-- My Lists -->
+      <div class="reminders-sidebar-section">
+        <h3 style="font-size:11px;font-weight:600;color:#8e8e93;text-transform:uppercase;padding:4px 12px;letter-spacing:0.5px;">My Lists</h3>
+        <ul class="reminders-sidebar-list">
+          <li class="reminders-sidebar-item active">
+            <svg viewBox="0 0 16 16" width="14" height="14"><circle cx="8" cy="8" r="6" fill="#007AFF"/><path d="M5 8l2 2 4-4" stroke="#fff" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            <span>Personal</span>
+            <span style="font-size:12px;color:#8e8e93;margin-left:auto;">4</span>
+          </li>
+          <li class="reminders-sidebar-item">
+            <svg viewBox="0 0 16 16" width="14" height="14"><circle cx="8" cy="8" r="6" fill="#34C759"/><path d="M5 8l2 2 4-4" stroke="#fff" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            <span>Work</span>
+            <span style="font-size:12px;color:#8e8e93;margin-left:auto;">3</span>
+          </li>
+          <li class="reminders-sidebar-item">
+            <svg viewBox="0 0 16 16" width="14" height="14"><circle cx="8" cy="8" r="6" fill="#FF9500"/><path d="M5 8l2 2 4-4" stroke="#fff" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            <span>Groceries</span>
+            <span style="font-size:12px;color:#8e8e93;margin-left:auto;">1</span>
+          </li>
+        </ul>
+      </div>
+    </aside>
+    <main class="reminders-content">
+      <div class="reminders-content-header" style="padding:16px 20px 8px;display:flex;justify-content:space-between;align-items:center;">
+        <h2 style="font-size:22px;font-weight:700;color:#007AFF;margin:0;">Personal</h2>
+      </div>
+      <div class="reminders-list" style="padding:0 20px;">
+        <div class="reminders-item" style="display:flex;align-items:flex-start;gap:10px;padding:10px 0;border-bottom:1px solid #f0f0f0;">
+          <div class="reminders-checkbox checked" style="width:20px;height:20px;border-radius:50%;border:2px solid #007AFF;flex-shrink:0;margin-top:1px;display:flex;align-items:center;justify-content:center;background:#007AFF;">
+            <svg viewBox="0 0 12 12" width="10" height="10" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 6l3 3 5-5"/></svg>
+          </div>
+          <div>
+            <span style="text-decoration:line-through;color:#8e8e93;font-size:13px;">Review pull requests</span>
+            <div style="font-size:11px;color:#c7c7cc;margin-top:2px;">Completed yesterday</div>
+          </div>
+        </div>
+        <div class="reminders-item" style="display:flex;align-items:flex-start;gap:10px;padding:10px 0;border-bottom:1px solid #f0f0f0;">
+          <div class="reminders-checkbox" style="width:20px;height:20px;border-radius:50%;border:2px solid #d1d1d6;flex-shrink:0;margin-top:1px;"></div>
+          <div>
+            <span style="font-size:13px;color:#333;">Update project documentation</span>
+            <div style="font-size:11px;color:#FF9500;margin-top:2px;">
+              <svg viewBox="0 0 12 12" width="10" height="10" fill="#FF9500" style="vertical-align:-1px;"><path d="M6 1l1.2 2.4 2.8.4-2 2 .4 2.8L6 7.4 3.6 8.6l.4-2.8-2-2 2.8-.4z"/></svg>
+              Flagged &middot; Due tomorrow
+            </div>
+          </div>
+        </div>
+        <div class="reminders-item" style="display:flex;align-items:flex-start;gap:10px;padding:10px 0;border-bottom:1px solid #f0f0f0;">
+          <div class="reminders-checkbox" style="width:20px;height:20px;border-radius:50%;border:2px solid #d1d1d6;flex-shrink:0;margin-top:1px;"></div>
+          <div>
+            <span style="font-size:13px;color:#333;">Schedule team meeting</span>
+            <div style="font-size:11px;color:#8e8e93;margin-top:2px;">Today at 3:00 PM</div>
+          </div>
+        </div>
+        <div class="reminders-item" style="display:flex;align-items:flex-start;gap:10px;padding:10px 0;border-bottom:1px solid #f0f0f0;">
+          <div class="reminders-checkbox" style="width:20px;height:20px;border-radius:50%;border:2px solid #d1d1d6;flex-shrink:0;margin-top:1px;"></div>
+          <div>
+            <span style="font-size:13px;color:#333;">Pick up groceries</span>
+            <div style="font-size:11px;color:#8e8e93;margin-top:2px;">This evening</div>
+          </div>
+        </div>
+        <div class="reminders-item" style="display:flex;align-items:flex-start;gap:10px;padding:10px 0;border-bottom:1px solid #f0f0f0;">
+          <div class="reminders-checkbox checked" style="width:20px;height:20px;border-radius:50%;border:2px solid #007AFF;flex-shrink:0;margin-top:1px;display:flex;align-items:center;justify-content:center;background:#007AFF;">
+            <svg viewBox="0 0 12 12" width="10" height="10" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 6l3 3 5-5"/></svg>
+          </div>
+          <div>
+            <span style="text-decoration:line-through;color:#8e8e93;font-size:13px;">Call dentist for appointment</span>
+            <div style="font-size:11px;color:#c7c7cc;margin-top:2px;">Completed Mar 4</div>
+          </div>
+        </div>
+      </div>
+      <!-- Add Reminder -->
+      <div style="padding:12px 20px;">
+        <button style="display:flex;align-items:center;gap:6px;background:none;border:none;cursor:pointer;color:#007AFF;font-size:13px;font-weight:500;">
+          <svg viewBox="0 0 16 16" width="16" height="16" fill="none" stroke="#007AFF" stroke-width="1.8" stroke-linecap="round"><circle cx="8" cy="8" r="7"/><path d="M8 4.5v7M4.5 8h7"/></svg>
+          Add Reminder
+        </button>
+      </div>
+    </main>
+  </div>
+</div>
