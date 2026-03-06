@@ -32,7 +32,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
         const lockTime = lockScreen.querySelector('.lock-time');
         const lockDate = lockScreen.querySelector('.lock-date');
-        const passwordInput = lockScreen.querySelector('.lock-password');
+        const passwordInput = document.getElementById('lock-password');
+        const lockForm = document.getElementById('lock-form');
+        if (lockForm) lockForm.addEventListener('submit', (e) => { e.preventDefault(); unlockDesktop(); });
 
         // Update lock-screen clock every second
         function updateLockClock() {

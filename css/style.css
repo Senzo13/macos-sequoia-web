@@ -246,6 +246,22 @@ body {
   margin-bottom: 40px;
 }
 
+.lock-user {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.lock-hint {
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.5);
+  margin-top: 8px;
+}
+
+.lock-password-form {
+  margin: 0;
+}
+
 .lock-avatar {
   width: 80px;
   height: 80px;
@@ -275,7 +291,7 @@ body {
   margin-bottom: 12px;
 }
 
-.lock-password {
+.lock-password-input {
   width: 200px;
   height: 32px;
   border: none;
@@ -292,12 +308,12 @@ body {
   transition: background var(--transition-fast);
 }
 
-.lock-password::placeholder {
+.lock-password-input::placeholder {
   color: rgba(255, 255, 255, 0.6);
   font-size: 13px;
 }
 
-.lock-password:focus {
+.lock-password-input:focus {
   background: rgba(255, 255, 255, 0.3);
 }
 
