@@ -1,0 +1,39 @@
+    <div class="window" id="window-messages" data-window="messages" style="display:none; width:700px; height:460px; top:80px; left:220px;">
+      <div class="window-titlebar" data-drag="true">
+        <div class="traffic-lights">
+          <button class="traffic-light traffic-close" data-action="close" aria-label="Close"></button>
+          <button class="traffic-light traffic-minimize" data-action="minimize" aria-label="Minimize"></button>
+          <button class="traffic-light traffic-maximize" data-action="maximize" aria-label="Maximize"></button>
+        </div>
+        <div class="window-title"><span>Messages</span></div>
+      </div>
+      <div class="window-body messages-body">
+        <aside class="messages-sidebar">
+          <div class="messages-conversation active">
+            <div class="messages-conv-avatar" style="background:#34C759;">A</div>
+            <div class="messages-conv-info">
+              <div class="messages-conv-name">Alice</div>
+              <div class="messages-conv-preview">Hey! How's the project going?</div>
+            </div>
+          </div>
+          <div class="messages-conversation">
+            <div class="messages-conv-avatar" style="background:#007AFF;">B</div>
+            <div class="messages-conv-info">
+              <div class="messages-conv-name">Bob</div>
+              <div class="messages-conv-preview">See you tomorrow!</div>
+            </div>
+          </div>
+        </aside>
+        <main class="messages-content">
+          <div class="messages-chat">
+            <div class="message-bubble message-received">Hey! How's the project going?</div>
+            <div class="message-bubble message-sent">Going great! Almost finished the UI.</div>
+            <div class="message-bubble message-received">That's awesome! Can't wait to see it.</div>
+            <div class="message-bubble message-sent">I'll share the link soon!</div>
+          </div>
+          <div class="messages-input-bar">
+            <input type="text" class="messages-input" placeholder="iMessage" readonly>
+          </div>
+        </main>
+      </div>
+    </div>

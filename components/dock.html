@@ -1,0 +1,176 @@
+    <nav class="dock" id="dock">
+      <div class="dock-container">
+        <!-- Finder -->
+        <button class="dock-item" data-app="finder" aria-label="Finder">
+          <div class="dock-icon" style="background: linear-gradient(135deg, #1e90ff 0%, #00bfff 100%);">
+            <svg viewBox="0 0 32 32" width="28" height="28">
+              <circle cx="11" cy="13" r="2.5" fill="white"/>
+              <circle cx="21" cy="13" r="2.5" fill="white"/>
+              <path d="M10 20q6 5 12 0" stroke="white" stroke-width="1.8" fill="none" stroke-linecap="round"/>
+              <line x1="16" y1="10" x2="16" y2="22" stroke="white" stroke-width="1" opacity="0.4"/>
+            </svg>
+          </div>
+        </button>
+
+        <!-- Safari -->
+        <button class="dock-item" data-app="safari" aria-label="Safari">
+          <div class="dock-icon" style="background: linear-gradient(135deg, #00b4db 0%, #0083B0 100%);">
+            <svg viewBox="0 0 32 32" width="26" height="26">
+              <circle cx="16" cy="16" r="12" fill="none" stroke="white" stroke-width="1.5"/>
+              <polygon points="16,6 20,14 16,16 12,14" fill="white" opacity="0.9"/>
+              <polygon points="16,26 12,18 16,16 20,18" fill="#FF3B30" opacity="0.9"/>
+            </svg>
+          </div>
+        </button>
+
+        <!-- Messages -->
+        <button class="dock-item" data-app="messages" aria-label="Messages">
+          <div class="dock-icon" style="background: linear-gradient(180deg, #5af158 0%, #28a745 100%);">
+            <svg viewBox="0 0 32 32" width="24" height="24">
+              <path d="M6 10a8 8 0 0 1 8-8h4a8 8 0 0 1 8 8v2a8 8 0 0 1-8 8h-2l-5 4v-4a8 8 0 0 1-5-8V10z" fill="white"/>
+            </svg>
+          </div>
+        </button>
+
+        <!-- Mail -->
+        <button class="dock-item" data-app="" aria-label="Mail">
+          <div class="dock-icon" style="background: linear-gradient(180deg, #3498db 0%, #2980b9 100%);">
+            <svg viewBox="0 0 32 32" width="24" height="24">
+              <rect x="4" y="8" width="24" height="16" rx="2" fill="white"/>
+              <path d="M4 10l12 8 12-8" fill="none" stroke="#2980b9" stroke-width="1.5"/>
+            </svg>
+          </div>
+        </button>
+
+        <!-- Maps -->
+        <button class="dock-item" data-app="" aria-label="Maps">
+          <div class="dock-icon" style="background: linear-gradient(135deg, #4cd964 0%, #2ecc71 100%);">
+            <svg viewBox="0 0 32 32" width="24" height="24">
+              <path d="M8 6l8 4 8-4v20l-8-4-8 4V6z" fill="white" opacity="0.9"/>
+              <line x1="16" y1="10" x2="16" y2="22" stroke="#2ecc71" stroke-width="1"/>
+            </svg>
+          </div>
+        </button>
+
+        <!-- Photos -->
+        <button class="dock-item" data-app="" aria-label="Photos">
+          <div class="dock-icon" style="background: linear-gradient(135deg, #ff6b6b 0%, #ffa500 30%, #ffe066 50%, #51cf66 70%, #339af0 100%);">
+            <svg viewBox="0 0 32 32" width="22" height="22">
+              <ellipse cx="16" cy="12" rx="4" ry="5" fill="white" opacity="0.9"/>
+              <ellipse cx="11" cy="18" rx="4" ry="5" fill="white" opacity="0.9" transform="rotate(-60,11,18)"/>
+              <ellipse cx="21" cy="18" rx="4" ry="5" fill="white" opacity="0.9" transform="rotate(60,21,18)"/>
+            </svg>
+          </div>
+        </button>
+
+        <!-- FaceTime -->
+        <button class="dock-item" data-app="" aria-label="FaceTime">
+          <div class="dock-icon" style="background: linear-gradient(180deg, #5af158 0%, #28a745 100%);">
+            <svg viewBox="0 0 32 32" width="24" height="24">
+              <rect x="4" y="9" width="17" height="14" rx="3" fill="white"/>
+              <polygon points="23,12 29,8 29,24 23,20" fill="white"/>
+            </svg>
+          </div>
+        </button>
+
+        <!-- Calendar -->
+        <button class="dock-item" data-app="" aria-label="Calendar">
+          <div class="dock-icon" style="background: white;">
+            <div class="dock-calendar-icon">
+              <div class="dock-calendar-day-name">FRI</div>
+              <div class="dock-calendar-date" id="dock-calendar-date">6</div>
+            </div>
+          </div>
+        </button>
+
+        <!-- Notes -->
+        <button class="dock-item" data-app="notes" aria-label="Notes">
+          <div class="dock-icon" style="background: linear-gradient(180deg, #fef3c7 0%, #fde68a 100%);">
+            <svg viewBox="0 0 32 32" width="22" height="22">
+              <rect x="4" y="2" width="24" height="28" rx="3" fill="white"/>
+              <line x1="8" y1="10" x2="24" y2="10" stroke="#d4a000" stroke-width="1" opacity="0.4"/>
+              <line x1="8" y1="14" x2="24" y2="14" stroke="#d4a000" stroke-width="1" opacity="0.4"/>
+              <line x1="8" y1="18" x2="24" y2="18" stroke="#d4a000" stroke-width="1" opacity="0.4"/>
+              <line x1="8" y1="22" x2="20" y2="22" stroke="#d4a000" stroke-width="1" opacity="0.4"/>
+            </svg>
+          </div>
+        </button>
+
+        <!-- Reminders -->
+        <button class="dock-item" data-app="" aria-label="Reminders">
+          <div class="dock-icon" style="background: white;">
+            <svg viewBox="0 0 32 32" width="24" height="24">
+              <circle cx="10" cy="10" r="3" fill="none" stroke="#007AFF" stroke-width="1.5"/>
+              <line x1="14" y1="10" x2="26" y2="10" stroke="#333" stroke-width="1.2"/>
+              <circle cx="10" cy="17" r="3" fill="none" stroke="#FF9500" stroke-width="1.5"/>
+              <line x1="14" y1="17" x2="24" y2="17" stroke="#333" stroke-width="1.2"/>
+              <circle cx="10" cy="24" r="3" fill="none" stroke="#34C759" stroke-width="1.5"/>
+              <line x1="14" y1="24" x2="22" y2="24" stroke="#333" stroke-width="1.2"/>
+            </svg>
+          </div>
+        </button>
+
+        <!-- Music -->
+        <button class="dock-item" data-app="" aria-label="Music">
+          <div class="dock-icon" style="background: linear-gradient(135deg, #fc5c7d 0%, #e74c3c 100%);">
+            <svg viewBox="0 0 32 32" width="22" height="22">
+              <path d="M22 6v16" stroke="white" stroke-width="2"/>
+              <path d="M10 8v16" stroke="white" stroke-width="2"/>
+              <circle cx="7" cy="24" r="3.5" fill="white"/>
+              <circle cx="19" cy="22" r="3.5" fill="white"/>
+              <path d="M10 8l12-2" stroke="white" stroke-width="2"/>
+            </svg>
+          </div>
+        </button>
+
+        <!-- App Store -->
+        <button class="dock-item" data-app="" aria-label="App Store">
+          <div class="dock-icon" style="background: linear-gradient(180deg, #3b82f6 0%, #2563eb 100%);">
+            <svg viewBox="0 0 32 32" width="24" height="24" fill="white">
+              <text x="16" y="24" text-anchor="middle" font-size="22" font-weight="bold" font-family="system-ui">A</text>
+            </svg>
+          </div>
+        </button>
+
+        <!-- System Settings -->
+        <button class="dock-item" data-app="settings" aria-label="System Settings">
+          <div class="dock-icon" style="background: linear-gradient(135deg, #6b7280 0%, #4b5563 100%);">
+            <svg viewBox="0 0 32 32" width="24" height="24" fill="white">
+              <path d="M16 10a6 6 0 1 0 0 12 6 6 0 0 0 0-12zm0 2a4 4 0 1 1 0 8 4 4 0 0 1 0-8z"/>
+              <path d="M14.5 4h3l.5 3h-4zM14.5 25h3l.5 3h-4zM4 14.5v3l3 .5v-4zM25 14.5v3l3 .5v-4zM6.8 7.5l2.1 2.1-2.1 2.1-2.1-2.1zM23.1 23.8l2.1 2.1-2.1 2.1-2.1-2.1zM7.5 25.2l-2.1-2.1 2.1-2.1 2.1 2.1zM23.8 8.9l-2.1-2.1 2.1-2.1 2.1 2.1z"/>
+            </svg>
+          </div>
+        </button>
+
+        <!-- Dock divider -->
+        <div class="dock-divider"></div>
+
+        <!-- Terminal (recent) -->
+        <button class="dock-item" data-app="terminal" aria-label="Terminal">
+          <div class="dock-icon" style="background: linear-gradient(180deg, #1a1a2e 0%, #0f0f1a 100%);">
+            <svg viewBox="0 0 32 32" width="22" height="22" fill="none">
+              <path d="M8 10l6 6-6 6" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              <line x1="16" y1="22" x2="24" y2="22" stroke="white" stroke-width="2" stroke-linecap="round"/>
+            </svg>
+          </div>
+        </button>
+
+        <!-- Calculator (recent) -->
+        <button class="dock-item" data-app="calculator" aria-label="Calculator">
+          <div class="dock-icon" style="background: linear-gradient(180deg, #374151 0%, #1f2937 100%);">
+            <svg viewBox="0 0 32 32" width="22" height="22">
+              <rect x="5" y="3" width="22" height="8" rx="2" fill="#FF9500"/>
+              <circle cx="9" cy="16" r="2.5" fill="#6b7280"/>
+              <circle cx="16" cy="16" r="2.5" fill="#6b7280"/>
+              <circle cx="23" cy="16" r="2.5" fill="#FF9500"/>
+              <circle cx="9" cy="23" r="2.5" fill="#6b7280"/>
+              <circle cx="16" cy="23" r="2.5" fill="#6b7280"/>
+              <circle cx="23" cy="23" r="2.5" fill="#FF9500"/>
+              <circle cx="9" cy="27.5" r="2.5" fill="#6b7280"/>
+              <circle cx="16" cy="27.5" r="2.5" fill="#6b7280"/>
+              <circle cx="23" cy="27.5" r="2.5" fill="#FF9500"/>
+            </svg>
+          </div>
+        </button>
+      </div>
+    </nav>

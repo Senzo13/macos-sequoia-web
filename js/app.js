@@ -4,7 +4,7 @@
  * Pure vanilla JS - no frameworks.
  */
 
-document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener('components-loaded', () => {
     // ─── Global State ────────────────────────────────────────────────
     let zIndexCounter = 100;       // Tracks the highest z-index for window stacking
     let activeMenuDropdown = null; // Currently open menu-bar dropdown
