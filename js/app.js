@@ -5,12 +5,12 @@
  */
 
 document.addEventListener('components-loaded', () => {
-    // ─── Global State ────────────────────────────────────────────────
-    let zIndexCounter = 100;       // Tracks the highest z-index for window stacking
-    let activeMenuDropdown = null; // Currently open menu-bar dropdown
+    // --- Global State ---
+    let zIndexCounter = 100;
+    let activeMenuDropdown = null;
     let notificationCenterOpen = false;
 
-    // ─── Initialize All Modules ──────────────────────────────────────
+    // --- Initialize All Modules ---
     initLockScreen();
     initMenuBarClock();
     initDock();
@@ -22,6 +22,8 @@ document.addEventListener('components-loaded', () => {
     initNotificationCenter();
     initWidgets();
     initCalendarDockIcon();
+    initDesktopSelection();
+    initSpotlight();
 
     // ==================================================================
     //  1. LOCK SCREEN
@@ -36,7 +38,6 @@ document.addEventListener('components-loaded', () => {
         const lockForm = document.getElementById('lock-form');
         if (lockForm) lockForm.addEventListener('submit', (e) => { e.preventDefault(); unlockDesktop(); });
 
-        // Update lock-screen clock every second
         function updateLockClock() {
             const now = new Date();
             if (lockTime) {
@@ -55,21 +56,15 @@ document.addEventListener('components-loaded', () => {
         updateLockClock();
         const lockClockInterval = setInterval(updateLockClock, 1000);
 
-        // Unlock on Enter key in password field (any input accepted)
         if (passwordInput) {
             passwordInput.focus();
             passwordInput.addEventListener('keydown', (e) => {
-                if (e.key === 'Enter') {
-                    unlockDesktop();
-                }
+                if (e.key === 'Enter') unlockDesktop();
             });
         }
 
-        // Also unlock if user clicks the lock screen submit / arrow button
         const unlockBtn = lockScreen.querySelector('.lock-submit');
-        if (unlockBtn) {
-            unlockBtn.addEventListener('click', unlockDesktop);
-        }
+        if (unlockBtn) unlockBtn.addEventListener('click', unlockDesktop);
 
         function unlockDesktop() {
             clearInterval(lockClockInterval);
@@ -78,9 +73,7 @@ document.addEventListener('components-loaded', () => {
             lockScreen.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
             lockScreen.style.opacity = '0';
             lockScreen.style.transform = 'scale(1.05)';
-            setTimeout(() => {
-                lockScreen.style.display = 'none';
-            }, 600);
+            setTimeout(() => { lockScreen.style.display = 'none'; }, 600);
         }
     }
 
@@ -119,31 +112,37 @@ document.addEventListener('components-loaded', () => {
         const dock = document.querySelector('.dock');
         if (!dock) return;
 
-        const dockIcons = dock.querySelectorAll('.dock-item');
+        const dockItems = dock.querySelectorAll('.dock-item');
 
-        // --- Click to open app ---
-        dockIcons.forEach(icon => {
-            icon.addEventListener('click', () => {
-                const appName = icon.getAttribute('data-app');
+        // Click to open app with bounce animation
+        dockItems.forEach(item => {
+            item.addEventListener('click', () => {
+                const appName = item.getAttribute('data-app');
                 if (!appName) return;
+
+                // Bounce animation
+                item.style.animation = 'dockBounce 0.6s ease';
+                item.addEventListener('animationend', () => {
+                    item.style.animation = '';
+                }, { once: true });
+
                 openApp(appName);
             });
         });
 
-        // --- Dock magnification on mousemove ---
+        // Dock magnification on mousemove
         dock.addEventListener('mousemove', (e) => {
-            dockIcons.forEach(icon => {
+            dockItems.forEach(icon => {
                 const rect = icon.getBoundingClientRect();
                 const iconCenterX = rect.left + rect.width / 2;
                 const distance = Math.abs(e.clientX - iconCenterX);
-                const maxDistance = 120; // pixels beyond which no scaling occurs
+                const maxDistance = 120;
                 const maxScale = 1.5;
                 const minScale = 1.0;
 
                 if (distance < maxDistance) {
-                    // Scale proportionally: closer = bigger
                     const scale = maxScale - ((maxScale - minScale) * (distance / maxDistance));
-                    icon.style.transform = `scale(${scale})`;
+                    icon.style.transform = `scale(${scale}) translateY(${-(scale - 1) * 20}px)`;
                     icon.style.transformOrigin = 'bottom center';
                     icon.style.transition = 'transform 0.1s ease';
                 } else {
@@ -154,7 +153,7 @@ document.addEventListener('components-loaded', () => {
         });
 
         dock.addEventListener('mouseleave', () => {
-            dockIcons.forEach(icon => {
+            dockItems.forEach(icon => {
                 icon.style.transform = 'scale(1)';
                 icon.style.transition = 'transform 0.3s ease';
             });
@@ -165,10 +164,19 @@ document.addEventListener('components-loaded', () => {
      * Open an application window by name and mark its dock icon active.
      */
     function openApp(appName) {
-        const win = document.querySelector(`.window[data-app="${appName}"]`);
+        // Try data-app first, then data-window for backwards compat
+        let win = document.querySelector(`.window[data-app="${appName}"]`);
+        if (!win) win = document.querySelector(`.window[data-window="${appName}"]`);
         if (!win) return;
 
+        // If already active, just bring to front
+        if (win.classList.contains('active')) {
+            bringToFront(win);
+            return;
+        }
+
         win.classList.add('active');
+        win.style.display = 'flex';
         bringToFront(win);
 
         // Mark dock icon active
@@ -179,7 +187,7 @@ document.addEventListener('components-loaded', () => {
         win.style.transform = '';
         win.style.opacity = '';
 
-        // If terminal is being opened, focus its input
+        // Focus terminal input
         if (appName === 'terminal') {
             const termInput = win.querySelector('.terminal-input');
             if (termInput) setTimeout(() => termInput.focus(), 50);
@@ -191,11 +199,39 @@ document.addEventListener('components-loaded', () => {
      */
     function closeApp(win) {
         if (!win) return;
-        win.classList.remove('active');
-        win.classList.remove('maximized');
-        const appName = win.getAttribute('data-app');
+        // Closing animation
+        win.style.transition = 'opacity 0.2s ease, transform 0.2s ease';
+        win.style.opacity = '0';
+        win.style.transform = 'scale(0.96)';
+        setTimeout(() => {
+            win.classList.remove('active');
+            win.classList.remove('maximized');
+            win.style.display = 'none';
+            win.style.transition = '';
+            win.style.opacity = '';
+            win.style.transform = '';
+        }, 200);
+
+        const appName = win.getAttribute('data-app') || win.getAttribute('data-window');
         const dockIcon = document.querySelector(`.dock-item[data-app="${appName}"]`);
         if (dockIcon) dockIcon.classList.remove('active');
+    }
+
+    /**
+     * Minimize a window with scale-to-dock animation.
+     */
+    function minimizeApp(win) {
+        if (!win) return;
+        win.style.transition = 'transform 0.4s ease, opacity 0.4s ease';
+        win.style.transform = 'scale(0.05) translateY(400px)';
+        win.style.opacity = '0';
+        setTimeout(() => {
+            win.classList.remove('active');
+            win.style.display = 'none';
+            win.style.transition = '';
+            win.style.transform = '';
+            win.style.opacity = '';
+        }, 400);
     }
 
     /**
@@ -213,13 +249,19 @@ document.addEventListener('components-loaded', () => {
         const windows = document.querySelectorAll('.window');
 
         windows.forEach(win => {
-            // --- Focus on click ---
+            // Focus on click
             win.addEventListener('mousedown', () => bringToFront(win));
 
-            // --- Traffic-light buttons ---
-            const closeBtn   = win.querySelector('.traffic-light .close, .btn-close');
-            const minimizeBtn = win.querySelector('.traffic-light .minimize, .btn-minimize');
-            const maximizeBtn = win.querySelector('.traffic-light .maximize, .btn-maximize');
+            // Traffic-light buttons (try multiple selectors for compat)
+            const closeBtn = win.querySelector('.btn-close') ||
+                             win.querySelector('.traffic-close') ||
+                             win.querySelector('[data-action="close"]');
+            const minimizeBtn = win.querySelector('.btn-minimize') ||
+                                win.querySelector('.traffic-minimize') ||
+                                win.querySelector('[data-action="minimize"]');
+            const maximizeBtn = win.querySelector('.btn-maximize') ||
+                                win.querySelector('.traffic-maximize') ||
+                                win.querySelector('[data-action="maximize"]');
 
             if (closeBtn) {
                 closeBtn.addEventListener('click', (e) => {
@@ -231,15 +273,7 @@ document.addEventListener('components-loaded', () => {
             if (minimizeBtn) {
                 minimizeBtn.addEventListener('click', (e) => {
                     e.stopPropagation();
-                    win.style.transition = 'transform 0.4s ease, opacity 0.4s ease';
-                    win.style.transform = 'scale(0.1)';
-                    win.style.opacity = '0';
-                    setTimeout(() => {
-                        win.classList.remove('active');
-                        win.style.transition = '';
-                        win.style.transform = '';
-                        win.style.opacity = '';
-                    }, 400);
+                    minimizeApp(win);
                 });
             }
 
@@ -250,62 +284,52 @@ document.addEventListener('components-loaded', () => {
                 });
             }
 
-            // --- Dragging via titlebar ---
+            // Dragging via titlebar
             const titlebar = win.querySelector('.window-titlebar');
-            if (titlebar) {
-                initDrag(win, titlebar);
-            }
+            if (titlebar) initDrag(win, titlebar);
 
-            // --- Resize handle ---
-            const resizeHandle = win.querySelector('.resize-handle');
-            if (resizeHandle) {
-                initResize(win, resizeHandle);
-            }
+            // Resize handle
+            const resizeHandle = win.querySelector('.resize-handle') ||
+                                 win.querySelector('.window-resize-handle');
+            if (resizeHandle) initResize(win, resizeHandle);
         });
     }
 
-    /**
-     * Toggle maximize/restore for a window.
-     * Stores original rect before maximizing so it can be restored.
-     */
     function toggleMaximize(win) {
         if (win.classList.contains('maximized')) {
-            // Restore original position/size
+            win.style.transition = 'all 0.3s ease';
             win.style.top    = win.dataset.origTop;
             win.style.left   = win.dataset.origLeft;
             win.style.width  = win.dataset.origWidth;
             win.style.height = win.dataset.origHeight;
             win.classList.remove('maximized');
+            setTimeout(() => { win.style.transition = ''; }, 300);
         } else {
-            // Store current position/size
             win.dataset.origTop    = win.style.top    || win.offsetTop + 'px';
             win.dataset.origLeft   = win.style.left   || win.offsetLeft + 'px';
             win.dataset.origWidth  = win.style.width  || win.offsetWidth + 'px';
             win.dataset.origHeight = win.style.height || win.offsetHeight + 'px';
 
-            // Maximise (fill screen below menu bar)
-            const menuBar = document.querySelector('.menu-bar');
+            const menuBar = document.querySelector('.menu-bar') || document.getElementById('menu-bar');
             const topOffset = menuBar ? menuBar.offsetHeight : 0;
+            win.style.transition = 'all 0.3s ease';
             win.style.top    = topOffset + 'px';
             win.style.left   = '0px';
             win.style.width  = '100vw';
             win.style.height = `calc(100vh - ${topOffset}px)`;
             win.classList.add('maximized');
+            setTimeout(() => { win.style.transition = ''; }, 300);
         }
     }
 
-    /**
-     * Make a window draggable by its titlebar.
-     */
     function initDrag(win, handle) {
         let isDragging = false;
-        let offsetX = 0;
-        let offsetY = 0;
+        let offsetX = 0, offsetY = 0;
 
         handle.addEventListener('mousedown', (e) => {
-            // Ignore clicks on traffic-light buttons
-            if (e.target.closest('.traffic-light') || e.target.closest('.btn-close') ||
-                e.target.closest('.btn-minimize') || e.target.closest('.btn-maximize')) return;
+            if (e.target.closest('.traffic-lights') || e.target.closest('.traffic-light') ||
+                e.target.closest('.btn-close') || e.target.closest('.btn-minimize') ||
+                e.target.closest('.btn-maximize') || e.target.closest('[data-action]')) return;
 
             isDragging = true;
             offsetX = e.clientX - win.offsetLeft;
@@ -317,12 +341,10 @@ document.addEventListener('components-loaded', () => {
 
         document.addEventListener('mousemove', (e) => {
             if (!isDragging) return;
-            // Un-maximise if dragging while maximized
             if (win.classList.contains('maximized')) {
                 win.classList.remove('maximized');
                 win.style.width  = win.dataset.origWidth  || '600px';
                 win.style.height = win.dataset.origHeight || '400px';
-                // Re-center offset so window follows cursor naturally
                 offsetX = parseInt(win.style.width) / 2;
                 offsetY = 15;
             }
@@ -338,9 +360,6 @@ document.addEventListener('components-loaded', () => {
         });
     }
 
-    /**
-     * Make a window resizable from the bottom-right corner handle.
-     */
     function initResize(win, handle) {
         let isResizing = false;
         let startX, startY, startW, startH;
@@ -364,16 +383,15 @@ document.addEventListener('components-loaded', () => {
             win.style.height = Math.max(200, newH) + 'px';
         });
 
-        document.addEventListener('mouseup', () => {
-            isResizing = false;
-        });
+        document.addEventListener('mouseup', () => { isResizing = false; });
     }
 
     // ==================================================================
     //  5. CALCULATOR APP
     // ==================================================================
     function initCalculator() {
-        const calcWindow = document.querySelector('.window[data-app="calculator"]');
+        const calcWindow = document.querySelector('.window[data-app="calculator"]') ||
+                           document.querySelector('.window[data-window="calculator"]');
         if (!calcWindow) return;
 
         const display = calcWindow.querySelector('.calc-display') ||
@@ -397,7 +415,6 @@ document.addEventListener('components-loaded', () => {
         updateDisplay();
 
         const buttons = calcWindow.querySelectorAll('.calc-btn');
-
         buttons.forEach(btn => {
             btn.addEventListener('click', () => {
                 const value = btn.getAttribute('data-value') || btn.textContent.trim();
@@ -405,7 +422,6 @@ document.addEventListener('components-loaded', () => {
             });
         });
 
-        // Also allow keyboard input when calculator is focused
         calcWindow.addEventListener('keydown', (e) => {
             const keyMap = {
                 '0':'0','1':'1','2':'2','3':'3','4':'4',
@@ -421,7 +437,6 @@ document.addEventListener('components-loaded', () => {
         });
 
         function handleCalcInput(value) {
-            // Digits
             if (/^\d$/.test(value)) {
                 if (waitingForSecondOperand) {
                     currentInput = value;
@@ -433,7 +448,6 @@ document.addEventListener('components-loaded', () => {
                 return;
             }
 
-            // Decimal
             if (value === '.') {
                 if (waitingForSecondOperand) {
                     currentInput = '0.';
@@ -441,14 +455,11 @@ document.addEventListener('components-loaded', () => {
                     updateDisplay();
                     return;
                 }
-                if (!currentInput.includes('.')) {
-                    currentInput += '.';
-                }
+                if (!currentInput.includes('.')) currentInput += '.';
                 updateDisplay();
                 return;
             }
 
-            // AC / Clear
             if (value === 'AC' || value === 'C') {
                 currentInput = '0';
                 firstOperand = null;
@@ -458,7 +469,6 @@ document.addEventListener('components-loaded', () => {
                 return;
             }
 
-            // +/- toggle
             if (value === '+/-' || value === '\u00B1') {
                 if (currentInput !== '0') {
                     currentInput = currentInput.startsWith('-')
@@ -469,14 +479,12 @@ document.addEventListener('components-loaded', () => {
                 return;
             }
 
-            // Percentage
             if (value === '%') {
                 currentInput = String(parseFloat(currentInput) / 100);
                 updateDisplay();
                 return;
             }
 
-            // Operators: +, -, ×, ÷
             if (['+', '-', '\u00D7', '\u00F7'].includes(value)) {
                 const inputValue = parseFloat(currentInput);
                 if (firstOperand !== null && operator && !waitingForSecondOperand) {
@@ -492,7 +500,6 @@ document.addEventListener('components-loaded', () => {
                 return;
             }
 
-            // Equals
             if (value === '=') {
                 if (firstOperand === null || operator === null) return;
                 const inputValue = parseFloat(currentInput);
@@ -521,7 +528,8 @@ document.addEventListener('components-loaded', () => {
     //  6. TERMINAL APP
     // ==================================================================
     function initTerminal() {
-        const termWindow = document.querySelector('.window[data-app="terminal"]');
+        const termWindow = document.querySelector('.window[data-app="terminal"]') ||
+                           document.querySelector('.window[data-window="terminal"]');
         if (!termWindow) return;
 
         const termBody = termWindow.querySelector('.terminal-body') ||
@@ -530,11 +538,9 @@ document.addEventListener('components-loaded', () => {
 
         const PROMPT = 'lorenzo@MacBook-Pro ~ % ';
 
-        // Render initial welcome message
         appendOutput('Last login: ' + new Date().toString().split(' ').slice(0, 5).join(' ') + ' on ttys000');
         createPromptLine();
 
-        // Focus terminal on click anywhere in body
         termBody.addEventListener('click', () => {
             const input = termBody.querySelector('.terminal-input:last-of-type');
             if (input) input.focus();
@@ -543,19 +549,9 @@ document.addEventListener('components-loaded', () => {
         function appendOutput(text) {
             const line = document.createElement('div');
             line.classList.add('terminal-line');
-            // Preserve whitespace for things like neofetch
             line.style.whiteSpace = 'pre-wrap';
             line.style.fontFamily = 'inherit';
             line.textContent = text;
-            termBody.appendChild(line);
-        }
-
-        function appendHTML(html) {
-            const line = document.createElement('div');
-            line.classList.add('terminal-line');
-            line.style.whiteSpace = 'pre';
-            line.style.fontFamily = 'inherit';
-            line.innerHTML = html;
             termBody.appendChild(line);
         }
 
@@ -574,20 +570,11 @@ document.addEventListener('components-loaded', () => {
             input.classList.add('terminal-input');
             input.spellcheck = false;
             input.autocomplete = 'off';
-
-            // Minimal inline styles so it blends with terminal even without CSS
-            input.style.background = 'transparent';
-            input.style.border = 'none';
-            input.style.outline = 'none';
-            input.style.color = 'inherit';
-            input.style.font = 'inherit';
-            input.style.flex = '1';
-            input.style.caretColor = 'white';
+            input.style.cssText = 'background:transparent;border:none;outline:none;color:inherit;font:inherit;flex:1;caret-color:white;';
 
             input.addEventListener('keydown', (e) => {
                 if (e.key === 'Enter') {
                     const cmd = input.value.trim();
-                    // Freeze this line (make it non-editable)
                     input.readOnly = true;
                     input.classList.remove('terminal-input');
                     processCommand(cmd);
@@ -602,29 +589,22 @@ document.addEventListener('components-loaded', () => {
         }
 
         function processCommand(cmd) {
-            if (cmd === '') {
-                createPromptLine();
-                return;
-            }
+            if (cmd === '') { createPromptLine(); return; }
 
             switch (cmd.toLowerCase()) {
                 case 'ls':
                     appendOutput('Desktop    Documents    Downloads    Music    Pictures    Public    Movies');
                     break;
-
                 case 'whoami':
                     appendOutput('lorenzo');
                     break;
-
                 case 'pwd':
                     appendOutput('/Users/lorenzo');
                     break;
-
                 case 'clear':
                     termBody.innerHTML = '';
                     createPromptLine();
-                    return; // Don't create a second prompt
-
+                    return;
                 case 'help':
                     appendOutput('Available commands:');
                     appendOutput('  ls        - List directory contents');
@@ -636,9 +616,8 @@ document.addEventListener('components-loaded', () => {
                     appendOutput('  echo      - Print text');
                     appendOutput('  help      - Show this help');
                     break;
-
                 case 'neofetch':
-                    const neofetchArt = [
+                    const art = [
                         '                    \'c.          lorenzo@MacBook-Pro',
                         '                 ,xNMM.          ----------------------',
                         '               .OMMMMo           OS: macOS Sequoia 15.3',
@@ -657,15 +636,12 @@ document.addEventListener('components-loaded', () => {
                         '     ;KMMMMMMMWXXWMMMMMMMk.',
                         '       .cooc,.    .,coo:.',
                     ];
-                    neofetchArt.forEach(line => appendOutput(line));
+                    art.forEach(line => appendOutput(line));
                     break;
-
                 case 'date':
                     appendOutput(new Date().toString());
                     break;
-
                 default:
-                    // Handle echo
                     if (cmd.toLowerCase().startsWith('echo ')) {
                         appendOutput(cmd.slice(5));
                     } else {
@@ -673,15 +649,10 @@ document.addEventListener('components-loaded', () => {
                     }
                     break;
             }
-
             createPromptLine();
         }
 
-        function scrollTerminal() {
-            termBody.scrollTop = termBody.scrollHeight;
-        }
-
-        // Keep scrolling to bottom whenever content changes
+        function scrollTerminal() { termBody.scrollTop = termBody.scrollHeight; }
         const observer = new MutationObserver(scrollTerminal);
         observer.observe(termBody, { childList: true, subtree: true });
     }
@@ -693,7 +664,6 @@ document.addEventListener('components-loaded', () => {
         const desktop = document.querySelector('.desktop') || document.getElementById('desktop');
         if (!desktop) return;
 
-        // Create context menu element if it doesn't exist in the HTML
         let contextMenu = document.getElementById('context-menu');
         if (!contextMenu) {
             contextMenu = document.createElement('div');
@@ -720,35 +690,25 @@ document.addEventListener('components-loaded', () => {
         }
 
         desktop.addEventListener('contextmenu', (e) => {
-            // Don't show context menu if right-click was on a window, dock, or menu bar
             if (e.target.closest('.window') || e.target.closest('.dock') ||
-                e.target.closest('.menu-bar')) {
-                return;
-            }
+                e.target.closest('.menu-bar') || e.target.closest('#menu-bar')) return;
 
             e.preventDefault();
             contextMenu.style.display = 'block';
 
-            // Position at mouse, but keep within viewport
-            let x = e.clientX;
-            let y = e.clientY;
-            const menuRect = contextMenu.getBoundingClientRect();
-            if (x + menuRect.width > window.innerWidth) {
-                x = window.innerWidth - menuRect.width - 5;
-            }
-            if (y + menuRect.height > window.innerHeight) {
-                y = window.innerHeight - menuRect.height - 5;
-            }
-            contextMenu.style.left = x + 'px';
-            contextMenu.style.top  = y + 'px';
+            let x = e.clientX, y = e.clientY;
+            // Need to show first to get dimensions
+            setTimeout(() => {
+                const menuRect = contextMenu.getBoundingClientRect();
+                if (x + menuRect.width > window.innerWidth) x = window.innerWidth - menuRect.width - 5;
+                if (y + menuRect.height > window.innerHeight) y = window.innerHeight - menuRect.height - 5;
+                contextMenu.style.left = x + 'px';
+                contextMenu.style.top  = y + 'px';
+            }, 0);
         });
 
-        // Close context menu on any click
-        document.addEventListener('click', () => {
-            contextMenu.style.display = 'none';
-        });
+        document.addEventListener('click', () => { contextMenu.style.display = 'none'; });
 
-        // Clicking a menu item just closes (no real action)
         contextMenu.querySelectorAll('.context-menu-item').forEach(item => {
             item.addEventListener('click', (e) => {
                 e.stopPropagation();
@@ -761,10 +721,9 @@ document.addEventListener('components-loaded', () => {
     //  8. MENU BAR DROPDOWNS
     // ==================================================================
     function initMenuBar() {
-        const menuBar = document.querySelector('.menu-bar');
+        const menuBar = document.querySelector('.menu-bar') || document.getElementById('menu-bar');
         if (!menuBar) return;
 
-        // Define dropdown contents for each menu
         const menuData = {
             'Finder': [
                 'About This Mac', 'separator',
@@ -816,7 +775,7 @@ document.addEventListener('components-loaded', () => {
             ]
         };
 
-        const menuItems = menuBar.querySelectorAll('.menu-bar-item, .menu-item');
+        const menuItems = menuBar.querySelectorAll('.menu-bar-item:not(.menu-bar-datetime):not(.menu-bar-username):not(.menu-bar-battery)');
         let currentDropdown = null;
         let menuIsOpen = false;
 
@@ -825,7 +784,6 @@ document.addEventListener('components-loaded', () => {
 
             item.addEventListener('click', (e) => {
                 e.stopPropagation();
-
                 if (menuIsOpen && currentDropdown) {
                     closeDropdown();
                     if (item._isOpen) {
@@ -834,11 +792,9 @@ document.addEventListener('components-loaded', () => {
                         return;
                     }
                 }
-
                 openDropdown(item, label);
             });
 
-            // Hover-switch behaviour: when one menu is open, hovering another opens that one
             item.addEventListener('mouseenter', () => {
                 if (menuIsOpen && currentDropdown) {
                     closeDropdown();
@@ -851,7 +807,6 @@ document.addEventListener('components-loaded', () => {
             const items = menuData[label];
             if (!items) return;
 
-            // Remove any previous dropdown
             closeDropdown();
 
             const dropdown = document.createElement('div');
@@ -859,6 +814,7 @@ document.addEventListener('components-loaded', () => {
             dropdown.style.position = 'fixed';
             dropdown.style.zIndex = '9999';
             dropdown.style.minWidth = '220px';
+            dropdown.style.display = 'block';
 
             items.forEach(entry => {
                 if (entry === 'separator') {
@@ -878,7 +834,6 @@ document.addEventListener('components-loaded', () => {
                 }
             });
 
-            // Position below the menu-bar item
             const rect = item.getBoundingClientRect();
             dropdown.style.left = rect.left + 'px';
             dropdown.style.top  = rect.bottom + 'px';
@@ -897,14 +852,12 @@ document.addEventListener('components-loaded', () => {
                 currentDropdown = null;
             }
             activeMenuDropdown = null;
-            // Remove active class from all menu items
             menuItems.forEach(mi => {
                 mi.classList.remove('active');
                 mi._isOpen = false;
             });
         }
 
-        // Close menu dropdown when clicking elsewhere
         document.addEventListener('click', () => {
             if (menuIsOpen) {
                 closeDropdown();
@@ -917,52 +870,36 @@ document.addEventListener('components-loaded', () => {
     //  9. NOTIFICATION CENTER
     // ==================================================================
     function initNotificationCenter() {
-        const clockBtn = document.querySelector('.menu-bar-clock') ||
-                         document.querySelector('.menu-bar .clock') ||
-                         document.querySelector('.menu-bar-right .datetime');
-        if (!clockBtn) return;
+        const dateTimeBtn = document.getElementById('menu-bar-datetime');
+        if (!dateTimeBtn) return;
 
-        // Create notification center panel if it doesn't exist
         let panel = document.getElementById('notification-center');
         if (!panel) {
             panel = document.createElement('div');
             panel.id = 'notification-center';
             panel.classList.add('notification-center');
-            panel.style.position = 'fixed';
-            panel.style.top = '0';
-            panel.style.right = '-380px'; // start off-screen
-            panel.style.width = '370px';
-            panel.style.height = '100vh';
-            panel.style.zIndex = '9990';
-            panel.style.transition = 'right 0.3s ease';
-            panel.style.overflowY = 'auto';
-
+            panel.style.cssText = 'position:fixed;top:0;right:-380px;width:370px;height:100vh;z-index:9990;transition:right 0.3s ease;overflow-y:auto;';
             panel.innerHTML = buildNotificationCenterHTML();
             document.body.appendChild(panel);
         }
 
-        clockBtn.addEventListener('click', (e) => {
+        dateTimeBtn.addEventListener('click', (e) => {
             e.stopPropagation();
             toggleNotificationCenter();
         });
 
-        // Close on click outside
         document.addEventListener('click', (e) => {
-            if (notificationCenterOpen && !panel.contains(e.target) && e.target !== clockBtn) {
+            if (notificationCenterOpen && !panel.contains(e.target) && e.target !== dateTimeBtn) {
                 hideNotificationCenter();
             }
         });
 
         function toggleNotificationCenter() {
-            if (notificationCenterOpen) {
-                hideNotificationCenter();
-            } else {
-                showNotificationCenter();
-            }
+            if (notificationCenterOpen) hideNotificationCenter();
+            else showNotificationCenter();
         }
 
         function showNotificationCenter() {
-            // Refresh the content with current date
             panel.innerHTML = buildNotificationCenterHTML();
             panel.style.right = '0';
             notificationCenterOpen = true;
@@ -983,7 +920,6 @@ document.addEventListener('components-loaded', () => {
             const dateNum = now.getDate();
             const year = now.getFullYear();
 
-            // Build a simple calendar grid for the current month
             const firstDay = new Date(year, now.getMonth(), 1).getDay();
             const daysInMonth = new Date(year, now.getMonth() + 1, 0).getDate();
             let calendarRows = '';
@@ -1011,14 +947,8 @@ document.addEventListener('components-loaded', () => {
                 <div class="nc-calendar">
                     <div class="nc-calendar-title">${monthName} ${year}</div>
                     <table class="nc-calendar-table">
-                        <thead>
-                            <tr>
-                                <th>Su</th><th>Mo</th><th>Tu</th><th>We</th><th>Th</th><th>Fr</th><th>Sa</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            ${calendarRows}
-                        </tbody>
+                        <thead><tr><th>Su</th><th>Mo</th><th>Tu</th><th>We</th><th>Th</th><th>Fr</th><th>Sa</th></tr></thead>
+                        <tbody>${calendarRows}</tbody>
                     </table>
                 </div>
                 <div class="nc-weather">
@@ -1038,10 +968,9 @@ document.addEventListener('components-loaded', () => {
     }
 
     // ==================================================================
-    //  10. DESKTOP ICONS
+    //  10. DESKTOP WIDGETS
     // ==================================================================
     function initWidgets() {
-        // --- Analog Clock ---
         const hourHand = document.getElementById('clock-hand-hour');
         const minuteHand = document.getElementById('clock-hand-minute');
         const secondHand = document.getElementById('clock-hand-second');
@@ -1064,7 +993,6 @@ document.addEventListener('components-loaded', () => {
             setInterval(updateClock, 1000);
         }
 
-        // --- Calendar ---
         const calMonth = document.getElementById('cal-month');
         const calGrid = document.getElementById('cal-grid');
 
@@ -1081,7 +1009,6 @@ document.addEventListener('components-loaded', () => {
             const daysInMonth = new Date(year, month + 1, 0).getDate();
 
             let html = '';
-            // Build rows
             let dayCount = 1;
             for (let row = 0; row < 6; row++) {
                 if (dayCount > daysInMonth) break;
@@ -1104,32 +1031,199 @@ document.addEventListener('components-loaded', () => {
     }
 
     // ==================================================================
-    //  12. CALENDAR DOCK ICON - Show today's date number
+    //  11. CALENDAR DOCK ICON
     // ==================================================================
     function initCalendarDockIcon() {
-        const calendarIcon = document.querySelector('.dock-item[data-app="calendar"]');
-        if (!calendarIcon) return;
+        const dateEl = document.getElementById('dock-calendar-date');
+        if (dateEl) dateEl.textContent = new Date().getDate();
 
-        const today = new Date().getDate();
-        // Try to find a child element meant for the date number
-        let dateEl = calendarIcon.querySelector('.calendar-date');
-        if (!dateEl) {
-            // Create one and overlay it on the icon
-            dateEl = document.createElement('span');
-            dateEl.classList.add('calendar-date');
-            dateEl.style.position = 'absolute';
-            dateEl.style.bottom = '4px';
-            dateEl.style.left = '50%';
-            dateEl.style.transform = 'translateX(-50%)';
-            dateEl.style.fontWeight = 'bold';
-            dateEl.style.fontSize = '18px';
-            dateEl.style.lineHeight = '1';
-            dateEl.style.color = '#333';
-            dateEl.style.pointerEvents = 'none';
-            // Ensure parent is positioned
-            calendarIcon.style.position = 'relative';
-            calendarIcon.appendChild(dateEl);
+        const dayEl = document.querySelector('.dock-calendar-day-name');
+        if (dayEl) {
+            const days = ['SUN','MON','TUE','WED','THU','FRI','SAT'];
+            dayEl.textContent = days[new Date().getDay()];
         }
-        dateEl.textContent = today;
+    }
+
+    // ==================================================================
+    //  12. DESKTOP RUBBER-BAND SELECTION
+    // ==================================================================
+    function initDesktopSelection() {
+        const desktop = document.getElementById('desktop');
+        if (!desktop) return;
+
+        // Create selection marquee element
+        let marquee = document.querySelector('.selection-marquee');
+        if (!marquee) {
+            marquee = document.createElement('div');
+            marquee.classList.add('selection-marquee');
+            document.body.appendChild(marquee);
+        }
+
+        let isSelecting = false;
+        let startX = 0, startY = 0;
+
+        desktop.addEventListener('mousedown', (e) => {
+            // Only start selection on empty desktop area (not on windows, dock, menu, widgets)
+            if (e.target.closest('.window') || e.target.closest('.dock') ||
+                e.target.closest('.menu-bar') || e.target.closest('#menu-bar') ||
+                e.target.closest('.widget') || e.target.closest('.desktop-widgets') ||
+                e.target.closest('#context-menu') || e.button !== 0) return;
+
+            isSelecting = true;
+            startX = e.clientX;
+            startY = e.clientY;
+
+            marquee.style.left = startX + 'px';
+            marquee.style.top = startY + 'px';
+            marquee.style.width = '0px';
+            marquee.style.height = '0px';
+            marquee.style.display = 'block';
+
+            e.preventDefault();
+        });
+
+        document.addEventListener('mousemove', (e) => {
+            if (!isSelecting) return;
+
+            const currentX = e.clientX;
+            const currentY = e.clientY;
+
+            const left = Math.min(startX, currentX);
+            const top = Math.min(startY, currentY);
+            const width = Math.abs(currentX - startX);
+            const height = Math.abs(currentY - startY);
+
+            marquee.style.left = left + 'px';
+            marquee.style.top = top + 'px';
+            marquee.style.width = width + 'px';
+            marquee.style.height = height + 'px';
+        });
+
+        document.addEventListener('mouseup', () => {
+            if (isSelecting) {
+                isSelecting = false;
+                marquee.style.display = 'none';
+            }
+        });
+    }
+
+    // ==================================================================
+    //  13. SPOTLIGHT SEARCH
+    // ==================================================================
+    function initSpotlight() {
+        const spotlightBtn = document.getElementById('spotlight-btn');
+
+        // Create spotlight overlay
+        let spotlight = document.getElementById('spotlight-overlay');
+        if (!spotlight) {
+            spotlight = document.createElement('div');
+            spotlight.id = 'spotlight-overlay';
+            spotlight.style.cssText = `
+                position:fixed;top:0;left:0;width:100vw;height:100vh;z-index:9800;
+                display:none;align-items:flex-start;justify-content:center;
+                padding-top:180px;background:rgba(0,0,0,0.25);
+            `;
+            spotlight.innerHTML = `
+                <div class="spotlight-box">
+                    <div class="spotlight-input-wrap">
+                        <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="rgba(0,0,0,0.4)" stroke-width="2" stroke-linecap="round">
+                            <circle cx="11" cy="11" r="7"/><line x1="16.5" y1="16.5" x2="21" y2="21"/>
+                        </svg>
+                        <input class="spotlight-input" type="text" placeholder="Spotlight Search" autofocus/>
+                    </div>
+                    <div class="spotlight-results"></div>
+                </div>
+            `;
+            document.body.appendChild(spotlight);
+        }
+
+        const spotlightInput = spotlight.querySelector('.spotlight-input');
+        const spotlightResults = spotlight.querySelector('.spotlight-results');
+
+        // App registry for search
+        const apps = [
+            { name: 'Finder', app: 'finder', icon: '📁' },
+            { name: 'Safari', app: 'safari', icon: '🧭' },
+            { name: 'Messages', app: 'messages', icon: '💬' },
+            { name: 'Notes', app: 'notes', icon: '📝' },
+            { name: 'Calculator', app: 'calculator', icon: '🔢' },
+            { name: 'Terminal', app: 'terminal', icon: '⬛' },
+            { name: 'System Settings', app: 'settings', icon: '⚙️' },
+        ];
+
+        function showSpotlight() {
+            spotlight.style.display = 'flex';
+            spotlightInput.value = '';
+            spotlightResults.innerHTML = '';
+            setTimeout(() => spotlightInput.focus(), 50);
+        }
+
+        function hideSpotlight() {
+            spotlight.style.display = 'none';
+        }
+
+        if (spotlightBtn) {
+            spotlightBtn.addEventListener('click', (e) => {
+                e.stopPropagation();
+                if (spotlight.style.display === 'flex') hideSpotlight();
+                else showSpotlight();
+            });
+        }
+
+        // Cmd+Space to toggle spotlight
+        document.addEventListener('keydown', (e) => {
+            if ((e.metaKey || e.ctrlKey) && e.code === 'Space') {
+                e.preventDefault();
+                if (spotlight.style.display === 'flex') hideSpotlight();
+                else showSpotlight();
+            }
+            if (e.key === 'Escape' && spotlight.style.display === 'flex') {
+                hideSpotlight();
+            }
+        });
+
+        // Close on click outside
+        spotlight.addEventListener('click', (e) => {
+            if (e.target === spotlight) hideSpotlight();
+        });
+
+        // Search as you type
+        spotlightInput.addEventListener('input', () => {
+            const query = spotlightInput.value.trim().toLowerCase();
+            spotlightResults.innerHTML = '';
+
+            if (!query) return;
+
+            const matches = apps.filter(a => a.name.toLowerCase().includes(query));
+
+            if (matches.length === 0) {
+                spotlightResults.innerHTML = '<div style="padding:12px 16px;color:rgba(0,0,0,0.4);font-size:13px;">No results found</div>';
+                return;
+            }
+
+            matches.forEach((app, i) => {
+                const item = document.createElement('div');
+                item.classList.add('spotlight-result-item');
+                if (i === 0) item.classList.add('selected');
+                item.innerHTML = `
+                    <span class="spotlight-result-icon">${app.icon}</span>
+                    <span class="spotlight-result-name">${app.name}</span>
+                    <span class="spotlight-result-type">Application</span>
+                `;
+                item.addEventListener('click', () => {
+                    hideSpotlight();
+                    openApp(app.app);
+                });
+                spotlightResults.appendChild(item);
+            });
+        });
+
+        // Enter to open first result
+        spotlightInput.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter') {
+                const first = spotlightResults.querySelector('.spotlight-result-item');
+                if (first) first.click();
+            }
+        });
     }
 });

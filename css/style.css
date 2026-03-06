@@ -166,6 +166,17 @@ body {
   }
 }
 
+@keyframes dockBounce {
+  0%   { transform: translateY(0); }
+  15%  { transform: translateY(-20px); }
+  30%  { transform: translateY(0); }
+  45%  { transform: translateY(-12px); }
+  60%  { transform: translateY(0); }
+  75%  { transform: translateY(-5px); }
+  90%  { transform: translateY(0); }
+  100% { transform: translateY(0); }
+}
+
 /* --------------------------------------------------------------------------
    Desktop / Wallpaper
    -------------------------------------------------------------------------- */
@@ -454,9 +465,7 @@ body {
    Menu Dropdown
    -------------------------------------------------------------------------- */
 .menu-dropdown {
-  position: absolute;
-  top: var(--menubar-height);
-  left: 0;
+  position: fixed;
   background: rgba(40, 40, 42, 0.85);
   backdrop-filter: blur(40px) saturate(200%);
   -webkit-backdrop-filter: blur(40px) saturate(200%);
@@ -465,7 +474,6 @@ body {
   box-shadow: 0 10px 40px rgba(0, 0, 0, 0.35);
   padding: 4px;
   min-width: 220px;
-  display: none;
   z-index: 9100;
   color: rgba(255, 255, 255, 0.9);
 }
@@ -747,48 +755,49 @@ body {
   outline: none;
 }
 
-.btn-close {
+.btn-close,
+.traffic-close {
   background: var(--btn-close);
 }
 
-.btn-minimize {
+.btn-minimize,
+.traffic-minimize {
   background: var(--btn-minimize);
 }
 
-.btn-maximize {
+.btn-maximize,
+.traffic-maximize {
   background: var(--btn-maximize);
 }
 
-/* Show icons on hover of the traffic-lights group */
-.traffic-lights:hover .btn-close {
-  color: rgba(80, 0, 0, 0.8);
+/* Show symbols on hover of the traffic-lights group */
+.traffic-lights:hover .btn-close::after,
+.traffic-lights:hover .traffic-close::after {
+  content: '\00D7';
+  font-size: 11px;
+  font-weight: 700;
+  color: rgba(80, 0, 0, 0.85);
+  line-height: 1;
 }
 
-.traffic-lights:hover .btn-minimize {
-  color: rgba(80, 50, 0, 0.8);
+.traffic-lights:hover .btn-minimize::after,
+.traffic-lights:hover .traffic-minimize::after {
+  content: '\2013';
+  font-size: 11px;
+  font-weight: 700;
+  color: rgba(80, 50, 0, 0.85);
+  line-height: 1;
 }
 
-.traffic-lights:hover .btn-maximize {
-  color: rgba(0, 60, 0, 0.8);
-}
-
-/* Unfocused window: gray out traffic lights */
-.window:not(.focused) .btn-close,
-.window:not(.focused) .btn-minimize,
-.window:not(.focused) .btn-maximize {
-  background: var(--btn-inactive);
-}
-
-.window:not(.focused) .traffic-lights:hover .btn-close {
-  background: var(--btn-close);
-}
-
-.window:not(.focused) .traffic-lights:hover .btn-minimize {
-  background: var(--btn-minimize);
-}
-
-.window:not(.focused) .traffic-lights:hover .btn-maximize {
-  background: var(--btn-maximize);
+.traffic-lights:hover .btn-maximize::after,
+.traffic-lights:hover .traffic-maximize::after {
+  content: '+';
+  font-size: 13px;
+  font-weight: 400;
+  color: rgba(0, 60, 0, 0.85);
+  line-height: 1;
+  transform: rotate(45deg);
+  display: inline-block;
 }
 
 /* Window Title */
@@ -804,8 +813,9 @@ body {
   pointer-events: none;
 }
 
-/* Window Content */
-.window-content {
+/* Window Content / Body */
+.window-content,
+.window-body {
   flex: 1;
   overflow: auto;
   background: #fff;
@@ -1221,30 +1231,7 @@ body {
   pointer-events: none;
 }
 
-.safari-url-bar {
-  flex: 1;
-  height: 28px;
-  border: none;
-  border-radius: 14px;
-  background: rgba(0, 0, 0, 0.06);
-  padding: 0 16px;
-  font-size: 13px;
-  font-family: var(--font-system);
-  color: var(--text-primary);
-  text-align: center;
-  outline: none;
-  transition: background var(--transition-fast), box-shadow var(--transition-fast);
-}
-
-.safari-url-bar:focus {
-  background: #fff;
-  box-shadow: 0 0 0 3px rgba(0, 102, 255, 0.3);
-  text-align: left;
-}
-
-.safari-url-bar::placeholder {
-  color: var(--text-secondary);
-}
+/* Safari URL bar is styled in the safari page section below */
 
 .safari-share-btn {
   background: none;
@@ -1313,6 +1300,127 @@ body {
 
 .safari-tab:hover:not(.active) {
   background: rgba(255, 255, 255, 0.5);
+}
+
+/* Safari page content */
+.safari-page {
+  padding: 24px;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.safari-github-header {
+  display: flex;
+  gap: 16px;
+  align-items: center;
+  padding-bottom: 20px;
+  border-bottom: 1px solid var(--separator);
+  margin-bottom: 20px;
+}
+
+.safari-github-avatar { flex-shrink: 0; }
+
+.safari-github-info h2 {
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 4px;
+}
+
+.safari-github-bio {
+  font-size: 14px;
+  color: var(--text-secondary);
+  margin-bottom: 8px;
+}
+
+.safari-github-stats {
+  display: flex;
+  gap: 16px;
+  font-size: 13px;
+  color: var(--text-secondary);
+}
+
+.safari-github-repos h3 {
+  font-size: 16px;
+  font-weight: 600;
+  margin-bottom: 12px;
+}
+
+.safari-repo-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+.safari-repo-card {
+  border: 1px solid var(--separator);
+  border-radius: 8px;
+  padding: 16px;
+  cursor: default;
+  transition: background var(--transition-fast);
+}
+
+.safari-repo-card:hover {
+  background: rgba(0, 0, 0, 0.02);
+}
+
+.safari-repo-card h4 {
+  font-size: 14px;
+  font-weight: 600;
+  color: #0969da;
+  margin-bottom: 4px;
+}
+
+.safari-repo-card p {
+  font-size: 12px;
+  color: var(--text-secondary);
+  margin-bottom: 8px;
+  line-height: 1.4;
+}
+
+.safari-repo-meta {
+  display: flex;
+  gap: 12px;
+  font-size: 11px;
+  color: var(--text-secondary);
+}
+
+.safari-repo-lang::before {
+  content: '';
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--lang-color, #ccc);
+  margin-right: 4px;
+  vertical-align: middle;
+}
+
+/* Safari URL bar inner */
+.safari-url-bar {
+  flex: 1;
+  height: 28px;
+  border-radius: 8px;
+  background: rgba(0, 0, 0, 0.06);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 12px;
+  gap: 6px;
+  font-size: 12px;
+  color: var(--text-secondary);
+  cursor: default;
+}
+
+.safari-url-inner {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.safari-url-text {
+  font-size: 12px;
+  color: var(--text-secondary);
 }
 
 /* --------------------------------------------------------------------------
@@ -1925,12 +2033,13 @@ body {
    -------------------------------------------------------------------------- */
 .selection-marquee {
   position: fixed;
-  border: 1px solid rgba(0, 102, 255, 0.5);
-  background: rgba(0, 102, 255, 0.1);
-  border-radius: 1px;
+  border: 1.5px solid rgba(0, 102, 255, 0.6);
+  background: rgba(0, 102, 255, 0.12);
+  border-radius: 2px;
   pointer-events: none;
   z-index: 5;
   display: none;
+  box-shadow: 0 0 0 0.5px rgba(0, 102, 255, 0.3);
 }
 
 /* --------------------------------------------------------------------------
