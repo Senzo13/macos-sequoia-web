@@ -1309,7 +1309,270 @@ body {
 .safari-page {
   flex: 1;
   overflow-y: auto;
-  background: #0d1117;
+  background: #ffffff;
+}
+
+/* GitHub Light Mode */
+.gh-header {
+  background: #f6f8fa;
+  border-bottom: 1px solid #d1d9e0;
+  padding: 0 24px;
+  height: 48px;
+  display: flex;
+  align-items: center;
+}
+
+.gh-header-inner {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  width: 100%;
+  max-width: 1280px;
+  margin: 0 auto;
+}
+
+.gh-header-search {
+  background: #f6f8fa;
+  border: 1px solid #d1d9e0;
+  border-radius: 6px;
+  padding: 4px 12px;
+  font-size: 14px;
+  color: #656d76;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  width: 240px;
+}
+
+.gh-header-nav {
+  display: flex;
+  gap: 16px;
+  font-size: 14px;
+  color: #24292f;
+  margin-left: auto;
+}
+
+.gh-header-nav span { cursor: pointer; }
+.gh-header-nav span:hover { color: #656d76; }
+
+.gh-profile {
+  max-width: 1012px;
+  margin: 0 auto;
+  padding: 24px 32px;
+  display: flex;
+  gap: 24px;
+}
+
+.gh-profile-left { width: 260px; flex-shrink: 0; }
+
+.gh-avatar {
+  width: 260px;
+  height: 260px;
+  border-radius: 50%;
+  border: 1px solid #d1d9e0;
+  object-fit: cover;
+  background: #f6f8fa;
+}
+
+.gh-name {
+  font-size: 24px;
+  font-weight: 600;
+  color: #24292f;
+  margin: 12px 0 0;
+  line-height: 1.25;
+}
+
+.gh-username {
+  font-size: 20px;
+  font-weight: 300;
+  color: #656d76;
+  margin: 0;
+  line-height: 1.5;
+}
+
+.gh-bio {
+  font-size: 14px;
+  color: #24292f;
+  margin: 12px 0;
+  line-height: 1.5;
+}
+
+.gh-follow-btn {
+  width: 100%;
+  padding: 5px 16px;
+  font-size: 14px;
+  font-weight: 500;
+  font-family: inherit;
+  background: #f6f8fa;
+  color: #24292f;
+  border: 1px solid #d1d9e0;
+  border-radius: 6px;
+  cursor: pointer;
+  margin-bottom: 12px;
+  transition: background 0.15s;
+}
+
+.gh-follow-btn:hover { background: #eaeef2; }
+
+.gh-stats-row {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 14px;
+  color: #656d76;
+  margin-bottom: 4px;
+}
+
+.gh-stats-row strong { color: #24292f; font-weight: 600; }
+.gh-dot { margin: 0 4px; }
+
+.gh-meta-row {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 14px;
+  color: #656d76;
+  margin-top: 4px;
+}
+
+.gh-profile-right { flex: 1; min-width: 0; }
+
+.gh-tabs {
+  display: flex;
+  gap: 8px;
+  border-bottom: 1px solid #d1d9e0;
+  margin-bottom: 16px;
+}
+
+.gh-tab {
+  padding: 8px 16px;
+  font-size: 14px;
+  color: #656d76;
+  cursor: pointer;
+}
+
+.gh-tab.active {
+  font-weight: 600;
+  color: #24292f;
+  border-bottom: 2px solid #fd8c73;
+}
+
+.gh-tab-count {
+  background: #e8e8e8;
+  border-radius: 12px;
+  padding: 0 8px;
+  font-size: 12px;
+  font-weight: 500;
+  margin-left: 4px;
+}
+
+.gh-repo-filter {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 16px;
+  align-items: center;
+}
+
+.gh-repo-search {
+  flex: 1;
+  padding: 5px 12px;
+  font-size: 14px;
+  font-family: inherit;
+  border: 1px solid #d1d9e0;
+  border-radius: 6px;
+  background: #f6f8fa;
+  color: #24292f;
+  outline: none;
+}
+
+.gh-repo-filter-btns { display: flex; gap: 4px; }
+
+.gh-filter-btn {
+  padding: 5px 12px;
+  font-size: 12px;
+  font-family: inherit;
+  background: #f6f8fa;
+  color: #24292f;
+  border: 1px solid #d1d9e0;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.gh-filter-btn:hover { background: #eaeef2; }
+
+.gh-repo-list { display: flex; flex-direction: column; }
+
+.gh-repo-item {
+  padding: 16px 0;
+  border-bottom: 1px solid #d1d9e0;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.gh-repo-info { flex: 1; min-width: 0; }
+
+.gh-repo-name {
+  font-size: 16px;
+  font-weight: 600;
+  color: #0969da;
+  margin-bottom: 4px;
+}
+
+.gh-repo-desc {
+  font-size: 13px;
+  color: #656d76;
+  margin-bottom: 8px;
+  line-height: 1.5;
+}
+
+.gh-repo-meta {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  font-size: 12px;
+  color: #656d76;
+}
+
+.gh-repo-lang {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.gh-repo-lang-dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  display: inline-block;
+}
+
+.gh-repo-star-btn {
+  padding: 3px 12px;
+  font-size: 12px;
+  font-family: inherit;
+  font-weight: 500;
+  background: #f6f8fa;
+  color: #24292f;
+  border: 1px solid #d1d9e0;
+  border-radius: 6px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  flex-shrink: 0;
+}
+
+.gh-repo-star-btn:hover { background: #eaeef2; }
+
+.gh-repo-visibility {
+  font-size: 12px;
+  color: #656d76;
+  border: 1px solid #d1d9e0;
+  border-radius: 12px;
+  padding: 0 7px;
+  font-weight: 500;
+  margin-left: 4px;
 }
 
 .safari-github-header {

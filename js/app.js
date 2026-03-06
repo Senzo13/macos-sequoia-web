@@ -24,6 +24,7 @@ document.addEventListener('components-loaded', () => {
     initCalendarDockIcon();
     initDesktopSelection();
     initSpotlight();
+    initSafariGitHub();
 
     // ==================================================================
     //  1. LOCK SCREEN
@@ -1341,5 +1342,109 @@ document.addEventListener('components-loaded', () => {
                 if (first) first.click();
             }
         });
+    }
+
+    // ==================================================================
+    //  SAFARI — GitHub Profile via API
+    // ==================================================================
+    function initSafariGitHub() {
+        const USERNAME = 'Senzo13';
+        const LANG_COLORS = {
+            JavaScript: '#f1e05a', TypeScript: '#3178c6', HTML: '#e34c26',
+            CSS: '#563d7c', Python: '#3572A5', Kotlin: '#A97BFF',
+            PHP: '#4F5D95', Shell: '#89e051', Vue: '#41b883',
+            Java: '#b07219', 'C++': '#f34b7d', Ruby: '#701516',
+        };
+
+        async function fetchGitHub() {
+            try {
+                const [userRes, reposRes] = await Promise.all([
+                    fetch(`https://api.github.com/users/${USERNAME}`),
+                    fetch(`https://api.github.com/users/${USERNAME}/repos?sort=updated&per_page=10`)
+                ]);
+                if (!userRes.ok || !reposRes.ok) return;
+
+                const user = await userRes.json();
+                const repos = await reposRes.json();
+
+                // Populate user info
+                const avatar = document.getElementById('gh-avatar');
+                if (avatar) avatar.src = user.avatar_url;
+
+                const nameEl = document.getElementById('gh-name');
+                if (nameEl) nameEl.textContent = user.name || USERNAME;
+
+                const usernameEl = document.getElementById('gh-username');
+                if (usernameEl) usernameEl.textContent = user.login;
+
+                const bioEl = document.getElementById('gh-bio');
+                if (bioEl) bioEl.textContent = user.bio || '';
+
+                const followersEl = document.getElementById('gh-followers');
+                if (followersEl) followersEl.textContent = user.followers;
+
+                const followingEl = document.getElementById('gh-following');
+                if (followingEl) followingEl.textContent = user.following;
+
+                const repoCountEl = document.getElementById('gh-repo-count');
+                if (repoCountEl) repoCountEl.textContent = user.public_repos;
+
+                if (user.location) {
+                    const locRow = document.getElementById('gh-location-row');
+                    const locText = document.getElementById('gh-location');
+                    if (locRow) locRow.style.display = 'flex';
+                    if (locText) locText.textContent = user.location;
+                }
+
+                if (user.blog) {
+                    const blogRow = document.getElementById('gh-blog-row');
+                    const blogLink = document.getElementById('gh-blog');
+                    if (blogRow) blogRow.style.display = 'flex';
+                    if (blogLink) { blogLink.textContent = user.blog; blogLink.href = user.blog; }
+                }
+
+                // Populate repos
+                const repoList = document.getElementById('gh-repo-list');
+                if (!repoList) return;
+                repoList.innerHTML = '';
+
+                repos.filter(r => !r.fork).slice(0, 8).forEach(repo => {
+                    const langColor = LANG_COLORS[repo.language] || '#8b949e';
+                    const el = document.createElement('div');
+                    el.className = 'gh-repo-item';
+                    el.innerHTML = `
+                        <div class="gh-repo-info">
+                            <div class="gh-repo-name">${repo.name}<span class="gh-repo-visibility">${repo.private ? 'Private' : 'Public'}</span></div>
+                            <div class="gh-repo-desc">${repo.description || ''}</div>
+                            <div class="gh-repo-meta">
+                                ${repo.language ? `<span class="gh-repo-lang"><span class="gh-repo-lang-dot" style="background:${langColor}"></span>${repo.language}</span>` : ''}
+                                ${repo.stargazers_count > 0 ? `<span><svg viewBox="0 0 16 16" width="14" height="14" fill="#656d76"><path d="M8 .25a.75.75 0 0 1 .673.418l1.882 3.815 4.21.612a.75.75 0 0 1 .416 1.279l-3.046 2.97.719 4.192a.751.751 0 0 1-1.088.791L8 12.347l-3.766 1.98a.75.75 0 0 1-1.088-.79l.72-4.194L.818 6.374a.75.75 0 0 1 .416-1.28l4.21-.611L7.327.668A.75.75 0 0 1 8 .25Z"/></svg> ${repo.stargazers_count}</span>` : ''}
+                                ${repo.forks_count > 0 ? `<span><svg viewBox="0 0 16 16" width="14" height="14" fill="#656d76"><path d="M5 5.372v.878c0 .414.336.75.75.75h4.5a.75.75 0 0 0 .75-.75v-.878a2.25 2.25 0 1 0-1.5 0v.878H6.75v-.878a2.25 2.25 0 1 0-1.5 0ZM8 14.25a.75.75 0 0 1-.75-.75v-3.378a2.25 2.25 0 1 0 1.5 0V13.5a.75.75 0 0 1-.75.75Z"/></svg> ${repo.forks_count}</span>` : ''}
+                                <span>Updated ${timeAgo(new Date(repo.updated_at))}</span>
+                            </div>
+                        </div>
+                        <button class="gh-repo-star-btn"><svg viewBox="0 0 16 16" width="14" height="14" fill="none" stroke="#656d76" stroke-width="1.5"><path d="M8 .25a.75.75 0 0 1 .673.418l1.882 3.815 4.21.612a.75.75 0 0 1 .416 1.279l-3.046 2.97.719 4.192a.751.751 0 0 1-1.088.791L8 12.347l-3.766 1.98a.75.75 0 0 1-1.088-.79l.72-4.194L.818 6.374a.75.75 0 0 1 .416-1.28l4.21-.611L7.327.668A.75.75 0 0 1 8 .25Z"/></svg> Star</button>
+                    `;
+                    repoList.appendChild(el);
+                });
+            } catch (e) {
+                console.warn('GitHub API fetch failed:', e);
+            }
+        }
+
+        function timeAgo(date) {
+            const seconds = Math.floor((Date.now() - date.getTime()) / 1000);
+            if (seconds < 60) return 'just now';
+            const minutes = Math.floor(seconds / 60);
+            if (minutes < 60) return `${minutes}m ago`;
+            const hours = Math.floor(minutes / 60);
+            if (hours < 24) return `${hours}h ago`;
+            const days = Math.floor(hours / 24);
+            if (days < 30) return `${days}d ago`;
+            const months = Math.floor(days / 30);
+            return `${months}mo ago`;
+        }
+
+        fetchGitHub();
     }
 });

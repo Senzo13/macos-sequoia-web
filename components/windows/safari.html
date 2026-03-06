@@ -24,102 +24,74 @@
         <svg viewBox="0 0 20 20" width="16" height="16" fill="none" stroke="#333" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M10 2v10"/><polyline points="6,6 10,2 14,6"/><path d="M4 10v7a1 1 0 0 0 1 1h10a1 1 0 0 0 1-1v-7"/></svg>
       </button>
     </div>
-    <!-- GitHub Profile Mockup -->
-    <div class="safari-page">
-      <!-- GitHub Header -->
-      <div style="background:#161b22;padding:12px 24px;display:flex;align-items:center;gap:16px;border-bottom:1px solid #30363d;">
-        <svg height="28" viewBox="0 0 16 16" width="28" fill="#f0f6fc"><path d="M8 0c4.42 0 8 3.58 8 8a8.013 8.013 0 0 1-5.45 7.59c-.4.08-.55-.17-.55-.38 0-.27.01-1.13.01-2.2 0-.75-.25-1.23-.54-1.48 1.78-.2 3.65-.88 3.65-3.95 0-.88-.31-1.59-.82-2.15.08-.2.36-1.02-.08-2.12 0 0-.67-.22-2.2.82-.64-.18-1.32-.27-2-.27-.68 0-1.36.09-2 .27-1.53-1.03-2.2-.82-2.2-.82-.44 1.1-.16 1.92-.08 2.12-.51.56-.82 1.28-.82 2.15 0 3.06 1.86 3.75 3.64 3.95-.23.2-.44.55-.51 1.07-.46.21-1.61.55-2.33-.66-.15-.24-.6-.83-1.23-.82-.67.01-.27.38.01.53.34.19.73.9.82 1.13.16.45.68 1.31 2.69.94 0 .67.01 1.3.01 1.49 0 .21-.15.45-.55.38A7.995 7.995 0 0 1 0 8c0-4.42 3.58-8 8-8Z"/></svg>
-        <div style="display:flex;gap:16px;font-size:14px;">
-          <span style="color:#f0f6fc;font-weight:600;">Dashboard</span>
-          <span style="color:#8b949e;">Pull requests</span>
-          <span style="color:#8b949e;">Issues</span>
-          <span style="color:#8b949e;">Marketplace</span>
-          <span style="color:#8b949e;">Explore</span>
+    <!-- GitHub Profile Page (light mode) -->
+    <div class="safari-page" id="safari-github-page">
+      <!-- GitHub Header Bar -->
+      <div class="gh-header">
+        <div class="gh-header-inner">
+          <svg height="32" viewBox="0 0 16 16" width="32" fill="#24292f"><path d="M8 0c4.42 0 8 3.58 8 8a8.013 8.013 0 0 1-5.45 7.59c-.4.08-.55-.17-.55-.38 0-.27.01-1.13.01-2.2 0-.75-.25-1.23-.54-1.48 1.78-.2 3.65-.88 3.65-3.95 0-.88-.31-1.59-.82-2.15.08-.2.36-1.02-.08-2.12 0 0-.67-.22-2.2.82-.64-.18-1.32-.27-2-.27-.68 0-1.36.09-2 .27-1.53-1.03-2.2-.82-2.2-.82-.44 1.1-.16 1.92-.08 2.12-.51.56-.82 1.28-.82 2.15 0 3.06 1.86 3.75 3.64 3.95-.23.2-.44.55-.51 1.07-.46.21-1.61.55-2.33-.66-.15-.24-.6-.83-1.23-.82-.67.01-.27.38.01.53.34.19.73.9.82 1.13.16.45.68 1.31 2.69.94 0 .67.01 1.3.01 1.49 0 .21-.15.45-.55.38A7.995 7.995 0 0 1 0 8c0-4.42 3.58-8 8-8Z"/></svg>
+          <div class="gh-header-search">
+            <svg viewBox="0 0 16 16" width="14" height="14" fill="#656d76"><path d="M10.68 11.74a6 6 0 0 1-7.922-8.982 6 6 0 0 1 8.982 7.922l3.04 3.04a.749.749 0 0 1-.326 1.275.749.749 0 0 1-.734-.215ZM11.5 7a4.499 4.499 0 1 0-8.997 0A4.499 4.499 0 0 0 11.5 7Z"/></svg>
+            <span>Type / to search</span>
+          </div>
+          <div class="gh-header-nav">
+            <span>Pull requests</span>
+            <span>Issues</span>
+            <span>Marketplace</span>
+            <span>Explore</span>
+          </div>
         </div>
-        <div style="flex:1;"></div>
-        <div style="width:280px;background:#0d1117;border:1px solid #30363d;border-radius:6px;padding:5px 12px;font-size:13px;color:#8b949e;">Search or jump to...</div>
       </div>
 
       <!-- Profile Content -->
-      <div style="background:#0d1117;min-height:100%;padding:24px;">
-        <div style="max-width:900px;margin:0 auto;display:flex;gap:24px;">
-          <!-- Left: Avatar + Info -->
-          <div style="width:260px;flex-shrink:0;">
-            <div style="width:200px;height:200px;border-radius:50%;background:#21262d;border:1px solid #30363d;display:flex;align-items:center;justify-content:center;margin-bottom:16px;">
-              <svg viewBox="0 0 24 24" width="80" height="80" fill="#484f58"><circle cx="12" cy="8" r="5"/><path d="M3 21c0-4.97 4.03-9 9-9s9 4.03 9 9"/></svg>
-            </div>
-            <h1 style="color:#f0f6fc;font-size:24px;font-weight:600;margin:0;">Lorenzo Giralt</h1>
-            <p style="color:#8b949e;font-size:20px;font-weight:300;margin:4px 0 0;">Senzo13</p>
-            <p style="color:#c9d1d9;font-size:14px;margin:12px 0;">Full-Stack Developer | Epitech M2</p>
-            <button style="width:100%;padding:5px 16px;font-size:14px;font-weight:500;background:#21262d;color:#c9d1d9;border:1px solid #30363d;border-radius:6px;cursor:pointer;margin:8px 0;">Follow</button>
-            <div style="display:flex;gap:4px;align-items:center;margin-top:12px;font-size:14px;color:#8b949e;">
-              <svg viewBox="0 0 16 16" width="16" height="16" fill="#8b949e"><path d="M2 5.5a3.5 3.5 0 1 1 5.898 2.549 5.508 5.508 0 0 1 3.034 4.084.75.75 0 1 1-1.482.235 4.001 4.001 0 0 0-6.9 0 .75.75 0 0 1-1.482-.236A5.507 5.507 0 0 1 3.102 8.05 3.493 3.493 0 0 1 2 5.5ZM11 4a.75.75 0 1 0 0 1.5 1.5 1.5 0 0 1 .666 2.844.75.75 0 0 0-.416.672v.352a.75.75 0 0 0 .574.73c1.2.289 2.162 1.2 2.522 2.372a.75.75 0 1 0 1.434-.44 5.01 5.01 0 0 0-2.56-3.012A3 3 0 0 0 11 4Z"/></svg>
-              <span><strong style="color:#c9d1d9;">24</strong> followers</span>
-              <span> · </span>
-              <span><strong style="color:#c9d1d9;">18</strong> following</span>
-            </div>
-            <div style="display:flex;gap:6px;align-items:center;margin-top:8px;font-size:14px;color:#8b949e;">
-              <svg viewBox="0 0 16 16" width="16" height="16" fill="#8b949e"><path d="m12.596 11.596-3.535 3.536a1.5 1.5 0 0 1-2.122 0l-3.535-3.536a6.5 6.5 0 1 1 9.192-9.193 6.5 6.5 0 0 1 0 9.193Zm-1.06-8.132v-.001a5 5 0 1 0-7.072 7.072L8 14.07l3.536-3.534a5 5 0 0 0 0-7.072ZM8 9a2 2 0 1 1-.001-3.999A2 2 0 0 1 8 9Z"/></svg>
-              <span>South of France</span>
+      <div class="gh-profile">
+        <!-- Left Column -->
+        <div class="gh-profile-left">
+          <img id="gh-avatar" class="gh-avatar" src="" alt="Avatar" width="260" height="260" />
+          <h1 class="gh-name" id="gh-name">Lorenzo Giralt</h1>
+          <p class="gh-username" id="gh-username">Senzo13</p>
+          <p class="gh-bio" id="gh-bio">Full-Stack Developer | Building cool things with code</p>
+          <button class="gh-follow-btn">Follow</button>
+          <div class="gh-stats-row">
+            <svg viewBox="0 0 16 16" width="16" height="16" fill="#656d76"><path d="M2 5.5a3.5 3.5 0 1 1 5.898 2.549 5.508 5.508 0 0 1 3.034 4.084.75.75 0 1 1-1.482.235 4.001 4.001 0 0 0-6.9 0 .75.75 0 0 1-1.482-.236A5.507 5.507 0 0 1 3.102 8.05 3.493 3.493 0 0 1 2 5.5ZM11 4a.75.75 0 1 0 0 1.5 1.5 1.5 0 0 1 .666 2.844.75.75 0 0 0-.416.672v.352a.75.75 0 0 0 .574.73c1.2.289 2.162 1.2 2.522 2.372a.75.75 0 1 0 1.434-.44 5.01 5.01 0 0 0-2.56-3.012A3 3 0 0 0 11 4Z"/></svg>
+            <span><strong id="gh-followers">0</strong> followers</span>
+            <span class="gh-dot">&middot;</span>
+            <span><strong id="gh-following">0</strong> following</span>
+          </div>
+          <div class="gh-meta-row" id="gh-location-row" style="display:none;">
+            <svg viewBox="0 0 16 16" width="16" height="16" fill="#656d76"><path d="m12.596 11.596-3.535 3.536a1.5 1.5 0 0 1-2.122 0l-3.535-3.536a6.5 6.5 0 1 1 9.192-9.193 6.5 6.5 0 0 1 0 9.193Zm-1.06-8.132v-.001a5 5 0 1 0-7.072 7.072L8 14.07l3.536-3.534a5 5 0 0 0 0-7.072ZM8 9a2 2 0 1 1-.001-3.999A2 2 0 0 1 8 9Z"/></svg>
+            <span id="gh-location"></span>
+          </div>
+          <div class="gh-meta-row" id="gh-blog-row" style="display:none;">
+            <svg viewBox="0 0 16 16" width="16" height="16" fill="#656d76"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"/></svg>
+            <a id="gh-blog" style="color:#0969da;text-decoration:none;font-size:14px;"></a>
+          </div>
+        </div>
+
+        <!-- Right Column -->
+        <div class="gh-profile-right">
+          <nav class="gh-tabs">
+            <span class="gh-tab active">
+              <svg viewBox="0 0 16 16" width="16" height="16" fill="#24292f"><path d="M2 2.5A2.5 2.5 0 0 1 4.5 0h8.75a.75.75 0 0 1 .75.75v12.5a.75.75 0 0 1-.75.75h-2.5a.75.75 0 0 1 0-1.5h1.75v-2h-8a1 1 0 0 0-.714 1.7.75.75 0 1 1-1.072 1.05A2.495 2.495 0 0 1 2 11.5Zm10.5-1h-8a1 1 0 0 0-1 1v6.708A2.486 2.486 0 0 1 4.5 9h8ZM5 12.25a.25.25 0 0 1 .25-.25h3.5a.25.25 0 0 1 .25.25v3.25a.25.25 0 0 1-.4.2l-1.45-1.087a.249.249 0 0 0-.3 0L5.4 15.7a.25.25 0 0 1-.4-.2Z"/></svg>
+              Repositories <span class="gh-tab-count" id="gh-repo-count">0</span>
+            </span>
+            <span class="gh-tab">Projects</span>
+            <span class="gh-tab">Packages</span>
+            <span class="gh-tab">Stars</span>
+          </nav>
+
+          <!-- Search / Filter -->
+          <div class="gh-repo-filter">
+            <input type="text" placeholder="Find a repository..." class="gh-repo-search" readonly />
+            <div class="gh-repo-filter-btns">
+              <button class="gh-filter-btn">Type</button>
+              <button class="gh-filter-btn">Language</button>
+              <button class="gh-filter-btn">Sort</button>
             </div>
           </div>
 
-          <!-- Right: Repos -->
-          <div style="flex:1;min-width:0;">
-            <div style="display:flex;align-items:center;gap:8px;margin-bottom:16px;border-bottom:1px solid #21262d;padding-bottom:8px;">
-              <span style="color:#f0f6fc;font-size:14px;font-weight:600;padding:8px 16px;border-bottom:2px solid #f78166;">Repositories</span>
-              <span style="color:#8b949e;font-size:14px;padding:8px 16px;">Projects</span>
-              <span style="color:#8b949e;font-size:14px;padding:8px 16px;">Stars</span>
-            </div>
-
-            <!-- Repo Cards -->
-            <div style="display:flex;flex-direction:column;gap:16px;">
-              <div style="border:1px solid #30363d;border-radius:6px;padding:16px;">
-                <div style="display:flex;align-items:center;gap:8px;">
-                  <a style="color:#58a6ff;font-size:14px;font-weight:600;text-decoration:none;">macos-sequoia-web</a>
-                  <span style="font-size:12px;color:#8b949e;border:1px solid #30363d;border-radius:12px;padding:0 8px;">Public</span>
-                </div>
-                <p style="color:#8b949e;font-size:13px;margin:8px 0 12px;">macOS Sequoia desktop clone — pure HTML, CSS & JS. 16 working apps.</p>
-                <div style="display:flex;align-items:center;gap:16px;font-size:12px;color:#8b949e;">
-                  <span style="display:flex;align-items:center;gap:4px;"><span style="width:12px;height:12px;border-radius:50%;background:#f1e05a;display:inline-block;"></span> JavaScript</span>
-                  <span style="display:flex;align-items:center;gap:4px;"><svg viewBox="0 0 16 16" width="14" height="14" fill="#8b949e"><path d="M8 .25a.75.75 0 0 1 .673.418l1.882 3.815 4.21.612a.75.75 0 0 1 .416 1.279l-3.046 2.97.719 4.192a.751.751 0 0 1-1.088.791L8 12.347l-3.766 1.98a.75.75 0 0 1-1.088-.79l.72-4.194L.818 6.374a.75.75 0 0 1 .416-1.28l4.21-.611L7.327.668A.75.75 0 0 1 8 .25Z"/></svg> 12</span>
-                </div>
-              </div>
-
-              <div style="border:1px solid #30363d;border-radius:6px;padding:16px;">
-                <div style="display:flex;align-items:center;gap:8px;">
-                  <a style="color:#58a6ff;font-size:14px;font-weight:600;text-decoration:none;">pomodoro-timer</a>
-                  <span style="font-size:12px;color:#8b949e;border:1px solid #30363d;border-radius:12px;padding:0 8px;">Public</span>
-                </div>
-                <p style="color:#8b949e;font-size:13px;margin:8px 0 12px;">Modern Pomodoro timer with dark glassmorphism UI and animated ring progress.</p>
-                <div style="display:flex;align-items:center;gap:16px;font-size:12px;color:#8b949e;">
-                  <span style="display:flex;align-items:center;gap:4px;"><span style="width:12px;height:12px;border-radius:50%;background:#f1e05a;display:inline-block;"></span> JavaScript</span>
-                </div>
-              </div>
-
-              <div style="border:1px solid #30363d;border-radius:6px;padding:16px;">
-                <div style="display:flex;align-items:center;gap:8px;">
-                  <a style="color:#58a6ff;font-size:14px;font-weight:600;text-decoration:none;">retro-404-page</a>
-                  <span style="font-size:12px;color:#8b949e;border:1px solid #30363d;border-radius:12px;padding:0 8px;">Public</span>
-                </div>
-                <p style="color:#8b949e;font-size:13px;margin:8px 0 12px;">Retro hacker-style terminal 404 page with typewriter animation.</p>
-                <div style="display:flex;align-items:center;gap:16px;font-size:12px;color:#8b949e;">
-                  <span style="display:flex;align-items:center;gap:4px;"><span style="width:12px;height:12px;border-radius:50%;background:#e34c26;display:inline-block;"></span> HTML</span>
-                </div>
-              </div>
-
-              <div style="border:1px solid #30363d;border-radius:6px;padding:16px;">
-                <div style="display:flex;align-items:center;gap:8px;">
-                  <a style="color:#58a6ff;font-size:14px;font-weight:600;text-decoration:none;">Senzo13</a>
-                  <span style="font-size:12px;color:#8b949e;border:1px solid #30363d;border-radius:12px;padding:0 8px;">Public</span>
-                </div>
-                <p style="color:#8b949e;font-size:13px;margin:8px 0 12px;">GitHub profile README with interactive Tic-Tac-Toe and snake animation.</p>
-                <div style="display:flex;align-items:center;gap:16px;font-size:12px;color:#8b949e;">
-                  <span style="display:flex;align-items:center;gap:4px;"><span style="width:12px;height:12px;border-radius:50%;background:#e34c26;display:inline-block;"></span> HTML</span>
-                </div>
-              </div>
-            </div>
-          </div>
+          <!-- Repo List (populated by JS) -->
+          <div id="gh-repo-list" class="gh-repo-list"></div>
         </div>
       </div>
     </div>
