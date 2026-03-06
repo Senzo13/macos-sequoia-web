@@ -48,26 +48,8 @@
   --transition-fast: 0.2s ease;
   --transition-normal: 0.3s ease;
 
-  /* Wallpaper — macOS Sequoia inspired */
-  --wallpaper: linear-gradient(
-    175deg,
-    #0f1b3d 0%,
-    #142952 8%,
-    #1a3f6e 16%,
-    #1f5580 24%,
-    #256b8f 32%,
-    #2e8597 40%,
-    #3d9e8f 48%,
-    #5db585 55%,
-    #82c87a 62%,
-    #aed36c 68%,
-    #d4c84e 74%,
-    #e0a83c 80%,
-    #d98636 85%,
-    #cf6930 90%,
-    #b84a28 95%,
-    #8a3420 100%
-  );
+  /* Wallpaper — macOS Sequoia */
+  --wallpaper: url('../assets/wallpaper.jpg') center/cover no-repeat;
 }
 
 /* --------------------------------------------------------------------------
