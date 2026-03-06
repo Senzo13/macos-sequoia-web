@@ -2,73 +2,129 @@
       <div class="dock-container">
         <!-- Finder -->
         <button class="dock-item" data-app="finder" aria-label="Finder">
-          <div class="dock-icon" style="background: linear-gradient(135deg, #1e90ff 0%, #00bfff 100%);">
-            <svg viewBox="0 0 32 32" width="28" height="28">
-              <circle cx="11" cy="13" r="2.5" fill="white"/>
-              <circle cx="21" cy="13" r="2.5" fill="white"/>
-              <path d="M10 20q6 5 12 0" stroke="white" stroke-width="1.8" fill="none" stroke-linecap="round"/>
-              <line x1="16" y1="10" x2="16" y2="22" stroke="white" stroke-width="1" opacity="0.4"/>
+          <div class="dock-icon" style="background: linear-gradient(180deg, #4AABF6 0%, #1672DB 100%);">
+            <svg viewBox="0 0 120 120" width="28" height="28">
+              <!-- Finder face outline -->
+              <rect x="10" y="10" width="100" height="100" rx="22" fill="none"/>
+              <!-- Face divider line -->
+              <line x1="60" y1="18" x2="60" y2="102" stroke="white" stroke-width="2" opacity="0.35"/>
+              <!-- Left eye -->
+              <ellipse cx="40" cy="48" rx="7" ry="9" fill="white"/>
+              <!-- Right eye -->
+              <ellipse cx="80" cy="48" rx="7" ry="9" fill="white"/>
+              <!-- Nose -->
+              <path d="M56 62 L60 70 L64 62" stroke="white" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round" opacity="0.5"/>
+              <!-- Smile -->
+              <path d="M32 78 Q42 95 60 95 Q78 95 88 78" stroke="white" stroke-width="3.5" fill="none" stroke-linecap="round"/>
+              <!-- Teeth line -->
+              <line x1="38" y1="86" x2="82" y2="86" stroke="white" stroke-width="1.5" opacity="0.4"/>
             </svg>
           </div>
         </button>
 
         <!-- Safari -->
         <button class="dock-item" data-app="safari" aria-label="Safari">
-          <div class="dock-icon" style="background: linear-gradient(135deg, #00b4db 0%, #0083B0 100%);">
-            <svg viewBox="0 0 32 32" width="26" height="26">
-              <circle cx="16" cy="16" r="12" fill="none" stroke="white" stroke-width="1.5"/>
-              <polygon points="16,6 20,14 16,16 12,14" fill="white" opacity="0.9"/>
-              <polygon points="16,26 12,18 16,16 20,18" fill="#FF3B30" opacity="0.9"/>
+          <div class="dock-icon" style="background: linear-gradient(180deg, #59C8FA 0%, #1E75EA 100%);">
+            <svg viewBox="0 0 120 120" width="26" height="26">
+              <!-- Outer compass circle -->
+              <circle cx="60" cy="60" r="48" fill="none" stroke="white" stroke-width="3"/>
+              <!-- Tick marks around edge -->
+              <line x1="60" y1="14" x2="60" y2="22" stroke="white" stroke-width="2.5"/>
+              <line x1="60" y1="98" x2="60" y2="106" stroke="white" stroke-width="2.5"/>
+              <line x1="14" y1="60" x2="22" y2="60" stroke="white" stroke-width="2.5"/>
+              <line x1="98" y1="60" x2="106" y2="60" stroke="white" stroke-width="2.5"/>
+              <!-- Small tick marks -->
+              <line x1="84" y1="17" x2="81" y2="24" stroke="white" stroke-width="1.5" opacity="0.7"/>
+              <line x1="103" y1="36" x2="96" y2="39" stroke="white" stroke-width="1.5" opacity="0.7"/>
+              <line x1="103" y1="84" x2="96" y2="81" stroke="white" stroke-width="1.5" opacity="0.7"/>
+              <line x1="84" y1="103" x2="81" y2="96" stroke="white" stroke-width="1.5" opacity="0.7"/>
+              <line x1="36" y1="103" x2="39" y2="96" stroke="white" stroke-width="1.5" opacity="0.7"/>
+              <line x1="17" y1="84" x2="24" y2="81" stroke="white" stroke-width="1.5" opacity="0.7"/>
+              <line x1="17" y1="36" x2="24" y2="39" stroke="white" stroke-width="1.5" opacity="0.7"/>
+              <line x1="36" y1="17" x2="39" y2="24" stroke="white" stroke-width="1.5" opacity="0.7"/>
+              <!-- Compass needle - red half pointing NE -->
+              <polygon points="60,60 80,28 72,48" fill="#FF3B30"/>
+              <polygon points="60,60 28,80 48,72" fill="#FF3B30" opacity="0.7"/>
+              <!-- Compass needle - white half -->
+              <polygon points="60,60 80,28 68,40" fill="white" opacity="0.95"/>
+              <polygon points="60,60 40,92 52,72" fill="white" opacity="0.85"/>
+              <!-- Center dot -->
+              <circle cx="60" cy="60" r="3" fill="white"/>
             </svg>
           </div>
         </button>
 
         <!-- Messages -->
         <button class="dock-item" data-app="messages" aria-label="Messages">
-          <div class="dock-icon" style="background: linear-gradient(180deg, #5af158 0%, #28a745 100%);">
-            <svg viewBox="0 0 32 32" width="24" height="24">
-              <path d="M6 10a8 8 0 0 1 8-8h4a8 8 0 0 1 8 8v2a8 8 0 0 1-8 8h-2l-5 4v-4a8 8 0 0 1-5-8V10z" fill="white"/>
+          <div class="dock-icon" style="background: linear-gradient(180deg, #6FE854 0%, #45C635 100%);">
+            <svg viewBox="0 0 120 120" width="24" height="24">
+              <!-- Speech bubble -->
+              <path d="M22 30 C22 22, 30 16, 40 16 L80 16 C90 16, 98 22, 98 30 L98 65 C98 73, 90 79, 80 79 L52 79 L36 96 L36 79 L40 79 C30 79, 22 73, 22 65 Z" fill="white"/>
             </svg>
           </div>
         </button>
 
         <!-- Mail -->
         <button class="dock-item" data-app="" aria-label="Mail">
-          <div class="dock-icon" style="background: linear-gradient(180deg, #3498db 0%, #2980b9 100%);">
-            <svg viewBox="0 0 32 32" width="24" height="24">
-              <rect x="4" y="8" width="24" height="16" rx="2" fill="white"/>
-              <path d="M4 10l12 8 12-8" fill="none" stroke="#2980b9" stroke-width="1.5"/>
+          <div class="dock-icon" style="background: linear-gradient(180deg, #5DA8F8 0%, #1A6FE1 100%);">
+            <svg viewBox="0 0 120 120" width="24" height="24">
+              <!-- Envelope body -->
+              <rect x="16" y="32" width="88" height="58" rx="6" fill="white"/>
+              <!-- Envelope flap (chevron) -->
+              <path d="M16 38 L60 68 L104 38" fill="none" stroke="#1A6FE1" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+              <!-- Bottom fold lines for depth -->
+              <path d="M16 90 L48 64" stroke="#E0E0E0" stroke-width="1.5" opacity="0.5"/>
+              <path d="M104 90 L72 64" stroke="#E0E0E0" stroke-width="1.5" opacity="0.5"/>
             </svg>
           </div>
         </button>
 
         <!-- Maps -->
         <button class="dock-item" data-app="" aria-label="Maps">
-          <div class="dock-icon" style="background: linear-gradient(135deg, #4cd964 0%, #2ecc71 100%);">
-            <svg viewBox="0 0 32 32" width="24" height="24">
-              <path d="M8 6l8 4 8-4v20l-8-4-8 4V6z" fill="white" opacity="0.9"/>
-              <line x1="16" y1="10" x2="16" y2="22" stroke="#2ecc71" stroke-width="1"/>
+          <div class="dock-icon" style="background: linear-gradient(180deg, #5AC764 0%, #37A543 100%);">
+            <svg viewBox="0 0 120 120" width="24" height="24">
+              <!-- Map background sections -->
+              <path d="M15 25 L45 15 L75 30 L105 18 L105 100 L75 108 L45 93 L15 105 Z" fill="white" opacity="0.9"/>
+              <!-- Fold lines -->
+              <line x1="45" y1="15" x2="45" y2="93" stroke="#37A543" stroke-width="1.5" opacity="0.3"/>
+              <line x1="75" y1="30" x2="75" y2="108" stroke="#37A543" stroke-width="1.5" opacity="0.3"/>
+              <!-- Road -->
+              <path d="M30 90 C35 70, 55 75, 60 55 C65 35, 85 40, 90 25" stroke="#FFA500" stroke-width="4" fill="none" stroke-linecap="round"/>
+              <path d="M30 90 C35 70, 55 75, 60 55 C65 35, 85 40, 90 25" stroke="#FFD000" stroke-width="2" fill="none" stroke-linecap="round"/>
+              <!-- Location pin -->
+              <path d="M60 30 C48 30, 40 40, 40 48 C40 62, 60 78, 60 78 C60 78, 80 62, 80 48 C80 40, 72 30, 60 30 Z" fill="#FF3B30"/>
+              <circle cx="60" cy="47" r="8" fill="white"/>
             </svg>
           </div>
         </button>
 
         <!-- Photos -->
         <button class="dock-item" data-app="" aria-label="Photos">
-          <div class="dock-icon" style="background: linear-gradient(135deg, #ff6b6b 0%, #ffa500 30%, #ffe066 50%, #51cf66 70%, #339af0 100%);">
-            <svg viewBox="0 0 32 32" width="22" height="22">
-              <ellipse cx="16" cy="12" rx="4" ry="5" fill="white" opacity="0.9"/>
-              <ellipse cx="11" cy="18" rx="4" ry="5" fill="white" opacity="0.9" transform="rotate(-60,11,18)"/>
-              <ellipse cx="21" cy="18" rx="4" ry="5" fill="white" opacity="0.9" transform="rotate(60,21,18)"/>
+          <div class="dock-icon" style="background: linear-gradient(180deg, #FFFFFF 0%, #F0F0F0 100%);">
+            <svg viewBox="0 0 120 120" width="22" height="22">
+              <!-- 8-petal flower/pinwheel -->
+              <ellipse cx="60" cy="38" rx="10" ry="18" fill="#FF3B30" opacity="0.85"/>
+              <ellipse cx="60" cy="38" rx="10" ry="18" fill="#FF9500" opacity="0.85" transform="rotate(45,60,60)"/>
+              <ellipse cx="60" cy="38" rx="10" ry="18" fill="#FFCC00" opacity="0.85" transform="rotate(90,60,60)"/>
+              <ellipse cx="60" cy="38" rx="10" ry="18" fill="#34C759" opacity="0.85" transform="rotate(135,60,60)"/>
+              <ellipse cx="60" cy="38" rx="10" ry="18" fill="#30D5C8" opacity="0.85" transform="rotate(180,60,60)"/>
+              <ellipse cx="60" cy="38" rx="10" ry="18" fill="#007AFF" opacity="0.85" transform="rotate(225,60,60)"/>
+              <ellipse cx="60" cy="38" rx="10" ry="18" fill="#5856D6" opacity="0.85" transform="rotate(270,60,60)"/>
+              <ellipse cx="60" cy="38" rx="10" ry="18" fill="#AF52DE" opacity="0.85" transform="rotate(315,60,60)"/>
+              <!-- Center circle -->
+              <circle cx="60" cy="60" r="8" fill="white" stroke="#F0F0F0" stroke-width="1"/>
             </svg>
           </div>
         </button>
 
         <!-- FaceTime -->
         <button class="dock-item" data-app="" aria-label="FaceTime">
-          <div class="dock-icon" style="background: linear-gradient(180deg, #5af158 0%, #28a745 100%);">
-            <svg viewBox="0 0 32 32" width="24" height="24">
-              <rect x="4" y="9" width="17" height="14" rx="3" fill="white"/>
-              <polygon points="23,12 29,8 29,24 23,20" fill="white"/>
+          <div class="dock-icon" style="background: linear-gradient(180deg, #6FE854 0%, #45C635 100%);">
+            <svg viewBox="0 0 120 120" width="24" height="24">
+              <!-- Camera body -->
+              <rect x="16" y="36" width="58" height="48" rx="10" fill="white"/>
+              <!-- Lens/camera triangle -->
+              <path d="M80 44 L104 30 L104 90 L80 76 Z" fill="white"/>
             </svg>
           </div>
         </button>
@@ -85,59 +141,107 @@
 
         <!-- Notes -->
         <button class="dock-item" data-app="notes" aria-label="Notes">
-          <div class="dock-icon" style="background: linear-gradient(180deg, #fef3c7 0%, #fde68a 100%);">
-            <svg viewBox="0 0 32 32" width="22" height="22">
-              <rect x="4" y="2" width="24" height="28" rx="3" fill="white"/>
-              <line x1="8" y1="10" x2="24" y2="10" stroke="#d4a000" stroke-width="1" opacity="0.4"/>
-              <line x1="8" y1="14" x2="24" y2="14" stroke="#d4a000" stroke-width="1" opacity="0.4"/>
-              <line x1="8" y1="18" x2="24" y2="18" stroke="#d4a000" stroke-width="1" opacity="0.4"/>
-              <line x1="8" y1="22" x2="20" y2="22" stroke="#d4a000" stroke-width="1" opacity="0.4"/>
+          <div class="dock-icon" style="background: linear-gradient(180deg, #FFF8B8 0%, #FFED4A 100%);">
+            <svg viewBox="0 0 120 120" width="22" height="22">
+              <!-- Notepad -->
+              <rect x="18" y="10" width="84" height="100" rx="8" fill="white"/>
+              <!-- Top fold/header area -->
+              <rect x="18" y="10" width="84" height="18" rx="8" fill="#F5E6A3" opacity="0.5"/>
+              <line x1="18" y1="28" x2="102" y2="28" stroke="#D4A000" stroke-width="1" opacity="0.3"/>
+              <!-- Ruled lines -->
+              <line x1="30" y1="42" x2="90" y2="42" stroke="#D4A000" stroke-width="1" opacity="0.3"/>
+              <line x1="30" y1="54" x2="90" y2="54" stroke="#D4A000" stroke-width="1" opacity="0.3"/>
+              <line x1="30" y1="66" x2="90" y2="66" stroke="#D4A000" stroke-width="1" opacity="0.3"/>
+              <line x1="30" y1="78" x2="90" y2="78" stroke="#D4A000" stroke-width="1" opacity="0.3"/>
+              <line x1="30" y1="90" x2="72" y2="90" stroke="#D4A000" stroke-width="1" opacity="0.3"/>
+              <!-- Faint text representation -->
+              <rect x="30" y="38" width="45" height="3" rx="1" fill="#C4960A" opacity="0.15"/>
+              <rect x="30" y="50" width="55" height="3" rx="1" fill="#C4960A" opacity="0.15"/>
+              <rect x="30" y="62" width="38" height="3" rx="1" fill="#C4960A" opacity="0.15"/>
+              <rect x="30" y="74" width="50" height="3" rx="1" fill="#C4960A" opacity="0.15"/>
             </svg>
           </div>
         </button>
 
         <!-- Reminders -->
         <button class="dock-item" data-app="" aria-label="Reminders">
-          <div class="dock-icon" style="background: white;">
-            <svg viewBox="0 0 32 32" width="24" height="24">
-              <circle cx="10" cy="10" r="3" fill="none" stroke="#007AFF" stroke-width="1.5"/>
-              <line x1="14" y1="10" x2="26" y2="10" stroke="#333" stroke-width="1.2"/>
-              <circle cx="10" cy="17" r="3" fill="none" stroke="#FF9500" stroke-width="1.5"/>
-              <line x1="14" y1="17" x2="24" y2="17" stroke="#333" stroke-width="1.2"/>
-              <circle cx="10" cy="24" r="3" fill="none" stroke="#34C759" stroke-width="1.5"/>
-              <line x1="14" y1="24" x2="22" y2="24" stroke="#333" stroke-width="1.2"/>
+          <div class="dock-icon" style="background: linear-gradient(180deg, #FFFFFF 0%, #F5F5F5 100%);">
+            <svg viewBox="0 0 120 120" width="24" height="24">
+              <!-- Row 1 - Blue -->
+              <circle cx="32" cy="32" r="9" fill="none" stroke="#007AFF" stroke-width="3"/>
+              <polyline points="27,32 31,36 38,28" stroke="#007AFF" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+              <rect x="50" y="28" width="42" height="5" rx="2.5" fill="#3C3C43" opacity="0.6"/>
+              <!-- Row 2 - Orange -->
+              <circle cx="32" cy="60" r="9" fill="none" stroke="#FF9500" stroke-width="3"/>
+              <rect x="50" y="56" width="36" height="5" rx="2.5" fill="#3C3C43" opacity="0.6"/>
+              <!-- Row 3 - Green -->
+              <circle cx="32" cy="88" r="9" fill="none" stroke="#34C759" stroke-width="3"/>
+              <rect x="50" y="84" width="30" height="5" rx="2.5" fill="#3C3C43" opacity="0.6"/>
             </svg>
           </div>
         </button>
 
         <!-- Music -->
         <button class="dock-item" data-app="" aria-label="Music">
-          <div class="dock-icon" style="background: linear-gradient(135deg, #fc5c7d 0%, #e74c3c 100%);">
-            <svg viewBox="0 0 32 32" width="22" height="22">
-              <path d="M22 6v16" stroke="white" stroke-width="2"/>
-              <path d="M10 8v16" stroke="white" stroke-width="2"/>
-              <circle cx="7" cy="24" r="3.5" fill="white"/>
-              <circle cx="19" cy="22" r="3.5" fill="white"/>
-              <path d="M10 8l12-2" stroke="white" stroke-width="2"/>
+          <div class="dock-icon" style="background: linear-gradient(180deg, #FC5E78 0%, #E3364B 100%);">
+            <svg viewBox="0 0 120 120" width="22" height="22">
+              <!-- Eighth note -->
+              <ellipse cx="42" cy="82" rx="16" ry="13" fill="white" transform="rotate(-15,42,82)"/>
+              <rect x="55" y="20" width="5" height="65" rx="2.5" fill="white"/>
+              <!-- Flag -->
+              <path d="M60 20 C70 18, 82 22, 88 16 L88 42 C82 48, 70 44, 60 46 Z" fill="white"/>
             </svg>
           </div>
         </button>
 
         <!-- App Store -->
         <button class="dock-item" data-app="" aria-label="App Store">
-          <div class="dock-icon" style="background: linear-gradient(180deg, #3b82f6 0%, #2563eb 100%);">
-            <svg viewBox="0 0 32 32" width="24" height="24" fill="white">
-              <text x="16" y="24" text-anchor="middle" font-size="22" font-weight="bold" font-family="system-ui">A</text>
+          <div class="dock-icon" style="background: linear-gradient(180deg, #3B9FED 0%, #1A72E8 100%);">
+            <svg viewBox="0 0 120 120" width="24" height="24">
+              <!-- Stylized A made from drawing tools -->
+              <!-- Left leg -->
+              <path d="M34 95 L56 25 L64 25 L42 95 Z" fill="white"/>
+              <!-- Right leg -->
+              <path d="M86 95 L64 25 L56 25 L78 95 Z" fill="white"/>
+              <!-- Crossbar -->
+              <rect x="38" y="62" width="44" height="8" rx="4" fill="white"/>
+              <!-- Ruler/pencil detail on left -->
+              <line x1="42" y1="50" x2="46" y2="50" stroke="rgba(26,114,232,0.5)" stroke-width="1.5"/>
+              <line x1="40" y1="58" x2="44" y2="58" stroke="rgba(26,114,232,0.5)" stroke-width="1.5"/>
+              <line x1="44" y1="42" x2="48" y2="42" stroke="rgba(26,114,232,0.5)" stroke-width="1.5"/>
             </svg>
           </div>
         </button>
 
         <!-- System Settings -->
         <button class="dock-item" data-app="settings" aria-label="System Settings">
-          <div class="dock-icon" style="background: linear-gradient(135deg, #6b7280 0%, #4b5563 100%);">
-            <svg viewBox="0 0 32 32" width="24" height="24" fill="white">
-              <path d="M16 10a6 6 0 1 0 0 12 6 6 0 0 0 0-12zm0 2a4 4 0 1 1 0 8 4 4 0 0 1 0-8z"/>
-              <path d="M14.5 4h3l.5 3h-4zM14.5 25h3l.5 3h-4zM4 14.5v3l3 .5v-4zM25 14.5v3l3 .5v-4zM6.8 7.5l2.1 2.1-2.1 2.1-2.1-2.1zM23.1 23.8l2.1 2.1-2.1 2.1-2.1-2.1zM7.5 25.2l-2.1-2.1 2.1-2.1 2.1 2.1zM23.8 8.9l-2.1-2.1 2.1-2.1 2.1 2.1z"/>
+          <div class="dock-icon" style="background: linear-gradient(180deg, #8E8E93 0%, #636366 100%);">
+            <svg viewBox="0 0 120 120" width="24" height="24">
+              <defs>
+                <mask id="gear-mask">
+                  <rect width="120" height="120" fill="white"/>
+                  <circle cx="60" cy="60" r="16" fill="black"/>
+                </mask>
+              </defs>
+              <!-- Gear teeth path -->
+              <path d="
+                M52 14 L56 28 Q58 30 62 30 L64 30 Q66 30 68 28 L72 14
+                Q76 14 80 16 L78 30 Q80 32 82 34 L84 36 Q86 36 88 34 L98 24
+                Q100 27 103 30 L93 40 Q93 42 95 44 L96 46 Q98 48 100 48 L114 46
+                Q115 50 116 54 L102 58 Q100 60 100 62 L100 64 Q100 66 102 68 L116 72
+                Q115 76 114 80 L100 78 Q98 78 96 80 L94 82 Q93 84 93 86 L103 96
+                Q100 99 98 102 L88 92 Q86 90 84 90 L82 92 Q80 94 78 96 L80 110
+                Q76 112 72 114 L68 100 Q66 98 64 98 L62 98 Q58 98 56 100 L52 114
+                Q48 112 44 110 L46 96 Q44 94 42 92 L40 90 Q38 90 36 92 L26 102
+                Q23 99 20 96 L30 86 Q30 84 28 82 L26 80 Q24 78 22 78 L8 80
+                Q7 76 6 72 L20 68 Q22 66 22 64 L22 62 Q22 60 20 58 L6 54
+                Q7 50 8 46 L22 48 Q24 48 26 46 L28 44 Q30 42 30 40 L20 30
+                Q23 27 26 24 L36 34 Q38 36 40 34 L42 32 Q44 30 46 28 L44 16
+                Q48 14 52 14 Z
+              " fill="white" mask="url(#gear-mask)"/>
+              <!-- Inner circle detail -->
+              <circle cx="60" cy="60" r="22" fill="none" stroke="white" stroke-width="4"/>
+              <circle cx="60" cy="60" r="14" fill="none" stroke="rgba(255,255,255,0.4)" stroke-width="2"/>
             </svg>
           </div>
         </button>
@@ -147,28 +251,57 @@
 
         <!-- Terminal (recent) -->
         <button class="dock-item" data-app="terminal" aria-label="Terminal">
-          <div class="dock-icon" style="background: linear-gradient(180deg, #1a1a2e 0%, #0f0f1a 100%);">
-            <svg viewBox="0 0 32 32" width="22" height="22" fill="none">
-              <path d="M8 10l6 6-6 6" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-              <line x1="16" y1="22" x2="24" y2="22" stroke="white" stroke-width="2" stroke-linecap="round"/>
+          <div class="dock-icon" style="background: linear-gradient(180deg, #2D2D2D 0%, #111111 100%);">
+            <svg viewBox="0 0 120 120" width="22" height="22">
+              <!-- Terminal window frame -->
+              <rect x="10" y="10" width="100" height="100" rx="12" fill="none" stroke="rgba(255,255,255,0.15)" stroke-width="2"/>
+              <!-- Title bar dots -->
+              <circle cx="26" cy="24" r="4" fill="#FF5F57" opacity="0.8"/>
+              <circle cx="40" cy="24" r="4" fill="#FEBC2E" opacity="0.8"/>
+              <circle cx="54" cy="24" r="4" fill="#28C840" opacity="0.8"/>
+              <!-- Prompt chevron -->
+              <path d="M24 50 L46 66 L24 82" stroke="#28C840" stroke-width="5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+              <!-- Cursor underscore -->
+              <line x1="54" y1="82" x2="82" y2="82" stroke="white" stroke-width="5" stroke-linecap="round" opacity="0.8"/>
             </svg>
           </div>
         </button>
 
         <!-- Calculator (recent) -->
         <button class="dock-item" data-app="calculator" aria-label="Calculator">
-          <div class="dock-icon" style="background: linear-gradient(180deg, #374151 0%, #1f2937 100%);">
-            <svg viewBox="0 0 32 32" width="22" height="22">
-              <rect x="5" y="3" width="22" height="8" rx="2" fill="#FF9500"/>
-              <circle cx="9" cy="16" r="2.5" fill="#6b7280"/>
-              <circle cx="16" cy="16" r="2.5" fill="#6b7280"/>
-              <circle cx="23" cy="16" r="2.5" fill="#FF9500"/>
-              <circle cx="9" cy="23" r="2.5" fill="#6b7280"/>
-              <circle cx="16" cy="23" r="2.5" fill="#6b7280"/>
-              <circle cx="23" cy="23" r="2.5" fill="#FF9500"/>
-              <circle cx="9" cy="27.5" r="2.5" fill="#6b7280"/>
-              <circle cx="16" cy="27.5" r="2.5" fill="#6b7280"/>
-              <circle cx="23" cy="27.5" r="2.5" fill="#FF9500"/>
+          <div class="dock-icon" style="background: linear-gradient(180deg, #4A4A4A 0%, #2D2D2D 100%);">
+            <svg viewBox="0 0 120 120" width="22" height="22">
+              <!-- Display -->
+              <rect x="14" y="12" width="92" height="26" rx="5" fill="#FF9500"/>
+              <text x="98" y="32" text-anchor="end" font-size="18" font-weight="bold" font-family="system-ui" fill="white">0</text>
+              <!-- Row 1 -->
+              <circle cx="26" cy="52" r="9" fill="#6B7280"/>
+              <circle cx="48" cy="52" r="9" fill="#6B7280"/>
+              <circle cx="70" cy="52" r="9" fill="#6B7280"/>
+              <circle cx="94" cy="52" r="9" fill="#FF9500"/>
+              <!-- Row 2 -->
+              <circle cx="26" cy="74" r="9" fill="#6B7280"/>
+              <circle cx="48" cy="74" r="9" fill="#6B7280"/>
+              <circle cx="70" cy="74" r="9" fill="#6B7280"/>
+              <circle cx="94" cy="74" r="9" fill="#FF9500"/>
+              <!-- Row 3 -->
+              <circle cx="26" cy="96" r="9" fill="#6B7280"/>
+              <circle cx="48" cy="96" r="9" fill="#6B7280"/>
+              <circle cx="70" cy="96" r="9" fill="#6B7280"/>
+              <circle cx="94" cy="96" r="9" fill="#FF9500"/>
+              <!-- Button labels (subtle) -->
+              <text x="26" y="56" text-anchor="middle" font-size="10" fill="white" font-family="system-ui">7</text>
+              <text x="48" y="56" text-anchor="middle" font-size="10" fill="white" font-family="system-ui">8</text>
+              <text x="70" y="56" text-anchor="middle" font-size="10" fill="white" font-family="system-ui">9</text>
+              <text x="94" y="56" text-anchor="middle" font-size="14" fill="white" font-family="system-ui">/</text>
+              <text x="26" y="78" text-anchor="middle" font-size="10" fill="white" font-family="system-ui">4</text>
+              <text x="48" y="78" text-anchor="middle" font-size="10" fill="white" font-family="system-ui">5</text>
+              <text x="70" y="78" text-anchor="middle" font-size="10" fill="white" font-family="system-ui">6</text>
+              <text x="94" y="78" text-anchor="middle" font-size="14" fill="white" font-family="system-ui">-</text>
+              <text x="26" y="100" text-anchor="middle" font-size="10" fill="white" font-family="system-ui">1</text>
+              <text x="48" y="100" text-anchor="middle" font-size="10" fill="white" font-family="system-ui">2</text>
+              <text x="70" y="100" text-anchor="middle" font-size="10" fill="white" font-family="system-ui">3</text>
+              <text x="94" y="100" text-anchor="middle" font-size="14" fill="white" font-family="system-ui">+</text>
             </svg>
           </div>
         </button>
