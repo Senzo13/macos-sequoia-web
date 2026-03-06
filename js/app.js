@@ -136,12 +136,13 @@ document.addEventListener('components-loaded', () => {
                 const rect = icon.getBoundingClientRect();
                 const iconCenterX = rect.left + rect.width / 2;
                 const distance = Math.abs(e.clientX - iconCenterX);
-                const maxDistance = 120;
-                const maxScale = 1.5;
+                const maxDistance = 80;
+                const maxScale = 1.6;
                 const minScale = 1.0;
 
                 if (distance < maxDistance) {
-                    const scale = maxScale - ((maxScale - minScale) * (distance / maxDistance));
+                    const ratio = distance / maxDistance;
+                    const scale = maxScale - ((maxScale - minScale) * (ratio * ratio));
                     icon.style.transform = `scale(${scale}) translateY(${-(scale - 1) * 20}px)`;
                     icon.style.transformOrigin = 'bottom center';
                     icon.style.transition = 'transform 0.1s ease';

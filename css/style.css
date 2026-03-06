@@ -1014,27 +1014,34 @@ body {
 /* --------------------------------------------------------------------------
    Calculator
    -------------------------------------------------------------------------- */
+.window-titlebar-calc {
+  background: #2a2a2a !important;
+  border-bottom: none !important;
+}
+
 .calculator-container {
   display: flex;
   flex-direction: column;
   height: 100%;
-  background: #333;
+  background: #2a2a2a;
 }
 
-.calculator-display {
-  padding: 16px 20px;
+.calculator-display,
+.calc-display {
+  padding: 8px 20px 4px;
   text-align: right;
-  font-size: 48px;
-  font-weight: 300;
+  font-size: 52px;
+  font-weight: 200;
   color: #fff;
-  background: #333;
-  min-height: 80px;
+  background: #2a2a2a;
+  min-height: 70px;
   display: flex;
   align-items: flex-end;
   justify-content: flex-end;
   overflow: hidden;
   word-break: break-all;
-  line-height: 1.1;
+  line-height: 1;
+  font-family: var(--font-system);
 }
 
 .calculator-buttons {
@@ -1049,16 +1056,16 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 20px;
+  font-size: 22px;
   font-weight: 400;
   font-family: var(--font-system);
   border: none;
   cursor: pointer;
-  transition: background var(--transition-fast);
+  transition: background 0.1s ease;
   border-radius: 0;
   color: #fff;
   padding: 0;
-  min-height: 50px;
+  min-height: 48px;
 }
 
 .calc-btn.number {
@@ -1076,7 +1083,7 @@ body {
 .calc-btn.operator {
   background: #ff9f0a;
   color: #fff;
-  font-size: 24px;
+  font-size: 26px;
 }
 
 .calc-btn.operator:hover {
@@ -1087,7 +1094,7 @@ body {
   background: #ffc766;
 }
 
-.calc-btn.operator.active {
+.calc-btn.operator.active-op {
   background: #fff;
   color: #ff9f0a;
 }
@@ -1095,6 +1102,7 @@ body {
 .calc-btn.function {
   background: #a5a5a5;
   color: #333;
+  font-size: 18px;
 }
 
 .calc-btn.function:hover {
@@ -1112,39 +1120,29 @@ body {
   justify-content: flex-start;
 }
 
-/* Round calculator buttons variant */
-.calculator-buttons.rounded .calc-btn {
-  border-radius: 50%;
-  margin: 4px;
-  min-height: 0;
-  aspect-ratio: 1;
-}
-
-.calculator-buttons.rounded .calc-btn.zero {
-  border-radius: 40px;
-  aspect-ratio: unset;
-}
-
 /* --------------------------------------------------------------------------
    Terminal
    -------------------------------------------------------------------------- */
-.terminal-container {
-  display: flex;
-  flex-direction: column;
-  height: 100%;
-  background: rgba(30, 30, 30, 0.95);
-  font-family: var(--font-mono);
+.window-titlebar-terminal {
+  background: rgba(56, 56, 56, 0.97) !important;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.3) !important;
+}
+
+.window-title-light {
+  color: rgba(255, 255, 255, 0.7) !important;
 }
 
 .terminal-content {
   flex: 1;
-  padding: 8px 12px;
-  color: #fff;
+  padding: 10px 14px;
+  color: #f0f0f0;
   font-size: 13px;
+  font-family: 'SF Mono', 'Menlo', 'Monaco', 'Courier New', monospace;
   line-height: 1.5;
   overflow-y: auto;
   white-space: pre-wrap;
   word-break: break-all;
+  background: #1e1e1e !important;
 }
 
 .terminal-content::-webkit-scrollbar {
@@ -1157,45 +1155,30 @@ body {
 }
 
 .terminal-line {
+  margin-bottom: 1px;
+}
+
+.terminal-prompt-line {
   display: flex;
-  flex-wrap: wrap;
+  align-items: center;
 }
 
 .terminal-prompt {
   color: #33ff33;
-  margin-right: 8px;
+  margin-right: 0;
   white-space: nowrap;
 }
 
 .terminal-input {
   background: none;
   border: none;
-  color: #fff;
-  font-family: var(--font-mono);
+  color: #f0f0f0;
+  font-family: 'SF Mono', 'Menlo', 'Monaco', 'Courier New', monospace;
   font-size: 13px;
   outline: none;
   flex: 1;
   caret-color: #33ff33;
   min-width: 0;
-}
-
-.terminal-output {
-  color: #ccc;
-  margin-bottom: 2px;
-}
-
-/* Terminal title bar override */
-.window.terminal .window-titlebar {
-  background: rgba(56, 56, 56, 0.95);
-  border-bottom-color: rgba(255, 255, 255, 0.05);
-}
-
-.window.terminal .window-title {
-  color: rgba(255, 255, 255, 0.8);
-}
-
-.window.terminal .window-content {
-  background: transparent;
 }
 
 /* --------------------------------------------------------------------------
@@ -2416,7 +2399,7 @@ body {
   background: rgba(0, 102, 255, 0.12);
   border-radius: 2px;
   pointer-events: none;
-  z-index: 5;
+  z-index: 0;
   display: none;
   box-shadow: 0 0 0 0.5px rgba(0, 102, 255, 0.3);
 }

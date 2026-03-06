@@ -1,38 +1,38 @@
-    <div class="window" id="window-calculator" data-app="calculator" style="display:none; width:252px; height:380px; top:100px; left:400px;">
-      <div class="window-titlebar window-titlebar-dark" data-drag="true">
+    <div class="window" id="window-calculator" data-app="calculator" style="display:none; width:252px; height:370px; top:100px; left:400px;">
+      <div class="window-titlebar window-titlebar-calc" data-drag="true">
         <div class="traffic-lights">
           <button class="traffic-light btn-close" data-action="close" aria-label="Close"></button>
           <button class="traffic-light btn-minimize" data-action="minimize" aria-label="Minimize"></button>
           <button class="traffic-light btn-maximize" data-action="maximize" aria-label="Maximize"></button>
         </div>
-        <div class="window-title"><span>Calculator</span></div>
+        <div class="window-title"><span></span></div>
       </div>
-      <div class="window-body calculator-body">
-        <div class="calc-display" id="calc-display">0</div>
-        <div class="calc-buttons">
-          <button class="calc-btn calc-btn-fn" data-calc="clear">AC</button>
-          <button class="calc-btn calc-btn-fn" data-calc="negate">+/-</button>
-          <button class="calc-btn calc-btn-fn" data-calc="percent">%</button>
-          <button class="calc-btn calc-btn-op" data-calc="/">&#247;</button>
+      <div class="window-body calculator-container">
+        <div class="calculator-display calc-display" id="calc-display">0</div>
+        <div class="calculator-buttons">
+          <button class="calc-btn function" data-value="AC">AC</button>
+          <button class="calc-btn function" data-value="+/-">+/&minus;</button>
+          <button class="calc-btn function" data-value="%">%</button>
+          <button class="calc-btn operator" data-value="&#247;">&#247;</button>
 
-          <button class="calc-btn calc-btn-num" data-calc="7">7</button>
-          <button class="calc-btn calc-btn-num" data-calc="8">8</button>
-          <button class="calc-btn calc-btn-num" data-calc="9">9</button>
-          <button class="calc-btn calc-btn-op" data-calc="*">&times;</button>
+          <button class="calc-btn number" data-value="7">7</button>
+          <button class="calc-btn number" data-value="8">8</button>
+          <button class="calc-btn number" data-value="9">9</button>
+          <button class="calc-btn operator" data-value="&#215;">&#215;</button>
 
-          <button class="calc-btn calc-btn-num" data-calc="4">4</button>
-          <button class="calc-btn calc-btn-num" data-calc="5">5</button>
-          <button class="calc-btn calc-btn-num" data-calc="6">6</button>
-          <button class="calc-btn calc-btn-op" data-calc="-">&minus;</button>
+          <button class="calc-btn number" data-value="4">4</button>
+          <button class="calc-btn number" data-value="5">5</button>
+          <button class="calc-btn number" data-value="6">6</button>
+          <button class="calc-btn operator" data-value="&#8722;">&#8722;</button>
 
-          <button class="calc-btn calc-btn-num" data-calc="1">1</button>
-          <button class="calc-btn calc-btn-num" data-calc="2">2</button>
-          <button class="calc-btn calc-btn-num" data-calc="3">3</button>
-          <button class="calc-btn calc-btn-op" data-calc="+">+</button>
+          <button class="calc-btn number" data-value="1">1</button>
+          <button class="calc-btn number" data-value="2">2</button>
+          <button class="calc-btn number" data-value="3">3</button>
+          <button class="calc-btn operator" data-value="+">+</button>
 
-          <button class="calc-btn calc-btn-num calc-btn-zero" data-calc="0">0</button>
-          <button class="calc-btn calc-btn-num" data-calc=".">.</button>
-          <button class="calc-btn calc-btn-op" data-calc="=">=</button>
+          <button class="calc-btn number zero" data-value="0">0</button>
+          <button class="calc-btn number" data-value=".">.</button>
+          <button class="calc-btn operator" data-value="=">=</button>
         </div>
       </div>
     </div>
