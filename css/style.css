@@ -462,116 +462,153 @@ body {
    -------------------------------------------------------------------------- */
 #dock {
   position: fixed;
-  bottom: 5px;
+  bottom: 4px;
   left: 50%;
   transform: translateX(-50%);
-  background: var(--dock-bg);
-  backdrop-filter: var(--dock-blur);
-  -webkit-backdrop-filter: var(--dock-blur);
-  border: 1px solid var(--dock-border);
-  border-radius: var(--dock-radius);
-  padding: 4px 8px;
+  z-index: 8000;
+  animation: dockSlideUp 0.5s ease 0.3s both;
+}
+
+.dock-container {
   display: flex;
   align-items: flex-end;
   gap: 2px;
-  z-index: 8000;
-  box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
-  animation: dockSlideUp 0.5s ease 0.3s both;
+  background: rgba(255, 255, 255, 0.18);
+  backdrop-filter: blur(25px) saturate(180%);
+  -webkit-backdrop-filter: blur(25px) saturate(180%);
+  border: 0.5px solid rgba(255, 255, 255, 0.35);
+  border-radius: 16px;
+  padding: 3px 6px 5px;
+  box-shadow:
+    0 0 0 0.5px rgba(0, 0, 0, 0.08),
+    0 8px 40px rgba(0, 0, 0, 0.18),
+    inset 0 0.5px 0 rgba(255, 255, 255, 0.25);
+}
+
+/* Dock Item (button wrapper) */
+.dock-item {
+  all: unset;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  cursor: pointer;
+  transition: transform 0.2s ease;
 }
 
 /* Dock Icon */
 .dock-icon {
-  width: var(--dock-icon-size);
-  height: var(--dock-icon-size);
-  border-radius: var(--dock-icon-radius);
+  width: 44px;
+  height: 44px;
+  border-radius: 10px;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 28px;
-  cursor: pointer;
-  position: relative;
-  transition: transform var(--transition-fast);
-  -webkit-user-drag: none;
+  flex-shrink: 0;
+  transition: transform 0.15s ease;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12);
 }
 
-.dock-icon img {
-  width: 100%;
-  height: 100%;
-  border-radius: var(--dock-icon-radius);
+.dock-icon img,
+.dock-icon svg {
   pointer-events: none;
   -webkit-user-drag: none;
 }
 
-/* Dock Magnification */
-.dock-icon:hover {
-  transform: scale(1.5) translateY(-10px);
+/* Dock Magnification on hover */
+.dock-item:hover {
+  transform: scale(1.45) translateY(-12px);
+  z-index: 10;
 }
 
-/* Adjacent sibling (next) */
-.dock-icon:hover + .dock-icon {
-  transform: scale(1.2) translateY(-5px);
+.dock-item:hover + .dock-item {
+  transform: scale(1.18) translateY(-5px);
 }
 
-/* Second adjacent sibling */
-.dock-icon:hover + .dock-icon + .dock-icon {
+.dock-item:hover + .dock-item + .dock-item {
   transform: scale(1.05) translateY(-2px);
 }
 
-/* Previous sibling using :has() */
-.dock-icon:has(+ .dock-icon:hover) {
-  transform: scale(1.2) translateY(-5px);
+.dock-item:has(+ .dock-item:hover) {
+  transform: scale(1.18) translateY(-5px);
 }
 
-/* Two before hovered using :has() */
-.dock-icon:has(+ .dock-icon + .dock-icon:hover) {
+.dock-item:has(+ .dock-item + .dock-item:hover) {
   transform: scale(1.05) translateY(-2px);
 }
 
 /* Dock Tooltip */
-.dock-tooltip {
+.dock-item::before {
+  content: attr(aria-label);
   position: absolute;
-  top: -30px;
+  top: -28px;
   left: 50%;
   transform: translateX(-50%);
-  background: rgba(0, 0, 0, 0.75);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
+  background: rgba(0, 0, 0, 0.7);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
   color: #fff;
   font-size: 11px;
   font-weight: 500;
-  padding: 4px 10px;
+  font-family: var(--font-system);
+  padding: 3px 10px;
   border-radius: 4px;
   white-space: nowrap;
   pointer-events: none;
   opacity: 0;
-  transition: opacity var(--transition-fast);
+  transition: opacity 0.15s ease;
 }
 
-.dock-icon:hover .dock-tooltip {
+.dock-item:hover::before {
   opacity: 1;
 }
 
 /* Dock Divider */
 .dock-divider {
   width: 1px;
-  height: 40px;
-  background: rgba(255, 255, 255, 0.4);
+  height: 32px;
+  background: rgba(255, 255, 255, 0.3);
   margin: 0 4px;
   align-self: center;
   flex-shrink: 0;
 }
 
 /* Dock Active Indicator (running app dot) */
-.dock-icon.active::after {
+.dock-item.active::after {
   content: '';
   position: absolute;
-  bottom: -6px;
+  bottom: -4px;
   left: 50%;
   transform: translateX(-50%);
   width: 4px;
   height: 4px;
-  background: rgba(255, 255, 255, 0.9);
+  background: rgba(255, 255, 255, 0.85);
   border-radius: 50%;
+}
+
+/* Calendar dock icon */
+.dock-calendar-icon {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  line-height: 1;
+}
+
+.dock-calendar-day-name {
+  font-size: 9px;
+  font-weight: 700;
+  color: #ff3b30;
+  font-family: var(--font-system);
+  letter-spacing: 0.5px;
+}
+
+.dock-calendar-date {
+  font-size: 20px;
+  font-weight: 300;
+  color: #1a1a1a;
+  font-family: var(--font-system);
+  margin-top: -2px;
 }
 
 /* --------------------------------------------------------------------------
@@ -1932,23 +1969,22 @@ body {
    Responsive Adjustments
    -------------------------------------------------------------------------- */
 @media (max-width: 768px) {
-  .dock-tooltip {
+  .dock-item::before {
     display: none;
   }
 
   .dock-icon {
-    width: 40px;
-    height: 40px;
-    font-size: 22px;
+    width: 36px;
+    height: 36px;
   }
 
   .dock-divider {
-    height: 32px;
+    height: 28px;
   }
 
-  #dock {
-    padding: 3px 6px;
-    border-radius: 14px;
+  .dock-container {
+    padding: 3px 5px 4px;
+    border-radius: 12px;
   }
 
   .window {

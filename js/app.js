@@ -119,7 +119,7 @@ document.addEventListener('components-loaded', () => {
         const dock = document.querySelector('.dock');
         if (!dock) return;
 
-        const dockIcons = dock.querySelectorAll('.dock-icon');
+        const dockIcons = dock.querySelectorAll('.dock-item');
 
         // --- Click to open app ---
         dockIcons.forEach(icon => {
@@ -172,7 +172,7 @@ document.addEventListener('components-loaded', () => {
         bringToFront(win);
 
         // Mark dock icon active
-        const dockIcon = document.querySelector(`.dock-icon[data-app="${appName}"]`);
+        const dockIcon = document.querySelector(`.dock-item[data-app="${appName}"]`);
         if (dockIcon) dockIcon.classList.add('active');
 
         // Remove minimised styling if present
@@ -194,7 +194,7 @@ document.addEventListener('components-loaded', () => {
         win.classList.remove('active');
         win.classList.remove('maximized');
         const appName = win.getAttribute('data-app');
-        const dockIcon = document.querySelector(`.dock-icon[data-app="${appName}"]`);
+        const dockIcon = document.querySelector(`.dock-item[data-app="${appName}"]`);
         if (dockIcon) dockIcon.classList.remove('active');
     }
 
@@ -1056,7 +1056,7 @@ document.addEventListener('components-loaded', () => {
     //  12. CALENDAR DOCK ICON - Show today's date number
     // ==================================================================
     function initCalendarDockIcon() {
-        const calendarIcon = document.querySelector('.dock-icon[data-app="calendar"]');
+        const calendarIcon = document.querySelector('.dock-item[data-app="calendar"]');
         if (!calendarIcon) return;
 
         const today = new Date().getDate();
