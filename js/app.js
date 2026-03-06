@@ -540,7 +540,19 @@ document.addEventListener('components-loaded', () => {
                          termWindow.querySelector('.terminal-content');
         if (!termBody) return;
 
-        const PROMPT = 'lorenzo@MacBook-Pro ~ % ';
+        let currentDir = '~';
+        const fileSystem = {
+            '~': ['Desktop', 'Documents', 'Downloads', 'Music', 'Pictures', 'Public', 'Movies'],
+            '~/Desktop': [],
+            '~/Documents': [],
+            '~/Downloads': ['project.zip', 'image.png'],
+            '~/Music': ['playlist.m3u'],
+            '~/Pictures': ['photo.jpg', 'screenshot.png'],
+            '~/Public': [],
+            '~/Movies': [],
+        };
+
+        function getPrompt() { return `lorenzo@MacBook-Pro ${currentDir === '/Users/lorenzo' ? '~' : currentDir.replace('/Users/lorenzo', '~')} % `; }
 
         appendOutput('Last login: ' + new Date().toString().split(' ').slice(0, 5).join(' ') + ' on ttys000');
         createPromptLine();
@@ -567,7 +579,7 @@ document.addEventListener('components-loaded', () => {
 
             const promptSpan = document.createElement('span');
             promptSpan.classList.add('terminal-prompt');
-            promptSpan.textContent = PROMPT;
+            promptSpan.textContent = getPrompt();
 
             const input = document.createElement('input');
             input.type = 'text';
@@ -595,32 +607,121 @@ document.addEventListener('components-loaded', () => {
         function processCommand(cmd) {
             if (cmd === '') { createPromptLine(); return; }
 
-            switch (cmd.toLowerCase()) {
-                case 'ls':
-                    appendOutput('Desktop    Documents    Downloads    Music    Pictures    Public    Movies');
+            const parts = cmd.trim().split(/\s+/);
+            const command = parts[0].toLowerCase();
+            const args = parts.slice(1);
+
+            switch (command) {
+                case 'ls': {
+                    const target = args[0] ? resolvePath(args[0]) : currentDir;
+                    const contents = fileSystem[target];
+                    if (contents !== undefined) {
+                        if (contents.length > 0) appendOutput(contents.join('    '));
+                    } else {
+                        appendOutput(`ls: ${args[0]}: No such file or directory`);
+                    }
+                    break;
+                }
+                case 'cd': {
+                    if (!args[0] || args[0] === '~') {
+                        currentDir = '~';
+                    } else if (args[0] === '..') {
+                        if (currentDir !== '~') {
+                            const parts = currentDir.split('/');
+                            parts.pop();
+                            currentDir = parts.join('/') || '~';
+                        }
+                    } else if (args[0] === '.') {
+                        // stay
+                    } else {
+                        const target = resolvePath(args[0]);
+                        if (fileSystem[target] !== undefined) {
+                            currentDir = target;
+                        } else {
+                            appendOutput(`cd: no such file or directory: ${args[0]}`);
+                        }
+                    }
+                    break;
+                }
+                case 'pwd':
+                    appendOutput(currentDir.replace('~', '/Users/lorenzo'));
                     break;
                 case 'whoami':
                     appendOutput('lorenzo');
                     break;
-                case 'pwd':
-                    appendOutput('/Users/lorenzo');
+                case 'hostname':
+                    appendOutput('MacBook-Pro.local');
                     break;
+                case 'cat': {
+                    if (!args[0]) { appendOutput('cat: missing operand'); break; }
+                    const dir = fileSystem[currentDir];
+                    if (dir && dir.includes(args[0])) {
+                        appendOutput(`[contents of ${args[0]}]`);
+                    } else {
+                        appendOutput(`cat: ${args[0]}: No such file or directory`);
+                    }
+                    break;
+                }
+                case 'mkdir': {
+                    if (!args[0]) { appendOutput('mkdir: missing operand'); break; }
+                    const newPath = resolvePath(args[0]);
+                    if (fileSystem[newPath] !== undefined) {
+                        appendOutput(`mkdir: ${args[0]}: File exists`);
+                    } else {
+                        fileSystem[newPath] = [];
+                        const parent = fileSystem[currentDir];
+                        if (parent) parent.push(args[0]);
+                    }
+                    break;
+                }
+                case 'touch': {
+                    if (!args[0]) { appendOutput('touch: missing operand'); break; }
+                    const dir2 = fileSystem[currentDir];
+                    if (dir2 && !dir2.includes(args[0])) dir2.push(args[0]);
+                    break;
+                }
+                case 'rm': {
+                    if (!args[0]) { appendOutput('rm: missing operand'); break; }
+                    const dir3 = fileSystem[currentDir];
+                    if (dir3) {
+                        const idx = dir3.indexOf(args[0]);
+                        if (idx !== -1) dir3.splice(idx, 1);
+                        else appendOutput(`rm: ${args[0]}: No such file or directory`);
+                    }
+                    break;
+                }
                 case 'clear':
                     termBody.innerHTML = '';
                     createPromptLine();
                     return;
+                case 'echo':
+                    appendOutput(args.join(' '));
+                    break;
+                case 'date':
+                    appendOutput(new Date().toString());
+                    break;
+                case 'uname':
+                    appendOutput(args.includes('-a') ? 'Darwin MacBook-Pro.local 24.3.0 Darwin Kernel Version 24.3.0 arm64' : 'Darwin');
+                    break;
                 case 'help':
                     appendOutput('Available commands:');
-                    appendOutput('  ls        - List directory contents');
-                    appendOutput('  whoami    - Display current user');
-                    appendOutput('  pwd       - Print working directory');
-                    appendOutput('  clear     - Clear terminal');
-                    appendOutput('  neofetch  - System information');
-                    appendOutput('  date      - Show current date/time');
-                    appendOutput('  echo      - Print text');
-                    appendOutput('  help      - Show this help');
+                    appendOutput('  ls [dir]      - List directory contents');
+                    appendOutput('  cd [dir]      - Change directory');
+                    appendOutput('  pwd           - Print working directory');
+                    appendOutput('  cat <file>    - Show file contents');
+                    appendOutput('  mkdir <name>  - Create directory');
+                    appendOutput('  touch <name>  - Create file');
+                    appendOutput('  rm <name>     - Remove file');
+                    appendOutput('  whoami        - Display current user');
+                    appendOutput('  hostname      - Display hostname');
+                    appendOutput('  uname [-a]    - System name');
+                    appendOutput('  echo <text>   - Print text');
+                    appendOutput('  date          - Show current date/time');
+                    appendOutput('  clear         - Clear terminal');
+                    appendOutput('  neofetch      - System information');
+                    appendOutput('  help          - Show this help');
                     break;
-                case 'neofetch':
+                case 'neofetch': {
                     const art = [
                         '                    \'c.          lorenzo@MacBook-Pro',
                         '                 ,xNMM.          ----------------------',
@@ -642,18 +743,18 @@ document.addEventListener('components-loaded', () => {
                     ];
                     art.forEach(line => appendOutput(line));
                     break;
-                case 'date':
-                    appendOutput(new Date().toString());
-                    break;
+                }
                 default:
-                    if (cmd.toLowerCase().startsWith('echo ')) {
-                        appendOutput(cmd.slice(5));
-                    } else {
-                        appendOutput(`zsh: command not found: ${cmd}`);
-                    }
+                    appendOutput(`zsh: command not found: ${command}`);
                     break;
             }
             createPromptLine();
+        }
+
+        function resolvePath(target) {
+            if (target.startsWith('~/')) return target;
+            if (target.startsWith('/')) return target;
+            return currentDir + '/' + target;
         }
 
         function scrollTerminal() { termBody.scrollTop = termBody.scrollHeight; }
