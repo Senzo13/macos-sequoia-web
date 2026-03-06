@@ -11,9 +11,9 @@
   --font-mono: 'SF Mono', 'Menlo', 'Monaco', 'Courier New', monospace;
 
   /* Menu Bar */
-  --menubar-height: 25px;
-  --menubar-bg: rgba(255, 255, 255, 0.85);
-  --menubar-font-size: 13px;
+  --menubar-height: 28px;
+  --menubar-bg: rgba(38, 38, 40, 0.45);
+  --menubar-font-size: 13.5px;
 
   /* Dock */
   --dock-bg: rgba(255, 255, 255, 0.25);
@@ -48,17 +48,25 @@
   --transition-fast: 0.2s ease;
   --transition-normal: 0.3s ease;
 
-  /* Wallpaper */
+  /* Wallpaper — macOS Sequoia inspired */
   --wallpaper: linear-gradient(
-    180deg,
-    #1a1a3e 0%,
-    #1e3a5f 20%,
-    #2d6b7a 40%,
-    #5ba88c 55%,
-    #8cc084 65%,
-    #d4a843 80%,
-    #c67235 90%,
-    #8b3a1f 100%
+    175deg,
+    #0f1b3d 0%,
+    #142952 8%,
+    #1a3f6e 16%,
+    #1f5580 24%,
+    #256b8f 32%,
+    #2e8597 40%,
+    #3d9e8f 48%,
+    #5db585 55%,
+    #82c87a 62%,
+    #aed36c 68%,
+    #d4c84e 74%,
+    #e0a83c 80%,
+    #d98636 85%,
+    #cf6930 90%,
+    #b84a28 95%,
+    #8a3420 100%
   );
 }
 
@@ -344,56 +352,103 @@ body {
   top: 0;
   left: 0;
   right: 0;
-  height: var(--menubar-height);
-  background: var(--menubar-bg);
-  backdrop-filter: blur(20px) saturate(180%);
-  -webkit-backdrop-filter: blur(20px) saturate(180%);
+  height: 28px;
+  background: rgba(38, 38, 40, 0.45);
+  backdrop-filter: blur(30px) saturate(200%);
+  -webkit-backdrop-filter: blur(30px) saturate(200%);
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 0 10px;
+  padding: 0 8px;
   z-index: 9000;
-  font-size: var(--menubar-font-size);
+  font-family: var(--font-system);
+  font-size: 13.5px;
   font-weight: 500;
-  color: #000;
+  color: rgba(255, 255, 255, 0.95);
+  letter-spacing: 0.01em;
+  user-select: none;
+  -webkit-user-select: none;
 }
 
-.menu-left,
-.menu-right {
+.menu-bar-left,
+.menu-bar-right {
   display: flex;
   align-items: center;
   height: 100%;
 }
 
-.menu-left {
-  gap: 0;
+.menu-bar-left {
+  gap: 1px;
 }
 
-.menu-right {
-  gap: 4px;
+.menu-bar-right {
+  gap: 2px;
 }
 
-.menu-item {
-  padding: 2px 8px;
+.menu-bar-item {
+  all: unset;
+  padding: 1px 10px;
   border-radius: 4px;
   cursor: default;
   white-space: nowrap;
-  line-height: var(--menubar-height);
-  transition: background var(--transition-fast);
+  line-height: 26px;
+  font-size: 13.5px;
+  font-weight: 500;
+  font-family: var(--font-system);
+  color: rgba(255, 255, 255, 0.95);
+  transition: background 0.1s ease;
 }
 
-.menu-item:hover {
-  background: rgba(0, 0, 0, 0.08);
+.menu-bar-item:hover {
+  background: rgba(255, 255, 255, 0.12);
 }
 
-.menu-item:active,
-.menu-item.active {
-  background: rgba(0, 0, 0, 0.12);
+.menu-bar-item:active,
+.menu-bar-item.active {
+  background: rgba(255, 255, 255, 0.18);
 }
 
-.menu-item.apple-logo {
-  font-size: 16px;
-  font-weight: 400;
+.menu-bar-app-name {
+  font-weight: 700;
+}
+
+.apple-logo {
+  all: unset;
+  padding: 1px 10px;
+  border-radius: 4px;
+  cursor: default;
+  line-height: 26px;
+  display: flex;
+  align-items: center;
+  color: rgba(255, 255, 255, 0.95);
+  transition: background 0.1s ease;
+}
+
+.apple-logo:hover {
+  background: rgba(255, 255, 255, 0.12);
+}
+
+.menu-bar-icon {
+  all: unset;
+  padding: 2px 5px;
+  border-radius: 4px;
+  cursor: default;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: rgba(255, 255, 255, 0.9);
+  transition: background 0.1s ease;
+}
+
+.menu-bar-icon:hover {
+  background: rgba(255, 255, 255, 0.12);
+}
+
+.menu-bar-datetime {
+  display: flex;
+  gap: 6px;
+  font-size: 13px;
+  font-variant-numeric: tabular-nums;
 }
 
 /* --------------------------------------------------------------------------
@@ -403,16 +458,17 @@ body {
   position: absolute;
   top: var(--menubar-height);
   left: 0;
-  background: rgba(246, 246, 246, 0.9);
-  backdrop-filter: blur(20px) saturate(180%);
-  -webkit-backdrop-filter: blur(20px) saturate(180%);
+  background: rgba(40, 40, 42, 0.85);
+  backdrop-filter: blur(40px) saturate(200%);
+  -webkit-backdrop-filter: blur(40px) saturate(200%);
   border-radius: 0 0 8px 8px;
-  border: 0.5px solid rgba(0, 0, 0, 0.15);
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.18);
+  border: 0.5px solid rgba(255, 255, 255, 0.12);
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.35);
   padding: 4px;
   min-width: 220px;
   display: none;
   z-index: 9100;
+  color: rgba(255, 255, 255, 0.9);
 }
 
 .menu-dropdown.active {
@@ -425,25 +481,26 @@ body {
   justify-content: space-between;
   padding: 4px 12px;
   font-size: 13px;
+  font-family: var(--font-system);
   border-radius: 4px;
   cursor: default;
-  color: var(--text-primary);
-  transition: background var(--transition-fast), color var(--transition-fast);
+  color: rgba(255, 255, 255, 0.9);
+  transition: background 0.1s ease;
 }
 
 .menu-dropdown-item:hover {
-  background: var(--accent-blue);
+  background: #2563eb;
   color: #fff;
 }
 
 .menu-dropdown-item.disabled {
-  color: rgba(0, 0, 0, 0.3);
+  color: rgba(255, 255, 255, 0.25);
   pointer-events: none;
 }
 
 .menu-dropdown-item .shortcut {
   font-size: 12px;
-  color: var(--text-secondary);
+  color: rgba(255, 255, 255, 0.45);
   margin-left: 24px;
 }
 
@@ -453,7 +510,7 @@ body {
 
 .menu-dropdown-separator {
   height: 1px;
-  background: var(--separator);
+  background: rgba(255, 255, 255, 0.1);
   margin: 4px 8px;
 }
 
@@ -472,17 +529,17 @@ body {
 .dock-container {
   display: flex;
   align-items: flex-end;
-  gap: 2px;
-  background: rgba(255, 255, 255, 0.18);
-  backdrop-filter: blur(25px) saturate(180%);
-  -webkit-backdrop-filter: blur(25px) saturate(180%);
-  border: 0.5px solid rgba(255, 255, 255, 0.35);
-  border-radius: 16px;
-  padding: 3px 6px 5px;
+  gap: 3px;
+  background: rgba(200, 200, 200, 0.22);
+  backdrop-filter: blur(40px) saturate(170%);
+  -webkit-backdrop-filter: blur(40px) saturate(170%);
+  border: 0.5px solid rgba(255, 255, 255, 0.3);
+  border-radius: 18px;
+  padding: 4px 8px 6px;
   box-shadow:
-    0 0 0 0.5px rgba(0, 0, 0, 0.08),
-    0 8px 40px rgba(0, 0, 0, 0.18),
-    inset 0 0.5px 0 rgba(255, 255, 255, 0.25);
+    0 0 0 0.5px rgba(0, 0, 0, 0.06),
+    0 10px 50px rgba(0, 0, 0, 0.22),
+    inset 0 0.5px 0 rgba(255, 255, 255, 0.35);
 }
 
 /* Dock Item (button wrapper) */
@@ -498,9 +555,9 @@ body {
 
 /* Dock Icon */
 .dock-icon {
-  width: 44px;
-  height: 44px;
-  border-radius: 10px;
+  width: 50px;
+  height: 50px;
+  border-radius: 11px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -1703,8 +1760,8 @@ body {
    -------------------------------------------------------------------------- */
 .desktop-icons {
   position: absolute;
-  top: calc(var(--menubar-height) + 12px);
-  right: 12px;
+  top: calc(var(--menubar-height) + 16px);
+  right: 20px;
   display: flex;
   flex-direction: column;
   gap: 4px;
