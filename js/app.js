@@ -1037,7 +1037,7 @@ document.addEventListener('components-loaded', () => {
         const dateEl = document.getElementById('dock-calendar-date');
         if (dateEl) dateEl.textContent = new Date().getDate();
 
-        const dayEl = document.querySelector('.dock-calendar-day-name');
+        const dayEl = document.getElementById('dock-cal-day');
         if (dayEl) {
             const days = ['SUN','MON','TUE','WED','THU','FRI','SAT'];
             dayEl.textContent = days[new Date().getDay()];
