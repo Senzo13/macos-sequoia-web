@@ -198,12 +198,9 @@ body {
   width: 100vw;
   height: 100vh;
   z-index: 10000;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
   background: var(--wallpaper);
   overflow: hidden;
+  transition: opacity 0.6s ease, transform 0.6s ease;
 }
 
 #lock-screen::before {
@@ -218,69 +215,56 @@ body {
   z-index: 0;
 }
 
-#lock-screen > * {
-  position: relative;
+/* Clock pinned to top center */
+.lock-clock {
+  position: absolute;
+  top: 12%;
+  left: 50%;
+  transform: translateX(-50%);
+  text-align: center;
   z-index: 1;
 }
 
-#lock-screen.hidden {
-  animation: lockScreenFadeOut 0.5s ease forwards;
-  pointer-events: none;
-}
-
 .lock-time {
-  font-size: 80px;
+  font-size: 82px;
   font-weight: 700;
   color: #fff;
-  text-shadow: 0 2px 20px rgba(0, 0, 0, 0.3);
-  letter-spacing: -1px;
+  text-shadow: 0 2px 30px rgba(0, 0, 0, 0.3);
+  letter-spacing: 2px;
   line-height: 1;
 }
 
 .lock-date {
-  font-size: 24px;
+  font-size: 22px;
   font-weight: 500;
   color: rgba(255, 255, 255, 0.9);
   text-shadow: 0 1px 10px rgba(0, 0, 0, 0.2);
-  margin-top: 4px;
-  margin-bottom: 40px;
+  margin-top: 6px;
 }
 
+/* User block centered on screen */
 .lock-user {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
   display: flex;
   flex-direction: column;
   align-items: center;
-}
-
-.lock-hint {
-  font-size: 12px;
-  color: rgba(255, 255, 255, 0.5);
-  margin-top: 8px;
-}
-
-.lock-password-form {
-  margin: 0;
+  z-index: 1;
 }
 
 .lock-avatar {
-  width: 80px;
-  height: 80px;
+  width: 64px;
+  height: 64px;
   border-radius: 50%;
-  background: rgba(255, 255, 255, 0.2);
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25);
-  margin-bottom: 12px;
-  object-fit: cover;
+  background: rgba(180, 180, 180, 0.45);
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.2);
+  margin-bottom: 10px;
   overflow: hidden;
   display: flex;
   align-items: center;
   justify-content: center;
-}
-
-.lock-avatar img {
-  width: 100%;
-  height: 100%;
-  border-radius: 50%;
-  object-fit: cover;
 }
 
 .lock-username {
@@ -288,33 +272,68 @@ body {
   font-weight: 600;
   color: #fff;
   text-shadow: 0 1px 6px rgba(0, 0, 0, 0.2);
-  margin-bottom: 12px;
+  margin-bottom: 10px;
+}
+
+.lock-password-form {
+  margin: 0;
+}
+
+.lock-input-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
 }
 
 .lock-password-input {
   width: 200px;
-  height: 32px;
-  border: none;
-  border-radius: 16px;
-  background: rgba(255, 255, 255, 0.2);
+  height: 30px;
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  border-radius: 15px;
+  background: rgba(255, 255, 255, 0.15);
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
   color: #fff;
-  font-size: 14px;
+  font-size: 13px;
   font-family: var(--font-system);
-  padding: 0 16px;
+  padding: 0 36px 0 14px;
   outline: none;
-  text-align: center;
-  transition: background var(--transition-fast);
+  transition: background 0.2s ease, border-color 0.2s ease;
 }
 
 .lock-password-input::placeholder {
-  color: rgba(255, 255, 255, 0.6);
-  font-size: 13px;
+  color: rgba(255, 255, 255, 0.5);
+  font-size: 12px;
 }
 
 .lock-password-input:focus {
+  background: rgba(255, 255, 255, 0.22);
+  border-color: rgba(255, 255, 255, 0.4);
+}
+
+.lock-submit-btn {
+  position: absolute;
+  right: 3px;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  border: none;
+  background: rgba(255, 255, 255, 0.15);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.2s ease;
+}
+
+.lock-submit-btn:hover {
   background: rgba(255, 255, 255, 0.3);
+}
+
+.lock-hint {
+  font-size: 11px;
+  color: rgba(255, 255, 255, 0.4);
+  margin-top: 10px;
 }
 
 /* --------------------------------------------------------------------------

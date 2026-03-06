@@ -13,24 +13,29 @@
   <!-- ============================================================ -->
   <div id="lock-screen" class="lock-screen">
     <div class="lock-wallpaper"></div>
-    <div class="lock-content">
+    <!-- Time/Date pinned to top -->
+    <div class="lock-clock">
       <div class="lock-time" id="lock-time">09:41</div>
       <div class="lock-date" id="lock-date">Friday, March 6</div>
-
-      <div class="lock-user">
-        <div class="lock-avatar">
-          <!-- User silhouette icon -->
-          <svg viewBox="0 0 100 100" width="80" height="80">
-            <circle cx="50" cy="38" r="18" fill="rgba(255,255,255,0.85)"/>
-            <ellipse cx="50" cy="80" rx="30" ry="20" fill="rgba(255,255,255,0.85)"/>
-          </svg>
-        </div>
-        <div class="lock-username">Lorenzo</div>
-        <form id="lock-form" class="lock-password-form" autocomplete="off">
-          <input type="password" id="lock-password" class="lock-password-input" placeholder="Enter Password" autofocus>
-        </form>
-        <div class="lock-hint">Press Enter to unlock</div>
+    </div>
+    <!-- User centered on screen -->
+    <div class="lock-user">
+      <div class="lock-avatar">
+        <svg viewBox="0 0 120 120" width="64" height="64">
+          <circle cx="60" cy="45" r="20" fill="rgba(255,255,255,0.9)"/>
+          <ellipse cx="60" cy="95" rx="35" ry="22" fill="rgba(255,255,255,0.9)"/>
+        </svg>
       </div>
+      <div class="lock-username">Lorenzo</div>
+      <form id="lock-form" class="lock-password-form" autocomplete="off">
+        <div class="lock-input-wrapper">
+          <input type="password" id="lock-password" class="lock-password-input" placeholder="Enter Password" autofocus>
+          <button type="submit" class="lock-submit-btn">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.7)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+          </button>
+        </div>
+      </form>
+      <div class="lock-hint">Press Enter to unlock</div>
     </div>
   </div>
 

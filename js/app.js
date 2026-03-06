@@ -73,13 +73,13 @@ document.addEventListener('DOMContentLoaded', () => {
 
         function unlockDesktop() {
             clearInterval(lockClockInterval);
-            lockScreen.classList.add('unlock-animation');
+            const desktop = document.getElementById('desktop');
+            if (desktop) desktop.classList.remove('hidden');
             lockScreen.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
             lockScreen.style.opacity = '0';
             lockScreen.style.transform = 'scale(1.05)';
             setTimeout(() => {
                 lockScreen.style.display = 'none';
-                lockScreen.classList.remove('unlock-animation');
             }, 600);
         }
     }
