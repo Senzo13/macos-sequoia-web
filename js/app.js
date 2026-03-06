@@ -20,7 +20,7 @@ document.addEventListener('components-loaded', () => {
     initContextMenu();
     initMenuBar();
     initNotificationCenter();
-    initDesktopIcons();
+    initWidgets();
     initCalendarDockIcon();
 
     // ==================================================================
@@ -88,10 +88,9 @@ document.addEventListener('components-loaded', () => {
     //  2. MENU BAR CLOCK
     // ==================================================================
     function initMenuBarClock() {
-        const menuBarClock = document.querySelector('.menu-bar-clock') ||
-                             document.querySelector('.menu-bar .clock') ||
-                             document.querySelector('.menu-bar-right .datetime');
-        if (!menuBarClock) return;
+        const dateEl = document.getElementById('menu-bar-date-text');
+        const timeEl = document.getElementById('menu-bar-time-text');
+        if (!dateEl && !timeEl) return;
 
         function updateMenuClock() {
             const now = new Date();
@@ -105,11 +104,12 @@ document.addEventListener('components-loaded', () => {
             const ampm = hours >= 12 ? 'PM' : 'AM';
             hours = hours % 12 || 12;
             const minutes = String(now.getMinutes()).padStart(2, '0');
-            menuBarClock.textContent = `${dayName} ${monthName} ${date}  ${hours}:${minutes} ${ampm}`;
+            if (dateEl) dateEl.textContent = `${dayName} ${monthName} ${date}`;
+            if (timeEl) timeEl.textContent = `${hours}:${minutes} ${ampm}`;
         }
 
         updateMenuClock();
-        setInterval(updateMenuClock, 1000); // Check every second for accuracy on the minute flip
+        setInterval(updateMenuClock, 1000);
     }
 
     // ==================================================================
@@ -1040,16 +1040,67 @@ document.addEventListener('components-loaded', () => {
     // ==================================================================
     //  10. DESKTOP ICONS
     // ==================================================================
-    function initDesktopIcons() {
-        const desktopIcons = document.querySelectorAll('.desktop-icon');
+    function initWidgets() {
+        // --- Analog Clock ---
+        const hourHand = document.getElementById('clock-hand-hour');
+        const minuteHand = document.getElementById('clock-hand-minute');
+        const secondHand = document.getElementById('clock-hand-second');
 
-        desktopIcons.forEach(icon => {
-            icon.addEventListener('dblclick', () => {
-                // Open finder (or whatever app the icon represents)
-                const appName = icon.getAttribute('data-app') || 'finder';
-                openApp(appName);
-            });
-        });
+        function updateClock() {
+            const now = new Date();
+            const h = now.getHours() % 12;
+            const m = now.getMinutes();
+            const s = now.getSeconds();
+            const hourDeg = (h * 30) + (m * 0.5);
+            const minDeg = m * 6;
+            const secDeg = s * 6;
+            if (hourHand) hourHand.style.transform = `translateX(-50%) rotate(${hourDeg}deg)`;
+            if (minuteHand) minuteHand.style.transform = `translateX(-50%) rotate(${minDeg}deg)`;
+            if (secondHand) secondHand.style.transform = `translateX(-50%) rotate(${secDeg}deg)`;
+        }
+
+        if (hourHand) {
+            updateClock();
+            setInterval(updateClock, 1000);
+        }
+
+        // --- Calendar ---
+        const calMonth = document.getElementById('cal-month');
+        const calGrid = document.getElementById('cal-grid');
+
+        if (calMonth && calGrid) {
+            const now = new Date();
+            const year = now.getFullYear();
+            const month = now.getMonth();
+            const today = now.getDate();
+            const monthNames = ['January', 'February', 'March', 'April', 'May', 'June',
+                                'July', 'August', 'September', 'October', 'November', 'December'];
+            calMonth.textContent = monthNames[month];
+
+            const firstDay = new Date(year, month, 1).getDay();
+            const daysInMonth = new Date(year, month + 1, 0).getDate();
+
+            let html = '';
+            // Build rows
+            let dayCount = 1;
+            for (let row = 0; row < 6; row++) {
+                if (dayCount > daysInMonth) break;
+                html += '<div class="cal-row">';
+                for (let col = 0; col < 7; col++) {
+                    if (row === 0 && col < firstDay) {
+                        html += '<span class="cal-day empty"></span>';
+                    } else if (dayCount > daysInMonth) {
+                        html += '<span class="cal-day empty"></span>';
+                    } else {
+                        const cls = dayCount === today ? 'cal-day today' : 'cal-day';
+                        html += `<span class="${cls}">${dayCount}</span>`;
+                        dayCount++;
+                    }
+                }
+                html += '</div>';
+            }
+            calGrid.innerHTML = html;
+        }
     }
 
     // ==================================================================

@@ -1,22 +1,61 @@
-    <div class="desktop-icons">
-      <div class="desktop-icon" data-app="finder">
-        <div class="desktop-icon-image hd-icon">
-          <svg viewBox="0 0 48 48" width="56" height="56">
-            <rect x="6" y="8" width="36" height="32" rx="4" fill="#a8c4e0" stroke="#7a9ec2" stroke-width="1"/>
-            <rect x="10" y="16" width="28" height="20" rx="2" fill="#fff"/>
-            <rect x="10" y="12" width="28" height="6" rx="2" fill="#d4e2f0"/>
-          </svg>
+    <!-- Desktop Widgets -->
+    <div class="desktop-widgets">
+      <!-- Weather Widget -->
+      <div class="widget widget-weather">
+        <div class="widget-weather-location">Marseille</div>
+        <div class="widget-weather-temp">18&deg;</div>
+        <div class="widget-weather-condition">Partly Cloudy</div>
+        <div class="widget-weather-forecast">
+          <div class="widget-weather-hour">
+            <div>Now</div>
+            <div class="widget-weather-hour-temp">18&deg;</div>
+          </div>
+          <div class="widget-weather-hour">
+            <div>1PM</div>
+            <div class="widget-weather-hour-temp">19&deg;</div>
+          </div>
+          <div class="widget-weather-hour">
+            <div>2PM</div>
+            <div class="widget-weather-hour-temp">20&deg;</div>
+          </div>
+          <div class="widget-weather-hour">
+            <div>3PM</div>
+            <div class="widget-weather-hour-temp">19&deg;</div>
+          </div>
+          <div class="widget-weather-hour">
+            <div>4PM</div>
+            <div class="widget-weather-hour-temp">18&deg;</div>
+          </div>
+          <div class="widget-weather-hour">
+            <div>5PM</div>
+            <div class="widget-weather-hour-temp">17&deg;</div>
+          </div>
         </div>
-        <span class="desktop-icon-label">Macintosh HD</span>
       </div>
 
-      <div class="desktop-icon" data-app="finder">
-        <div class="desktop-icon-image folder-icon">
-          <svg viewBox="0 0 48 48" width="56" height="56">
-            <path d="M6 14h14l4-4h18a2 2 0 0 1 2 2v26a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V16a2 2 0 0 1 2-2z" fill="#5ab4f5"/>
-            <path d="M4 18h40v20a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V18z" fill="#4aa3e8"/>
-          </svg>
+      <!-- Clock + Calendar row -->
+      <div class="widget-row">
+        <!-- Analog Clock Widget -->
+        <div class="widget widget-clock">
+          <div class="clock-face" id="widget-clock-face">
+            <div class="clock-number" style="top:4px;left:50%;transform:translateX(-50%)">12</div>
+            <div class="clock-number" style="top:50%;right:6px;transform:translateY(-50%)">3</div>
+            <div class="clock-number" style="bottom:4px;left:50%;transform:translateX(-50%)">6</div>
+            <div class="clock-number" style="top:50%;left:6px;transform:translateY(-50%)">9</div>
+            <div class="clock-hand clock-hand-hour" id="clock-hand-hour"></div>
+            <div class="clock-hand clock-hand-minute" id="clock-hand-minute"></div>
+            <div class="clock-hand clock-hand-second" id="clock-hand-second"></div>
+            <div class="clock-center"></div>
+          </div>
         </div>
-        <span class="desktop-icon-label">Documents</span>
+
+        <!-- Calendar Widget -->
+        <div class="widget widget-calendar">
+          <div class="cal-month" id="cal-month"></div>
+          <div class="cal-header">
+            <span>S</span><span>M</span><span>T</span><span>W</span><span>T</span><span>F</span><span>S</span>
+          </div>
+          <div class="cal-grid" id="cal-grid"></div>
+        </div>
       </div>
     </div>
